@@ -577,3 +577,5 @@ export const data = [
   "downloadUrl": ""
   }
   ]
+
+  export default data
