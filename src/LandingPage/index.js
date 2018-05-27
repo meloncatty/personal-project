@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
 export class LandingPage extends Component {
@@ -6,19 +8,22 @@ export class LandingPage extends Component {
     super()
 
     this.state = {
-      searchInput: ''
+      searchInput: '',
+      redirectToSearch: false
     }
   }
 
   handleChange=(e)=> {
     this.setState({
-      searchInput: e.target.value
+      searchInput: e.target.value,
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    
+    this.setState({
+      redirectToSearch: true
+    })
   }
 
   render() {
@@ -35,6 +40,8 @@ export class LandingPage extends Component {
           />
           <button>Submit</button>
         </form>
+        {this.state.redirectToSearch && 
+          (<Redirect to={'/searchResults'} />)}
       </main>
     )
   }
@@ -44,4 +51,4 @@ const mapStateToProps = state => ({
   getUserQuery: state.getUserQuery
 })
 
-export default connect(null, mapStateToProps)(LandingPage)
+export default withRouter(connect(null, mapStateToProps)(LandingPage))
