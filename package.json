@@ -25,6 +25,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "node-sass": "^4.9.0",
     "node-sass-chokidar": "^1.3.0",
+    "redux": "^4.0.0",
     "sass-loader": "^7.0.1",
     "standard": "^11.0.1"
   }
