@@ -8,6 +8,12 @@ class App extends Component {
   render() {
     return (
       <div>
+        <header className='header'>
+          <ul>
+            <li>Sign up</li>
+            <li>Sign out</li>
+          </ul>
+        </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
       </div>

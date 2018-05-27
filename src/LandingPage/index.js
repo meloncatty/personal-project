@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import './index.css'
 
 export class LandingPage extends Component {
   constructor() {
