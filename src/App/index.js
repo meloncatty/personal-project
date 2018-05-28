@@ -16,6 +16,9 @@ class App extends Component {
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
+        <footer>
+          <img src="https://core.ac.uk/images/powered-by-core-orange.png" />
+        </footer>
       </div>
     )
   }

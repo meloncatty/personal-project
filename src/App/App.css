@@ -2,6 +2,15 @@ div {
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400; }
 
+footer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 20px; }
+  footer img {
+    width: 20%;
+    height: 20%; }
+
 .header {
   height: 150px;
   padding: 10px;
