@@ -1,16 +1,14 @@
-import { combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
-export const getUserQuery = (state = '', action) => {
+const queryResults = (state = [], action) => {
   switch (action.type) {
-    case 'GET_USER_QUERY':
-      return action.userQuery
+    case 'QUERY_RESULTS':
+      return [...state, action.results]
     default:
       return state
   }
 }
 
-export const rootReducer = combineReducers(
-  {
-    getUserQuery
-  } 
-)
+const rootReducer = combineReducers({queryResults})
+
+export default rootReducer

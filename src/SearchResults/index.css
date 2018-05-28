@@ -1,0 +1,17 @@
+.results-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+article {
+  width: 40%;
+  border: 1px solid #000;
+  margin-top: 20px;
+  padding: 10px; }
+
+h3 {
+  font-size: .90em; }
+
+p {
+  font-size: .9em; }

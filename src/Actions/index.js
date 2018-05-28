@@ -1,5 +1,4 @@
-export const getUserQuery = (query) => ({
-  type: 'GET_USER_QUERY',
-  query
+export const queryResults = (results) => ({
+  type: 'QUERY_RESULTS',
+  results
 })
-
