@@ -7,8 +7,8 @@ import { queryResults } from '../Actions'
 import './index.css'
 
 export class LandingPage extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       searchInput: '',
@@ -21,8 +21,7 @@ export class LandingPage extends Component {
     const url = `https://core.ac.uk:443/api-v2/articles/search/${searchInput}?page=1&pageSize=10&metadata=false&fulltext=true&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
     const response = await fetch(url)
     const results = await response.json()
-    console.log(results)
-    this.props.queryResults(results)
+    this.props.queryResults(results.data)
   }
 
   handleChange = e => {
@@ -31,7 +30,7 @@ export class LandingPage extends Component {
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     this.fetchQuery()
     this.setState({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, withRouter, Switch } from 'react-router-dom'
-import { LandingPage } from '../LandingPage'
-import { SearchResults } from '../SearchResults'
+import LandingPage from '../LandingPage'
+import SearchResults from '../SearchResults'
 import './App.css'
 
 class App extends Component {
