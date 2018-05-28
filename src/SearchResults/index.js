@@ -39,8 +39,12 @@ export class SearchResults extends Component
   }
 }
 
+export const mapStateToProps = state => ({
+  queryResults: state.queryResults
+})
+
 export const mapDispatchToProps = dispatch => ({
   queryResults: (results) => dispatch(queryResults(results))
 })
 
-export default withRouter(connect(undefined, mapDispatchToProps)(SearchResults))
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

@@ -7,8 +7,8 @@ import { queryResults } from '../Actions'
 import './index.css'
 
 export class LandingPage extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       searchInput: '',
@@ -22,7 +22,7 @@ export class LandingPage extends Component {
     const response = await fetch(url)
     const results = await response.json()
     console.log(results)
-    this.props.queryResults(results.data)
+    this.props.queryResults(results)
   }
 
   handleChange = e => {
@@ -60,8 +60,10 @@ export class LandingPage extends Component {
   }
 }
 
+export const mapStateToProps = state => ({queryResults: state.queryResults})
+
 export const mapDispatchToProps = dispatch => ({
   queryResults: (results) => dispatch(queryResults(results))
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(LandingPage))
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)
