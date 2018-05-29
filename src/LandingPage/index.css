@@ -1,0 +1,28 @@
+input[type='text'] {
+  width: 350px;
+  height: 20px;
+  padding: 10px;
+  font-family: 'Noto Sans', sans-serif;
+  border: none;
+  box-shadow: none; }
+
+input[type="text"]::-webkit-search-decoration {
+  display: none; }
+
+input:focus {
+  outline: none; }
+
+button {
+  width: 70px;
+  height: 45px;
+  font-family: 'Noto Sans', sans-serif;
+  border: none; }
+
+button:focus {
+  outline: none; }
+
+main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 100px; }
