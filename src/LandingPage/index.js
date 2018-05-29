@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import apiKey from '../apiKey.js'
-import { queryResultsSuccess } from '../Actions'
+import { fetchArticles } from '../Actions'
 import './index.css'
 
 export class LandingPage extends Component {
@@ -16,14 +14,6 @@ export class LandingPage extends Component {
     }
   }
 
-  fetchQuery = async () => {
-    const {searchInput} = this.state
-    const url = `https://core.ac.uk:443/api-v2/articles/search/${searchInput}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
-    const response = await fetch(url)
-    const results = await response.json()
-    this.props.queryResultsSuccess(results.data)
-  }
-
   handleChange = e => {
     this.setState({
       searchInput: e.target.value
@@ -32,7 +22,7 @@ export class LandingPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.fetchQuery()
+    this.props.fetchArticles(this.state.searchInput)
     this.setState({
       redirectToSearch: true
     })
@@ -59,8 +49,14 @@ export class LandingPage extends Component {
   }
 }
 
+export const mapStateToProps = state => ({
+  resultsLoading: state.resultsLoading,
+  resultsErrored: state.resultsErrored,
+  resultsSuccess: state.resultsSuccess
+})
+
 export const mapDispatchToProps = dispatch => ({
-  queryResultsSuccess: (results) => dispatch(queryResultsSuccess(results))
+  fetchArticles: (query) => dispatch(fetchArticles(query))
 })
 
 export default connect(null, mapDispatchToProps)(LandingPage)

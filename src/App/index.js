@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, withRouter, Switch } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import LandingPage from '../LandingPage'
 import SearchResults from '../SearchResults'
 import './App.css'
@@ -17,7 +17,7 @@ class App extends Component {
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
         <footer>
-          <img src="https://core.ac.uk/images/powered-by-core-orange.png" />
+          <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>
       </div>
     )

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { queryResults } from '../Actions'
-import { withRouter } from 'react-router-dom'
 import './index.css'
-import mockData from '../mockdata'
 
 export class SearchResults extends Component {
   constructor() {
@@ -11,7 +8,7 @@ export class SearchResults extends Component {
   }
 
   cleanQueryResults = () => {
-    return this.props.queryResultsSuccess.map((result, index) =>
+    return this.props.resultsSuccess.map((result, index) =>
       (
         <article key={index}>
           <h1>{result.title}</h1>
@@ -30,14 +27,14 @@ export class SearchResults extends Component {
   render() {
     return (
       <section className='results-list'>
-      {this.props.queryResultsSuccess.length > 1 && this.cleanQueryResults()}
+      {this.props.resultsSuccess.length > 1 && this.cleanQueryResults()}
       </section>
     )
   }
 }
 
 export const mapStateToProps = state => ({
-  queryResultsSuccess: state.queryResultsSuccess
+  resultsSuccess: state.resultsSuccess
 })
 
 export default connect(mapStateToProps)(SearchResults)
