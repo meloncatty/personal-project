@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import apiKey from '../apiKey.js'
-import { queryResults } from '../Actions'
+import { queryResultsSuccess } from '../Actions'
 import './index.css'
 
 export class LandingPage extends Component {
@@ -21,7 +21,7 @@ export class LandingPage extends Component {
     const url = `https://core.ac.uk:443/api-v2/articles/search/${searchInput}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
     const response = await fetch(url)
     const results = await response.json()
-    this.props.queryResults(results.data)
+    this.props.queryResultsSuccess(results.data)
   }
 
   handleChange = e => {
@@ -59,10 +59,8 @@ export class LandingPage extends Component {
   }
 }
 
-export const mapStateToProps = state => ({queryResults: state.queryResults})
-
 export const mapDispatchToProps = dispatch => ({
-  queryResults: (results) => dispatch(queryResults(results))
+  queryResultsSuccess: (results) => dispatch(queryResultsSuccess(results))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)
+export default connect(null, mapDispatchToProps)(LandingPage)

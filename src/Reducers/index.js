@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 
-export const queryResults = (state = [], action) => {
+export const queryResultsSuccess = (state = [], action) => {
   switch (action.type) {
-    case 'QUERY_RESULTS':
+    case 'QUERY_RESULTS_SUCCESS':
       return [...action.results]
     default:
       return state
@@ -11,7 +11,7 @@ export const queryResults = (state = [], action) => {
 }
 
 const rootReducer = combineReducers({
-  queryResults
+  queryResultsSuccess
 })
 
 export default rootReducer

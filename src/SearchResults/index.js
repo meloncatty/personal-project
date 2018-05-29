@@ -11,7 +11,7 @@ export class SearchResults extends Component {
   }
 
   cleanQueryResults = () => {
-    return this.props.queryResults.map((result, index) =>
+    return this.props.queryResultsSuccess.map((result, index) =>
       (
         <article key={index}>
           <h1>{result.title}</h1>
@@ -30,14 +30,14 @@ export class SearchResults extends Component {
   render() {
     return (
       <section className='results-list'>
-      {this.props.queryResults.length > 1 && this.cleanQueryResults()}
+      {this.props.queryResultsSuccess.length > 1 && this.cleanQueryResults()}
       </section>
     )
   }
 }
 
 export const mapStateToProps = state => ({
-  queryResults: state.queryResults
+  queryResultsSuccess: state.queryResultsSuccess
 })
 
 export default connect(mapStateToProps)(SearchResults)
