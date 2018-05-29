@@ -17,7 +17,7 @@ export class SearchResults extends Component {
           <h1>{result.title}</h1>
           <h3>{result.authors}</h3>
           <h3>{result.datePublished}</h3>
-          <p>{result.description && result.description.slice(0,400) + '...'}</p>
+          <p>{result.description && result.description.slice(0,500) + '...'}</p>
           {
             result.downloadUrl &&
             <a href={result.downloadUrl}>Download</a>

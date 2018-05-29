@@ -18,8 +18,7 @@ export class LandingPage extends Component {
 
   fetchQuery = async () => {
     const {searchInput} = this.state
-    const url = `https://core.ac.uk:443/api-v2/articles/search/${searchInput}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}
-    `
+    const url = `https://core.ac.uk:443/api-v2/articles/search/${searchInput}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
     const response = await fetch(url)
     const results = await response.json()
     this.props.queryResults(results.data)
@@ -49,7 +48,7 @@ export class LandingPage extends Component {
             name='query'
             type='text'
             value={this.state.query}
-            placeholder='Search for journals, articles, authors, etc'
+            placeholder='Search through thousands of open source articles'
           />
           <button>Submit</button>
         </form>
