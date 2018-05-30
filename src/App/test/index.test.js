@@ -1,9 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { shallow } from 'enzyme'
 import App from '../'
 
 describe('App', () => {
-  it('should be true', () => {
-    expect(true).toBe(true)
+  it('should match snapshot', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper).toMatchSnapshot()
   });
 });
