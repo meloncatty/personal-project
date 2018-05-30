@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../Actions'
-import apiKey from '../apiKey'
+
 import './index.css'
 
 export class LandingPage extends Component {
@@ -23,8 +23,8 @@ export class LandingPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const url = `https://core.ac.uk:443/api-v2/articles/search/${this.state.userInput}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
-    this.props.fetchArticles(url)
+
+    this.props.fetchArticles(this.state.searchInput)
     this.setState({
       redirectToSearch: true
     })

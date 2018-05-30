@@ -1,18 +1,19 @@
 import thunk from 'react-redux'
+import apiKey from '../../apiKey.js'
 import {resultsSuccess, resultsAreLoading, resultsHaveErrored, fetchArticles} from '../'
 
 describe('Article results actions', () => {
-  let mockUrl
+  let mockQuery
   let mockDispatch
 
   beforeEach(() => {
-    mockUrl = 'url.com',
+    mockQuery = 'url.com',
     mockDispatch = jest.fn()
   })
 
   describe('resultsSuccess', () => {
     it("should return type QUERY_RESULTS_SUCCESS", () => {
-    const results = [{}]
+    const results = [{id: 0, title: 'do some testing'}]
     const expected = {
       type: 'QUERY_RESULTS_SUCCESS',
       results
@@ -50,23 +51,24 @@ describe('Article results actions', () => {
           json: () => Promise.resolve({})
         })
       })
-
-      const thunk = fetchArticles(mockUrl)
+      const url = `https://core.ac.uk:443/api-v2/articles/search/${mockQuery}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
+      const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
 
-      expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+      expect(window.fetch).toHaveBeenCalledWith(url)
     })
 
     it('should dispatch resultsSuccess when response is OK', async () => {
+      const mockData = [{id: 0, title: 'Learning about things'}]
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
           ok: true,
-          json: () => Promise.resolve({data: [{}]})
+          json: () => Promise.resolve({data: mockData})
         })
       })
-      const expected = resultsSuccess([{}])
-      const thunk = fetchArticles(mockUrl)
+      const expected = resultsSuccess(mockData)
+      const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
@@ -76,34 +78,50 @@ describe('Article results actions', () => {
         return Promise.resolve({
           status: 200,
           ok: true,
-          json: () => Promise.resolve({data: [{}]})
+          // json: () => Promise.resolve({data: [{}]})
         })
       })
       const expected = resultsAreLoading(false)
-      const thunk = fetchArticles(mockUrl)
+      const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it('should disptach resultsHaveErrored if status is not OK', async() => {
+    it('should disptach resultsHaveErrored if status is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
-          status: 200,
+          status: 500,
           ok: false,
-          json: () => Promise.resolve()
         })
       })
 
       const expected = resultsHaveErrored(true)
-      const thunk = fetchArticles(mockUrl)
+      const thunk = fetchArticles(mockQuery)
+      await thunk(mockDispatch)
+
+      expect(mockDispatch).toHaveBeenCalledWith(expected)
+    })
+
+    it('should dispatch resultsAreLoading if status is not OK', async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          status: 500,
+          ok: false,
+        })
+      })
+
+      const expected = resultsAreLoading(false)
+      const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
     it('should dispatch resultsAreLoading when first invoked', async () => {
+      window.fetch = jest.fn()
+
       const expected = resultsAreLoading(true)
-      const thunk = fetchArticles(mockUrl)
+      const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)

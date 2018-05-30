@@ -15,11 +15,11 @@ export const resultsHaveErrored = (bool) => ({
   resultsErrored: bool
 })
 
-export const fetchArticles = (url) => {
+export const fetchArticles = (query) => {
   return async (dispatch) => {
     try {
       dispatch(resultsAreLoading(true))
-      
+      const url = `https://core.ac.uk:443/api-v2/articles/search/${query}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
       const response = await fetch(url)
       if(!response.ok) {
         throw Error(response.statusText)
