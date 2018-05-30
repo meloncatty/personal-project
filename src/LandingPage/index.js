@@ -21,9 +21,8 @@ export class LandingPage extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
-
     this.props.fetchArticles(this.state.searchInput)
     this.setState({
       redirectToSearch: true
