@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { LandingPage } from '../'
+import { MemoryRouter } from 'react-router-dom'
+import { LandingPage, mapDispatchToProps } from '../'
 
 describe('LandingPage', () => {
   it('should have default state', () => {
@@ -14,7 +15,7 @@ describe('LandingPage', () => {
   })
 
   it('should handle change upon input change', () => {
-    const wrapper = mount(<LandingPage />)
+    const wrapper = shallow(<LandingPage />)
     const mockEvent = { target: { value: 'query' } }
     const mockHandleChange = jest.fn()
 
@@ -23,14 +24,44 @@ describe('LandingPage', () => {
     expect(wrapper.state('searchInput')).toEqual('query')
   })
 
-  it('should call fetchArticles when form is submitted', () => {
+  it('should call handleSubmit when form is submitted', () => {
     const mockFetchArticles = jest.fn()
     const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles}/>)
     const mockPreventDefault = {preventDefault: jest.fn()}
-    const mockSubmit = jest.fn()
-    const handleSubmit = (wrapper.instance().handleSubmit = jest.fn())
-    wrapper.find('form').simulate('submit', mockPreventDefault)
-    // expect(handleSubmit).toHaveBeenCalledTimes(1)
-    // expect(mockFetchArticles).toHaveBeenCalled()
+    wrapper.instance().handleSubmit(mockPreventDefault)
+
+    expect(wrapper.instance().handleSubmit).toHaveBeenCalled
   })
+
+  it('should call fetchArticles when form is submitted', () => {
+    const mockFetchArticles = jest.fn()
+    const wrapper = shallow(
+      <LandingPage fetchArticles={mockFetchArticles}/>
+    )
+    const mockPreventDefault = {preventDefault: jest.fn()}
+    wrapper.find('form').simulate('submit', mockPreventDefault)
+    
+    expect(mockFetchArticles).toHaveBeenCalled()
+  })
+
+  it('should update redirectToSearch when handleSubmit is called', () => {
+    const mockFetchArticles = jest.fn()
+    const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles} />)
+    const mockPreventDefault = {preventDefault: jest.fn()}
+    wrapper.find('form').simulate('submit', mockPreventDefault)
+
+    expect(wrapper.state('redirectToSearch')).toBe(true)
+  })
+
+  describe('mapDispatchToProps', () => {
+    it.skip('should return an object', () => {
+      const mockDispatch = jest.fn()
+      const mockDispatchToProps = mapDispatchToProps(mockDispatch)
+      const expected = {
+        fetchArticles: (query) => dispatch(fetchArticles(query))
+      }
+
+      expect(mockDispatchToProps).toBe(expected)
+    });
+  });
 })

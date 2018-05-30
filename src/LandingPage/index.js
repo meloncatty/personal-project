@@ -50,12 +50,6 @@ export class LandingPage extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
-  resultsLoading: state.resultsLoading,
-  resultsErrored: state.resultsErrored,
-  resultsSuccess: state.resultsSuccess
-})
-
 export const mapDispatchToProps = dispatch => ({
   fetchArticles: (query) => dispatch(fetchArticles(query))
 })
