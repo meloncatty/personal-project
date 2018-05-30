@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../Actions'
+import apiKey from '../apiKey'
 import './index.css'
 
 export class LandingPage extends Component {
