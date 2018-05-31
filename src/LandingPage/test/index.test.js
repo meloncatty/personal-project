@@ -61,7 +61,7 @@ describe('LandingPage', () => {
         fetchArticles: (query) => dispatch(fetchArticles(query))
       }
 
-      expect(mockDispatchToProps).toBe(expected)
-    });
-  });
+      expect(mockDispatchToProps).toEqual(expected)
+    })
+  })
 })
