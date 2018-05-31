@@ -11,7 +11,8 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "standard": "^11.0.1"
   },
   "scripts": {
     "start-js": "react-scripts start",
@@ -33,8 +34,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!<rootDir>/node_modules/",
-      "!<rootDir>/path/to/dir/"
+      "!<rootDir>/node_modules/"
     ]
   }
 }
