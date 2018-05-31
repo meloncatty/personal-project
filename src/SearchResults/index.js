@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './index.css'
+import loading from '../assets/loading02.gif'
 
 export class SearchResults extends Component {
   constructor() {
@@ -24,17 +25,32 @@ export class SearchResults extends Component {
     )
   }
 
+  toggleLoading = () => {
+    return !this.props.resultsSuccess || this.props.resultsAreLoading
+      ? this.loadingStation()
+      : this.props.resultsSuccess.length > 1 && this.cleanQueryResults()
+  }
+
+  loadingStation = () => {
+    return (
+      <div className='loading-container'>
+        <img src={loading} alt='Loading icon' />
+      </div>
+    )
+  }
+
   render() {
     return (
       <section className='results-list'>
-      {this.props.resultsSuccess.length > 1 && this.cleanQueryResults()}
+        {this.toggleLoading()}
       </section>
     )
   }
 }
 
 export const mapStateToProps = state => ({
-  resultsSuccess: state.resultsSuccess
+  resultsSuccess: state.resultsSuccess,
+  resultsAreLoading: state.resultsAreLoading
 })
 
 export default connect(mapStateToProps)(SearchResults)
