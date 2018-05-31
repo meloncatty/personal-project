@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../Actions'
+
 import './index.css'
 
 export class LandingPage extends Component {
@@ -20,7 +21,7 @@ export class LandingPage extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     this.props.fetchArticles(this.state.searchInput)
     this.setState({
@@ -48,12 +49,6 @@ export class LandingPage extends Component {
     )
   }
 }
-
-export const mapStateToProps = state => ({
-  resultsLoading: state.resultsLoading,
-  resultsErrored: state.resultsErrored,
-  resultsSuccess: state.resultsSuccess
-})
 
 export const mapDispatchToProps = dispatch => ({
   fetchArticles: (query) => dispatch(fetchArticles(query))
