@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
+import ArticleContainer from '../ArticleContainer'
 import LandingPage from '../LandingPage'
 import SearchResults from '../SearchResults'
 import './App.css'
@@ -16,6 +17,7 @@ class App extends Component {
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
+        <Route exact path='/articleContainer' component={ArticleContainer} />
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Route, Link, withRouter } from 'react-router-dom'
+import { fetchFullText } from '../Actions'
+import ArticleContainer from '../ArticleContainer'
 import './index.css'
 import loading from '../assets/loading02.gif'
 
@@ -8,11 +11,22 @@ export class SearchResults extends Component {
     super()
   }
 
+  redirectToArticle = (id) => {
+    this.props.fetchFullText(id)
+  }
+
   cleanQueryResults = () => {
     return this.props.resultsSuccess.map((result, index) =>
       (
         <article key={index}>
-          <h1>{result.title}</h1>
+          <h1>
+            <Link to='/articleContainer' onClick={(e) => {
+                e.preventDefault()
+                this.redirectToArticle(result.id)
+                }}>
+              {result.title}
+            </Link>
+          </h1>
           <h3>{result.authors}</h3>
           <h3>{result.datePublished}</h3>
           <p>{result.description && result.description.slice(0,500) + '...'}</p>
@@ -26,7 +40,7 @@ export class SearchResults extends Component {
   }
 
   toggleLoading = () => {
-    return !this.props.resultsSuccess || this.props.resultsAreLoading
+    return this.props.resultsAreLoading
       ? this.loadingStation()
       : this.props.resultsSuccess.length > 1 && this.cleanQueryResults()
   }
@@ -35,6 +49,7 @@ export class SearchResults extends Component {
     return (
       <div className='loading-container'>
         <img src={loading} alt='Loading icon' />
+        <Route exact path='/articleContainer' component={ArticleContainer} />
       </div>
     )
   }
@@ -53,4 +68,8 @@ export const mapStateToProps = state => ({
   resultsAreLoading: state.resultsAreLoading
 })
 
-export default connect(mapStateToProps)(SearchResults)
+export const mapDispatchToProps = dispatch => ({
+  fetchFullText: (id) => dispatch(fetchFullText(id))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResults))

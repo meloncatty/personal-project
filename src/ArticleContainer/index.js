@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 export class ArticleContainer extends Component {
@@ -6,9 +7,13 @@ export class ArticleContainer extends Component {
     super()
   }
 
+
+
   render() {
     return (
-      <div></div>
+      <section>
+
+      </section>
     )
   }
 }
@@ -17,4 +22,4 @@ export const mapStateToProps = state => ({
   queryResults: state.queryResults
 })
 
-export default connect(mapStateToProps)(ArticleContainer)
+export default withRouter(connect(mapStateToProps)(ArticleContainer))

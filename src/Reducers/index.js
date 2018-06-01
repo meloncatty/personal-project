@@ -28,10 +28,40 @@ export const resultsAreLoading = (state = false, action) => {
   }
 }
 
+export const fullArticleSuccess = (state = [], action) => {
+  switch (action.type) {
+    case 'FULL_ARTICLE_SUCCESS':
+      return action.result
+    default:
+      return state
+  }
+}
+
+export const fullArticleLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'FULL_ARTICLE_LOADING':
+      return action.articleLoading
+    default:
+      return state
+  }
+}
+
+export const fullArticleErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'FULL_ARTICLE_ERRORED':
+      return action.articleErrored
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   resultsSuccess,
   resultsHaveErrored,
-  resultsAreLoading
+  resultsAreLoading,
+  fullArticleSuccess,
+  fullArticleLoading,
+  fullArticleErrored
 })
 
 export default rootReducer
