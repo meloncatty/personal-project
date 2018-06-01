@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link, withRouter } from 'react-router-dom'
+import { Route, Link, withRouter, Redirect } from 'react-router-dom'
 import { fetchFullText } from '../Actions'
 import ArticleContainer from '../ArticleContainer'
 import './index.css'
@@ -9,10 +9,17 @@ import loading from '../assets/loading02.gif'
 export class SearchResults extends Component {
   constructor() {
     super()
+
+    this.state = {
+      redirectToArticle: false
+    }
   }
 
   redirectToArticle = (id) => {
     this.props.fetchFullText(id)
+    this.setState({
+      redirectToArticle: true
+    })
   }
 
   cleanQueryResults = () => {
@@ -49,7 +56,6 @@ export class SearchResults extends Component {
     return (
       <div className='loading-container'>
         <img src={loading} alt='Loading icon' />
-        <Route exact path='/articleContainer' component={ArticleContainer} />
       </div>
     )
   }
@@ -58,6 +64,9 @@ export class SearchResults extends Component {
     return (
       <section className='results-list'>
         {this.toggleLoading()}
+        {this.state.redirectToArticle &&
+          (<Redirect to={'/articleContainer'} />)}
+        <Route exact path='/articleContainer' component={ArticleContainer} />
       </section>
     )
   }
