@@ -1,0 +1,16 @@
+.article-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.article-contents {
+  width: 60%; }
+
+.close {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height .25s ease-in-out; }
+
+.open {
+  max-height: auto; }
