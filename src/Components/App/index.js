@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import ArticleContainer from '../ArticleContainer'
-import LandingPage from '../LandingPage'
-import SearchResults from '../SearchResults'
+import ArticleContainer from '../../Containers/ArticleContainer'
+import LandingPage from '../../Containers/LandingPage'
+import SearchResults from '../../Containers/SearchResults'
 import './App.css'
 
 class App extends Component {

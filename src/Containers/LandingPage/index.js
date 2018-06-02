@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import { fetchArticles } from '../Actions'
+import { fetchArticles } from '../../Actions'
 
 import './index.css'
 

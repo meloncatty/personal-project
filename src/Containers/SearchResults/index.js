@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Link, withRouter, Redirect } from 'react-router-dom'
-import { fetchFullText } from '../Actions'
+import { fetchFullText } from '../../Actions'
 import ArticleContainer from '../ArticleContainer'
 import './index.css'
-import loading from '../assets/loading02.gif'
+import loading from '../../assets/loading02.gif'
 
 export class SearchResults extends Component {
   constructor() {
