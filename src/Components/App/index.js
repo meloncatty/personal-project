@@ -23,6 +23,7 @@ class App extends Component {
         <Route exact path='/signIn' component={SignIn} />
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
+        
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>
