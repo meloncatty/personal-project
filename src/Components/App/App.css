@@ -16,10 +16,21 @@ footer {
   height: 150px;
   padding: 10px;
   background: #7B9E89;
-  color: #D0DDD7; }
+  color: #D0DDD7;
+  display: flex;
+  justify-content: space-between; }
+  .header a {
+    color: #ECE4B7;
+    text-decoration: none; }
+    .header a:hover {
+      color: #E6AA68; }
+  .header img {
+    height: 80%;
+    align-self: center;
+    margin-left: 30px; }
   .header ul {
     display: flex;
     list-style: none;
-    justify-content: flex-end; }
+    align-self: flex-start; }
     .header ul li {
       margin-right: 20px; }

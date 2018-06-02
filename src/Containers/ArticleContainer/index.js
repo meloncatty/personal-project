@@ -35,7 +35,7 @@ export class ArticleContainer extends Component {
           <div className={expandText}>
             <p>{fullText}</p>
           </div>
-          <h4>{topics}</h4>
+          <h4>Topics: {topics}</h4>
           {fulltextIdentifier && 
           <a href={fulltextIdentifier} target='target_blank'>Human friendly full text</a>}
         </article>
