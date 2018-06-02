@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Link } from 'react-router-dom'
 import ArticleContainer from '../../Containers/ArticleContainer'
 import LandingPage from '../../Containers/LandingPage'
 import SearchResults from '../../Containers/SearchResults'
+import * as routes from '../../Constants/routes'
 import './App.css'
 
 class App extends Component {
@@ -11,8 +12,8 @@ class App extends Component {
       <div>
         <header className='header'>
           <ul>
-            <li>Sign up</li>
-            <li>Sign out</li>
+            <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
+            <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
           </ul>
         </header>
         <LandingPage />
