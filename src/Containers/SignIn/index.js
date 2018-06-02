@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { auth } from '../../Firebase'
+import * as routes from '../../Constants/routes'
 
 export class SignIn extends Component {
   constructor() {
     super()
+
   }
 
   render() {
@@ -12,4 +16,4 @@ export class SignIn extends Component {
   }
 }
 
-export default SignIn
+export default withRouter(SignIn)
