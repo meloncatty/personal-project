@@ -7,16 +7,32 @@ import './styles.css'
 export class ArticleContainer extends Component {
   constructor() {
     super()
+
+    this.state = {
+      toggleText: false
+    }
+  }
+
+  toggleText = () => {
+    this.state.toggleText 
+      ? this.setState({
+        toggleText: false
+      })
+      : this.setState({
+        toggleText: true
+      })
   }
 
   cleanFullArticle = () => {
     const {authors, datePublished, fullText, title, topics, fulltextIdentifier} = this.props.fullArticleSuccess
+    const expandText = this.state.toggleText ? 'toggle-text closed' : 'toggle-text open'
     return (
         <article className='article-contents'>
           <h2>{title}</h2>
-          <h3>{authors}</h3>
-          <h3>{datePublished}</h3>
-          <div className='toggle-text'>
+          <h3>Authors: {authors}</h3>
+          <h3>Date published: {datePublished}</h3>
+          <label for="toggle-text" className="lbl-toggle" onClick={this.toggleText}>Click to expand</label>
+          <div className={expandText}>
             <p>{fullText}</p>
           </div>
           <h4>{topics}</h4>
@@ -28,7 +44,6 @@ export class ArticleContainer extends Component {
 
   toggleLoading = () => {
     if(this.props.fullArticleSuccess > 0) {
-      console.log('fuck you')
     }
     return this.props.fullArticleLoading
       ? this.loadingStation()

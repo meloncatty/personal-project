@@ -5,12 +5,32 @@
   align-items: center; }
 
 .article-contents {
-  width: 60%; }
+  width: 70%; }
 
-.close {
-  max-height: 200px;
+.closed {
+  max-height: 400px;
   overflow: hidden;
   transition: max-height .25s ease-in-out; }
 
 .open {
   max-height: auto; }
+
+.lbl-toggle {
+  display: block;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: right; }
+
+.lbl-toggle::after {
+  content: ' ';
+  display: inline-block;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #7B9E89;
+  vertical-align: middle;
+  margin-left: 1rem;
+  transform: translateY(-2px);
+  transition: transform .2s ease-out; }
+
+.lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px); }
