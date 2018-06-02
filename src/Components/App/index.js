@@ -3,6 +3,8 @@ import { Route, withRouter, Link } from 'react-router-dom'
 import ArticleContainer from '../../Containers/ArticleContainer'
 import LandingPage from '../../Containers/LandingPage'
 import SearchResults from '../../Containers/SearchResults'
+import SignUp from '../../Containers/SignUp'
+import SignIn from '../../Containers/SignIn'
 import * as routes from '../../Constants/routes'
 import './App.css'
 
@@ -18,6 +20,8 @@ class App extends Component {
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
+        <Route exact path='/SignIn' component={SignIn} />
+        <Route exact path='/SignUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
