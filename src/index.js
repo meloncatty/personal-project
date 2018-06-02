@@ -8,7 +8,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './Reducers'
 import './index.css'
 import App from './Components/App'
-import registerServiceWorker from './registerServiceWorker'
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
@@ -21,4 +20,3 @@ const app = (
 )
 
 ReactDOM.render(app, document.getElementById('root'))
-registerServiceWorker()
