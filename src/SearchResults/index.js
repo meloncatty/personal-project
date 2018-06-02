@@ -60,10 +60,19 @@ export class SearchResults extends Component {
     )
   }
 
+  displayErrorText = () => {
+    return (
+      <div className='error-container'>
+        <p>Oops! Something went wrong. Please try again.</p>
+      </div>
+    )
+  }
+
   render() {
     return (
       <section className='results-list'>
         {this.toggleLoading()}
+        {this.props.resultsHaveErrored && this.displayErrorText()}
         {this.state.redirectToArticle &&
           (<Redirect to={'/articleContainer'} />)}
         <Route exact path='/articleContainer' component={ArticleContainer} />
@@ -74,7 +83,8 @@ export class SearchResults extends Component {
 
 export const mapStateToProps = state => ({
   resultsSuccess: state.resultsSuccess,
-  resultsAreLoading: state.resultsAreLoading
+  resultsAreLoading: state.resultsAreLoading,
+  resultsHaveErrored: state.resultsHaveErrored
 })
 
 export const mapDispatchToProps = dispatch => ({
