@@ -32,7 +32,7 @@ export class SignIn extends Component {
       .then(authUser => {
         
         this.setState(() => ({ ...this.state }))
-        this.props.userAuthentication(true)
+        this.props.userAuthentication(authUser)
         history.push(routes.HOME)
       })
       .catch(error => {

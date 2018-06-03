@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Link, withRouter, Redirect } from 'react-router-dom'
 import { fetchFullText } from '../../Actions'
+import { db } from '../../Firebase/firebase'
 import ArticleContainer from '../ArticleContainer'
 import './index.css'
 import loading from '../../assets/loading02.gif'
@@ -22,6 +23,17 @@ export class SearchResults extends Component {
     })
   }
 
+  postArticle = (e, article) => {
+    e.preventDefault()
+    
+    const itemsRef = db.ref('articles')
+    const articleInfo = {
+      article,
+      user: this.props.userAuthentication
+    }
+    itemsRef.push(article)
+  }
+
   cleanQueryResults = () => {
     return this.props.resultsSuccess.map((result, index) =>
       (
@@ -39,7 +51,12 @@ export class SearchResults extends Component {
           <p>{result.description && result.description.slice(0,500) + '...'}</p>
           {
             result.downloadUrl &&
-            <a href={result.downloadUrl}>Download</a>
+            <a href={result.downloadUrl}>Download </a>
+          }
+          {
+            this.props.userAuthentication &&
+              <a href='#' onClick={(e) => {
+                this.postArticle(e, result)}}>Archive</a>
           }
         </article>
       )
@@ -84,7 +101,8 @@ export class SearchResults extends Component {
 export const mapStateToProps = state => ({
   resultsSuccess: state.resultsSuccess,
   resultsAreLoading: state.resultsAreLoading,
-  resultsHaveErrored: state.resultsHaveErrored
+  resultsHaveErrored: state.resultsHaveErrored,
+  userAuthentication: state.userAuthentication
 })
 
 export const mapDispatchToProps = dispatch => ({

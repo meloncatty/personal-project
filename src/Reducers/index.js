@@ -55,7 +55,7 @@ export const fullArticleErrored = (state = false, action) => {
   }
 }
 
-export const userAuthentication = (state = false, action) => {
+export const userAuthentication = (state = [], action) => {
   switch (action.type) {
     case 'USER_AUTHENTICATION':
       return action.userAuth
