@@ -14,16 +14,24 @@
     height: 30%; }
 
 article {
-  width: 40%;
-  border: 1px solid #02020B;
-  margin-top: 20px;
-  padding: 10px; }
+  width: 600px;
+  margin-top: 20px; }
+  article h1 {
+    border-top: 1px solid #7B9E89;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #7B9E89;
+    padding: 10px; }
 
 h3 {
-  font-size: .90em; }
+  font-size: .90em;
+  padding: 10px; }
 
 p {
-  font-size: .9em; }
+  font-size: .9em;
+  border-bottom: 1px solid #7B9E89;
+  border-radius: 10px;
+  padding: 10px; }
 
 .error-container {
   margin-top: 40px; }
