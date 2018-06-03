@@ -2,9 +2,11 @@
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/database'
+import {firebaseApiKey} from '../apiKey'
 
 const config = {
-  apiKey: "AIzaSyA68pItP0U-uSDF9nUE_XJKowbbTpaPNbA",
+  apiKey: firebaseApiKey,
   authDomain: "sos-search-open-source.firebaseapp.com",
   databaseURL: "https://sos-search-open-source.firebaseio.com",
   projectId: "sos-search-open-source",
@@ -16,9 +18,11 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
 
+const db = firebase.database()
 const auth = firebase.auth()
 
 export {
   auth,
   firebase,
+  db
 }
