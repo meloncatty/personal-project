@@ -55,13 +55,23 @@ export const fullArticleErrored = (state = false, action) => {
   }
 }
 
+export const userAuthentication = (state = false, action) => {
+  switch (action.type) {
+    case 'USER_AUTHENTICATION':
+      return action.userAuth
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   resultsSuccess,
   resultsHaveErrored,
   resultsAreLoading,
   fullArticleSuccess,
   fullArticleLoading,
-  fullArticleErrored
+  fullArticleErrored,
+  userAuthentication
 })
 
 export default rootReducer

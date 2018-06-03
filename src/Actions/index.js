@@ -30,6 +30,11 @@ export const fullArticleSuccess = (result) => ({
   result
 })
 
+export const userAuthentication = (bool) => ({
+  type: 'USER_AUTHENTICATION',
+  userAuth: bool
+})
+
 export const fetchArticles = (query) => {
   return async (dispatch) => {
     try {

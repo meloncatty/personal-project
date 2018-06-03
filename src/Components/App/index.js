@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Route, withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import ArticleContainer from '../../Containers/ArticleContainer'
 import LandingPage from '../../Containers/LandingPage'
 import SearchResults from '../../Containers/SearchResults'
 import SignUp from '../../Containers/SignUp'
 import SignIn from '../../Containers/SignIn'
+import SignOutButton from '../../Containers/SignOut'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
@@ -15,10 +17,20 @@ class App extends Component {
       <div>
         <header className='header'>
           <Link to='/'><img src={logo} alt='Search Open Source' className='logo'/></Link>
-          <ul>
-            <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
-            <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
-          </ul>
+            {
+              !this.props.userAuthentication &&
+              <ul>
+              <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
+              <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
+              </ul>
+            }
+            {
+              this.props.userAuthentication && 
+              <ul>
+              <li>Welcome back, User!</li>
+              <li><SignOutButton /></li>
+              </ul>
+            }
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
@@ -35,4 +47,8 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+export const mapStateToProps = state => ({
+  userAuthentication: state.userAuthentication
+})
+
+export default withRouter(connect(mapStateToProps)(App))
