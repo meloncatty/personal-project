@@ -14,14 +14,14 @@ class App extends Component {
     return (
       <div>
         <header className='header'>
-          <img src={logo} alt='Search Open Source' className='logo'/>
+          <Link to='/'><img src={logo} alt='Search Open Source' className='logo'/></Link>
           <ul>
             <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
             <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
           </ul>
         </header>
-        <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
+        <Route exact path='/' component={LandingPage} />
         <Route exact path='/signIn' component={SignIn} />
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
