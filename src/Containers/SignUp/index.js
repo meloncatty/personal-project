@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import * as routes from '../../Constants/routes'
+import './styles.css'
 
 export class SignUp extends Component {
   constructor() {
@@ -61,10 +62,13 @@ export class SignUp extends Component {
       username === ''
 
     return(
-      <section>
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSignUpSubmit}>
+      <section className='form-container'>
+        
+        <form 
+        className='sign-up-form' onSubmit={this.handleSignUpSubmit}>
+        <label>Create An Account</label>
           <input
+            className='username'
             name='username'
             onChange={this.handleSignUpChange}
             type='text'
@@ -77,12 +81,14 @@ export class SignUp extends Component {
             placeholder='Email Address'
           />
           <input
+            className='password'
             name='password'
             onChange={this.handleSignUpChange}
             type='password'
             placeholder='Password'
           />
           <input
+            className='password password-auth'
             name='passwordAuth'
             onChange={this.handleSignUpChange}
             type='password'

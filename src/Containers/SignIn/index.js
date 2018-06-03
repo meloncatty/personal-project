@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import * as routes from '../../Constants/routes'
+import './styles.css'
 
 export class SignIn extends Component {
   constructor() {
@@ -55,16 +56,20 @@ export class SignIn extends Component {
       email === ''
 
     return(
-      <section>
-        <h1>Sign In</h1>
-        <form onSubmit={this.handleSignInSubmit}>
+      <section className='form-container'>
+        <form 
+        className='sign-in-form'
+        onSubmit={this.handleSignInSubmit}>
+          <label>Sign In</label>
           <input
+            className='email'
             name='email'
             onChange={this.handleSignInChange}
             type='text'
             placeholder='Email Address'
           />
           <input
+            className='password'
             name='password'
             onChange={this.handleSignInChange}
             type='password'
