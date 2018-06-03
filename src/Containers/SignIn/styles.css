@@ -28,7 +28,8 @@
     background: #7B9E89;
     color: #212227;
     font-weight: bold;
-    cursor: pointer; }
+    cursor: pointer;
+    border: none; }
 
 .password {
   padding: 10px; }

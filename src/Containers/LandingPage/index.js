@@ -36,13 +36,14 @@ export class LandingPage extends Component {
         <form
           onSubmit={this.handleSubmit}>
           <input
+            className='search-input'
             onChange={this.handleChange}
             name='query'
             type='text'
             value={this.state.searchInput}
             placeholder='Search through thousands of open source articles'
           />
-          <button>Submit</button>
+          <button className='submit-search'>Submit</button>
         </form>
         {this.state.redirectToSearch &&
           (<Redirect to={'/searchResults'} />)}
