@@ -1,4 +1,4 @@
-import apiKey from '../apiKey.js'
+import {apiKey} from '../apiKey.js'
 
 export const resultsSuccess = (results) => ({
   type: 'QUERY_RESULTS_SUCCESS',
