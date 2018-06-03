@@ -24,28 +24,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      if(user) {
-        this.setState({ user })
-      }
-    })
-  }
-
-  testPost = (e) => {
-    e.preventDefault()
-    
-    const itemsRef = db.ref('articles')
-    const article = {
-      article: this.state.article,
-      user: this.state.user
-    }
-    itemsRef.push(article)
-    this.setState({
-      article: ''
-    })
-  }
-
   render() {
     return (
       <div>
@@ -75,7 +53,6 @@ class App extends Component {
         <Route exact path='/articleContainer' component={ArticleContainer} />
         <Route exact path='/passwordForget' component={PasswordForget} />
         <Route exact path='/passwordChange' component={PasswordChange} />
-        <button onClick={this.testPost}>click</button>
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>
