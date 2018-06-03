@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { auth } from '../../Firebase'
+import { auth, db } from '../../Firebase'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -31,8 +31,14 @@ export class SignUp extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState(() => ({ ...this.state }))
-        history.push(routes.HOME)
+        db.doCreateUser(authUser.user.uid, username, email)
+        .then(() => {
+          this.setState(() => ({ ...this.state }))
+          history.push(routes.HOME)
+        })
+        .catch(error => {
+          this.setState({error: error})
+        })
       })
       .catch(error => {
         this.setState({error: error})
