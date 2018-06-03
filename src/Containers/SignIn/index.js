@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import { connect } from 'react-redux'
 import { userAuthentication } from '../../Actions'
+import PasswordForget from '../PasswordForget'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -82,6 +83,7 @@ export class SignIn extends Component {
 
           { error && <p>{error.message}</p> }
         </form>
+        <Link to='/passwordForget' component={PasswordForget}>Forgot Password?</Link>
       </section>
     )
   }
