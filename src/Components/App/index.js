@@ -9,11 +9,43 @@ import SignIn from '../../Containers/SignIn'
 import SignOutButton from '../../Containers/SignOut'
 import PasswordForget from '../../Containers/PasswordForget'
 import PasswordChange from '../../Containers/PasswordChange'
+import { db, auth } from '../../Firebase/firebase'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      user: null,
+      article: 'test'
+    }
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        this.setState({ user })
+      }
+    })
+  }
+
+  testPost = (e) => {
+    e.preventDefault()
+    
+    const itemsRef = db.ref('articles')
+    const article = {
+      article: this.state.article,
+      user: this.state.user
+    }
+    itemsRef.push(article)
+    this.setState({
+      article: ''
+    })
+  }
+
   render() {
     return (
       <div>
@@ -42,7 +74,8 @@ class App extends Component {
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
         <Route exact path='/passwordForget' component={PasswordForget} />
-        <Route exact path='/passwordChange' componet={PasswordChange} />
+        <Route exact path='/passwordChange' component={PasswordChange} />
+        <button onClick={this.testPost}>click</button>
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>
