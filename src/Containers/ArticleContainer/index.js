@@ -25,19 +25,19 @@ export class ArticleContainer extends Component {
 
   cleanFullArticle = () => {
     const {authors, datePublished, fullText, title, topics, fulltextIdentifier} = this.props.fullArticleSuccess
-    const expandText = this.state.toggleText ? 'toggle-text closed' : 'toggle-text open'
+    const expandText = this.state.toggleText ? 'toggle-text open' : 'toggle-text closed'
     return (
         <article className='article-contents'>
           <h2>{title}</h2>
           <h3>Authors: {authors}</h3>
           <h3>Date published: {datePublished}</h3>
-          <label for="toggle-text" className="lbl-toggle" onClick={this.toggleText}>Click to expand</label>
+          <label className="lbl-toggle" onClick={this.toggleText}>Click to expand</label>
           <div className={expandText}>
             <p>{fullText}</p>
           </div>
           <h4>Topics: {topics}</h4>
           {fulltextIdentifier && 
-          <a href={fulltextIdentifier} target='target_blank'>Human friendly full text</a>}
+          <a href={fulltextIdentifier} target='target_blank'>View PDF</a>}
         </article>
     )
   }

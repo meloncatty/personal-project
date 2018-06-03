@@ -20,8 +20,9 @@ class App extends Component {
             <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
           </ul>
         </header>
+        <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
-        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/landingPage' component={LandingPage} />
         <Route exact path='/signIn' component={SignIn} />
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />

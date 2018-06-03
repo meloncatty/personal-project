@@ -34,8 +34,8 @@ export class SearchResults extends Component {
               {result.title}
             </Link>
           </h1>
-          <h3>{result.authors}</h3>
-          <h3>{result.datePublished}</h3>
+          <h3>Authors: {result.authors}</h3>
+          <h3>Date Published: {result.datePublished}</h3>
           <p>{result.description && result.description.slice(0,500) + '...'}</p>
           {
             result.downloadUrl &&

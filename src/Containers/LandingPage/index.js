@@ -25,7 +25,8 @@ export class LandingPage extends Component {
     e.preventDefault()
     this.props.fetchArticles(this.state.searchInput)
     this.setState({
-      redirectToSearch: true
+      redirectToSearch: true,
+      searchInput: ''
     })
   }
 
@@ -38,7 +39,7 @@ export class LandingPage extends Component {
             onChange={this.handleChange}
             name='query'
             type='text'
-            value={this.state.query}
+            value={this.state.searchInput}
             placeholder='Search through thousands of open source articles'
           />
           <button>Submit</button>
