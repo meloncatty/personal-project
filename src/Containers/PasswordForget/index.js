@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import './styles.css'
 
@@ -20,13 +19,13 @@ export class PasswordForget extends Component {
       .then(() => {
         this.setState({
           email: '',
-          error: false,
+          error: null,
           submitSuccessful: true
         })
       })
-      .catch(error => {
+      .catch(e => {
         this.setState({
-          error: error
+          error: e
         })
       })
       e.preventDefault()
@@ -39,7 +38,7 @@ export class PasswordForget extends Component {
   render() {
     const {email, error, submitSuccessful} = this.state
     const isInvalid = email === ''
-    const {history} = this.props
+
     return (
       <section className='form-container'>
       <form 
@@ -48,7 +47,7 @@ export class PasswordForget extends Component {
       >
         <label>Reset Your Password</label>
         <input
-          value={this.state.email}
+          value={email}
           onChange={e => this.setState({
             email: e.target.value
           })}
@@ -59,7 +58,7 @@ export class PasswordForget extends Component {
           Reset Password
         </button>
 
-        { !error && <p>{ error.message }</p> }
+        { error && <p>{ error.message }</p> }
 
         { submitSuccessful && this.emailSent() }
       </form>

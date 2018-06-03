@@ -8,6 +8,7 @@ import SignUp from '../../Containers/SignUp'
 import SignIn from '../../Containers/SignIn'
 import SignOutButton from '../../Containers/SignOut'
 import PasswordForget from '../../Containers/PasswordForget'
+import PasswordChange from '../../Containers/PasswordChange'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
@@ -29,7 +30,8 @@ class App extends Component {
               this.props.userAuthentication && 
               <ul>
               <li>Welcome back, User!</li>
-              <li><SignOutButton /></li>
+              <li><Link to='/passwordChange'>Change Password</Link></li>
+              <SignOutButton />
               </ul>
             }
         </header>
@@ -40,6 +42,7 @@ class App extends Component {
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
         <Route exact path='/passwordForget' component={PasswordForget} />
+        <Route exact path='/passwordChange' componet={PasswordChange} />
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
         </footer>

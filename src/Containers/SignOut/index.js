@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { auth } from '../../Firebase'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { userAuthentication } from '../../Actions'
 
 export class SignOutButton extends Component {
   render() {
     return (
-      <button
-        type='button'
+      <li>
+        <Link to='/'
         onClick={() => {
 
           this.props.userAuthentication(false)
@@ -15,7 +16,8 @@ export class SignOutButton extends Component {
         }}
       >
         Sign Out
-      </button>
+        </Link>
+      </li>
     )
   }
 }
