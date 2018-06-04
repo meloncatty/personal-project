@@ -103,7 +103,8 @@ export const mapStateToProps = state => ({
   resultsSuccess: state.resultsSuccess,
   resultsAreLoading: state.resultsAreLoading,
   resultsHaveErrored: state.resultsHaveErrored,
-  userAuthentication: state.userAuthentication
+  userAuthentication: state.userAuthentication,
+  userSignupSuccess: state.userSignupSuccess
 })
 
 export const mapDispatchToProps = dispatch => ({

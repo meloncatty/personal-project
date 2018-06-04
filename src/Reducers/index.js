@@ -19,6 +19,15 @@ export const resultsHaveErrored = (state = false, action) => {
   }
 }
 
+export const userSignupSuccess = (state = false, action) => {
+  switch (action.type) {
+    case 'USER_SIGNUP_SUCCESS':
+      return action.signupSuccess
+    default:
+      return state
+  }
+}
+
 export const resultsAreLoading = (state = false, action) => {
   switch (action.type) {
     case 'RESULTS_ARE_LOADING':
@@ -91,7 +100,8 @@ const rootReducer = combineReducers({
   fullArticleErrored,
   userAuthentication,
   captureUserArticles,
-  isUserSignedIn
+  isUserSignedIn,
+  userSignupSuccess
 })
 
 export default rootReducer

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { auth, db } from '../../Firebase'
+import { userSignupSuccess } from '../../Actions'
+import { connect } from 'react-redux'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -34,6 +36,7 @@ export class SignUp extends Component {
         db.doCreateUser(authUser.user.uid, username, email)
         .then(() => {
           this.setState(() => ({ ...this.state }))
+          this.props.userSignupSuccess(true)
           history.push(routes.HOME)
         })
         .catch(error => {
@@ -48,7 +51,7 @@ export class SignUp extends Component {
   handleSignUpChange = (e) => {
     const {name, value} = e.target
     this.setState({
-      [name]: value 
+      [name]: value
     })
   }
 
@@ -69,8 +72,8 @@ export class SignUp extends Component {
 
     return(
       <section className='form-container'>
-        
-        <form 
+
+        <form
         className='sign-up-form' onSubmit={this.handleSignUpSubmit}>
         <label>Create An Account</label>
           <input
@@ -110,4 +113,8 @@ export class SignUp extends Component {
   }
 }
 
-export default withRouter(SignUp)
+export const mapDispatchToProps = dispatch => ({
+  userSignupSuccess: (bool) => dispatch(userSignupSuccess(bool))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(SignUp))

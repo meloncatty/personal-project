@@ -32,14 +32,15 @@ class App extends Component {
             {
               !this.props.isUserSignedIn &&
               <ul>
+              {this.props.userSignupSuccess && <li>Create account success! Please sign in.</li>}
               <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
               <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
               </ul>
             }
             {
-              this.props.isUserSignedIn && 
+              this.props.isUserSignedIn &&
               <ul>
-              <li>Welcome back, User!</li>
+              <li>Welcome back, Duke of New York A#1!</li>
               <li><Link to='/passwordChange'>Change Password</Link></li>
               <SignOutButton />
               <li><Link to='/userDashboard'>Dashboard</Link></li>
@@ -64,7 +65,8 @@ class App extends Component {
 
 export const mapStateToProps = state => ({
   userAuthentication: state.userAuthentication,
-  isUserSignedIn: state.isUserSignedIn
+  isUserSignedIn: state.isUserSignedIn,
+  userSignupSuccess: state.userSignupSuccess
 })
 
 export default withRouter(connect(mapStateToProps)(App))

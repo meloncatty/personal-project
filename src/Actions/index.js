@@ -45,6 +45,11 @@ export const captureUserArticles = (articles) => ({
   userArticles: articles
 })
 
+export const userSignupSuccess = (bool) => ({
+  type: 'USER_SIGNUP_SUCCESS',
+  signupSuccess: bool
+})
+
 export const fetchArticles = (query) => {
   return async (dispatch) => {
     try {
