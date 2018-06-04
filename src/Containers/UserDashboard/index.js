@@ -5,7 +5,6 @@ import { captureUserArticles } from '../../Actions'
 
 export class UserDashboard extends Component {
 
-
   fetchArticles() {
     const {isUserSignedIn} = this.props
     if(isUserSignedIn) {
@@ -18,11 +17,9 @@ export class UserDashboard extends Component {
             if(data.user === email)
             this.props.captureUserArticles(data)
           })
-        })
-        
+        }) 
     }
   }
-
 
   render() {
     return (
