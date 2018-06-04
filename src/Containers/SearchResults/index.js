@@ -26,12 +26,11 @@ export class SearchResults extends Component {
   postArticle = (e, article) => {
     e.preventDefault()
     if(this.props.userAuthentication.length) {
-      const itemsRef = db.ref('articles')
-      const articleInfo = {
-        article,
-        user: this.props.userAuthentication[0].user.email
-      }
-      itemsRef.push(articleInfo)
+      const itemsRef = db.ref()
+                        .child('users')
+                        .child(`${this.props.userAuthentication}`)
+                        .child('articles')
+                        .update({article: article.id})
     }
   }
 

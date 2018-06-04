@@ -30,9 +30,9 @@ export class SignIn extends Component {
 
     auth.doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-        
+
         this.setState(() => ({ ...this.state }))
-        this.props.userAuthentication(authUser)
+        this.props.userAuthentication(authUser.user.uid)
         this.props.isUserSignedIn(true)
         history.push(routes.HOME)
       })
@@ -44,7 +44,7 @@ export class SignIn extends Component {
   handleSignInChange = (e) => {
     const {name, value} = e.target
     this.setState({
-      [name]: value 
+      [name]: value
     })
   }
 
@@ -61,7 +61,7 @@ export class SignIn extends Component {
 
     return(
       <section className='form-container'>
-        <form 
+        <form
         className='sign-in-form'
         onSubmit={this.handleSignInSubmit}>
           <label>Sign In</label>
