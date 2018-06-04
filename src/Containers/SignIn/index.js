@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import { connect } from 'react-redux'
-import { userAuthentication } from '../../Actions'
+import { userAuthentication, isUserSignedIn } from '../../Actions'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -33,6 +33,7 @@ export class SignIn extends Component {
         
         this.setState(() => ({ ...this.state }))
         this.props.userAuthentication(authUser)
+        this.props.isUserSignedIn(true)
         history.push(routes.HOME)
       })
       .catch(error => {
@@ -89,7 +90,8 @@ export class SignIn extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  userAuthentication: (bool) => dispatch(userAuthentication(bool))
+  userAuthentication: (userData) => dispatch(userAuthentication(userData)),
+  isUserSignedIn: (bool) => dispatch(isUserSignedIn(bool))
 })
 
 export default withRouter(connect(null, mapDispatchToProps)(SignIn))

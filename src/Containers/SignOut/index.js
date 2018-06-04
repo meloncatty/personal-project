@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { auth } from '../../Firebase'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { userAuthentication } from '../../Actions'
+import { isUserSignedIn } from '../../Actions'
 
 export class SignOutButton extends Component {
   render() {
@@ -10,7 +10,6 @@ export class SignOutButton extends Component {
       <li>
         <Link to='/'
         onClick={() => {
-
           this.props.userAuthentication(false)
           auth.doSignOut()
         }}
@@ -23,7 +22,7 @@ export class SignOutButton extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  userAuthentication: (bool) => dispatch(userAuthentication(bool))
+  isUserSignedIn: (bool) => dispatch(isUserSignedIn(bool))
 })
 
 export default connect(null, mapDispatchToProps)(SignOutButton)
