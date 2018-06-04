@@ -48,7 +48,6 @@ class App extends Component {
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
-        
         <Route exact path='/signIn' component={SignIn} />
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
