@@ -15,13 +15,13 @@
 
 article {
   width: 600px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  border: 1px solid #7B9E89;
+  border-radius: 10px;
+  padding: 10px; }
   article h1 {
-    border-top: 1px solid #7B9E89;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     border-bottom: 1px solid #7B9E89;
-    padding: 10px; }
+    padding: 0 10px 15px 10px; }
 
 h3 {
   font-size: .90em;
@@ -29,8 +29,6 @@ h3 {
 
 p {
   font-size: .9em;
-  border-bottom: 1px solid #7B9E89;
-  border-radius: 10px;
   padding: 10px; }
 
 .error-container {

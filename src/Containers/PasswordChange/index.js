@@ -39,17 +39,18 @@ export class PasswordChange extends Component {
 
   render() {
     const {password, passwordAuth, error, submitSuccessful} = this.state
-    const isInvalid = 
-      password !== passwordAuth || 
+    const isInvalid =
+      password !== passwordAuth ||
       password === ''
     return (
       <section className='form-container'>
-      <form 
+      <form
         onSubmit={this.onSubmit}
-        className='change-password'  
+        className='change-password'
       >
         <label>Change Password</label>
         <input
+          className='password'
           value={password}
           onChange={e => this.setState({
             password: e.target.value
@@ -58,6 +59,7 @@ export class PasswordChange extends Component {
           placeholder='New Password'
         />
         <input
+          className='password-confirm'
           value={passwordAuth}
           onChange={e => this.setState({
             passwordAuth: e.target.value

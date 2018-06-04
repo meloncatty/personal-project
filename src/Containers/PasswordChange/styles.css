@@ -16,9 +16,7 @@
     height: 30px;
     background: #E6AA68;
     color: #212227;
-    padding: 15px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px; }
+    padding: 15px; }
   .change-password input::placeholder {
     color: #212227; }
   .change-password button {
@@ -32,3 +30,7 @@
     font-weight: bold;
     cursor: pointer;
     border: none; }
+
+.password {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px; }
