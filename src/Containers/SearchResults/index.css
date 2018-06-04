@@ -13,15 +13,24 @@
     width: 30%;
     height: 30%; }
 
+.archive-denied {
+  color: #E6AA68;
+  display: inline;
+  -webkit-transition: opacity 600ms, visibility 600ms;
+  transition: opacity 600ms, visibility 600ms; }
+
 article {
   width: 600px;
-  margin-top: 20px;
-  border: 1px solid #7B9E89;
+  margin-top: 50px;
+  border: 2px solid #7B9E89;
   border-radius: 10px;
   padding: 10px; }
   article h1 {
-    border-bottom: 1px solid #7B9E89;
+    border-bottom: 2px solid #7B9E89;
     padding: 0 10px 15px 10px; }
+
+.archive-article {
+  padding-left: 10px; }
 
 h3 {
   font-size: .90em;

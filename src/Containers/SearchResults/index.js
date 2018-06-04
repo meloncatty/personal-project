@@ -12,7 +12,8 @@ export class SearchResults extends Component {
     super()
 
     this.state = {
-      redirectToArticle: false
+      redirectToArticle: false,
+      displaySigninText: false
     }
   }
 
@@ -26,12 +27,15 @@ export class SearchResults extends Component {
   postArticle = (e, article) => {
     e.preventDefault()
     if(this.props.userAuthentication.length) {
-      const itemsRef = db.ref()
-                        .child('users')
-                        .child(`${this.props.userAuthentication}`)
-                        .child('articles')
-                        .update({article: article.id})
+      db.ref()
+        .child('users')
+        .child(`${this.props.userAuthentication}`)
+        .child('articles')
+        .update({article: article.id})
     }
+    this.setState({
+      displaySigninText: true
+    })
   }
 
   cleanQueryResults = () => {
@@ -56,9 +60,11 @@ export class SearchResults extends Component {
           {
             this.props.userAuthentication &&
             // eslint-disable-next-line
-              <a href='#' onClick={(e) => {
+              <a href='#' className='archive-article' onClick={(e) => {
                 this.postArticle(e, result)}}>Archive</a>
           }
+          {this.state.displaySigninText && <p className=
+            'archive-denied'>Please sign in to archive.</p>}
         </article>
       )
     )
