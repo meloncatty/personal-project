@@ -25,13 +25,14 @@ export class SearchResults extends Component {
 
   postArticle = (e, article) => {
     e.preventDefault()
-    
-    const itemsRef = db.ref('articles')
-    const articleInfo = {
-      article,
-      user: this.props.userAuthentication
+    if(this.props.userAuthentication.length) {
+      const itemsRef = db.ref('articles')
+      const articleInfo = {
+        article,
+        user: this.props.userAuthentication[0].user.email
+      }
+      itemsRef.push(articleInfo)
     }
-    itemsRef.push(article)
   }
 
   cleanQueryResults = () => {
@@ -55,6 +56,7 @@ export class SearchResults extends Component {
           }
           {
             this.props.userAuthentication &&
+            // eslint-disable-next-line
               <a href='#' onClick={(e) => {
                 this.postArticle(e, result)}}>Archive</a>
           }
