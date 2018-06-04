@@ -35,6 +35,16 @@ export const userAuthentication = (userData) => ({
   userAuth: userData
 })
 
+export const isUserSignedIn = (bool) => ({
+  type: 'IS_USER_SIGNED_IN',
+  isUserSignedIn: bool
+})
+
+export const captureUserArticles = (articles) => ({
+  type: 'CAPTURE_USER_ARTICLES',
+  userArticles: articles
+})
+
 export const fetchArticles = (query) => {
   return async (dispatch) => {
     try {

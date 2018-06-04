@@ -9,10 +9,10 @@ import SignIn from '../../Containers/SignIn'
 import SignOutButton from '../../Containers/SignOut'
 import PasswordForget from '../../Containers/PasswordForget'
 import PasswordChange from '../../Containers/PasswordChange'
-import { db, auth } from '../../Firebase/firebase'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
+import UserDashboard from '../../Containers/UserDashboard'
 
 class App extends Component {
   constructor() {
@@ -30,18 +30,19 @@ class App extends Component {
         <header className='header'>
           <Link to='/'><img src={logo} alt='Search Open Source' className='logo'/></Link>
             {
-              !this.props.userAuthentication &&
+              !this.props.isUserSignedIn &&
               <ul>
               <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
               <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
               </ul>
             }
             {
-              this.props.userAuthentication && 
+              this.props.isUserSignedIn && 
               <ul>
               <li>Welcome back, User!</li>
               <li><Link to='/passwordChange'>Change Password</Link></li>
               <SignOutButton />
+              <li><Link to='/userDashboard'>Dashboard</Link></li>
               </ul>
             }
         </header>
@@ -52,6 +53,7 @@ class App extends Component {
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/articleContainer' component={ArticleContainer} />
         <Route exact path='/passwordForget' component={PasswordForget} />
+        <Route exact path='/userDashboard' component={UserDashboard} />
         <Route exact path='/passwordChange' component={PasswordChange} />
         <footer>
           <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
@@ -62,7 +64,8 @@ class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  userAuthentication: state.userAuthentication
+  userAuthentication: state.userAuthentication,
+  isUserSignedIn: state.isUserSignedIn
 })
 
 export default withRouter(connect(mapStateToProps)(App))

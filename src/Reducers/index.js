@@ -58,7 +58,25 @@ export const fullArticleErrored = (state = false, action) => {
 export const userAuthentication = (state = [], action) => {
   switch (action.type) {
     case 'USER_AUTHENTICATION':
-      return action.userAuth
+      return [action.userAuth]
+    default:
+      return state
+  }
+}
+
+export const captureUserArticles = (state = [], action) => {
+  switch (action.type) {
+    case 'CAPTURE_USER_ARTICLES':
+      return [action.userArticles, ...state]
+    default:
+      return state
+  }
+}
+
+export const isUserSignedIn = (state = false, action) => {
+  switch (action.type) {
+    case 'IS_USER_SIGNED_IN':
+      return action.isUserSignedIn
     default:
       return state
   }
@@ -71,7 +89,9 @@ const rootReducer = combineReducers({
   fullArticleSuccess,
   fullArticleLoading,
   fullArticleErrored,
-  userAuthentication
+  userAuthentication,
+  captureUserArticles,
+  isUserSignedIn
 })
 
 export default rootReducer
