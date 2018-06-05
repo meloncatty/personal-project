@@ -3,6 +3,7 @@ import { db } from '../../Firebase/firebase'
 import { connect } from 'react-redux'
 import { captureUserArticles, fetchUserArticles } from '../../Actions'
 import { withRouter } from 'react-router-dom'
+import './styles.css'
 
 export class UserDashboard extends Component {
 
@@ -37,7 +38,7 @@ export class UserDashboard extends Component {
 
   render() {
     return (
-      <section>
+      <section className='user-dashboard'>
         {this.props.fetchUserArticlesSuccess.map((article,index) => {
           return(
             <article key={index}>

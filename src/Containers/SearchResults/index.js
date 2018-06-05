@@ -13,6 +13,7 @@ export class SearchResults extends Component {
 
     this.state = {
       redirectToArticle: false,
+      canUserPost: false,
       pageCounter: 1
     }
   }
@@ -27,6 +28,9 @@ export class SearchResults extends Component {
   postArticle = (e, article) => {
     e.preventDefault()
     if(this.props.isUserSignedIn) {
+      this.setState({
+        canUserPost: true
+      })
       db.ref()
         .child('users')
         .child(`${this.props.userAuthentication}`)
@@ -68,7 +72,7 @@ export class SearchResults extends Component {
               <a href='#' className='archive-article' onClick={(e) => {
                 this.postArticle(e, result)}}>Archive</a>
           }
-          {this.state.displaySigninText && <p className=
+          {!this.state.canUserPost && <p className=
             'archive-denied'>Please sign in to archive.</p>}
         </article>
       )
@@ -114,7 +118,6 @@ export class SearchResults extends Component {
         {(this.props.resultsHaveErrored || this.props.nextPageErrored) && this.displayErrorText()}
         {this.state.redirectToArticle &&
           (<Redirect to={'/articleContainer'} />)}
-        <Route exact path='/articleContainer' component={ArticleContainer} />
       </section>
         { this.props.resultsTotalHits &&
           <button className='next-page' onClick={this.incrementPage}>Next Page</button>
