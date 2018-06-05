@@ -10,7 +10,7 @@ export const resultsSuccess = (state = [], action) => {
   }
 }
 
-export const resultsTotalHits = (state = -1, action) => {
+export const resultsTotalHits = (state = 1, action) => {
   switch (action.type) {
     case 'RESULTS_TOTAL_HITS':
       return action.totalHits
@@ -129,7 +129,7 @@ export const nextPageErrored = (state = false, action) => {
 
 export const nextPageSuccess = (state = [], action) => {
   switch (action.type) {
-    case 'NEXT_PAGE_SUCCES':
+    case 'NEXT_PAGE_SUCCESS':
       return [...action.nextPage]
     default:
       return state

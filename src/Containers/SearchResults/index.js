@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Link, withRouter, Redirect } from 'react-router-dom'
-import { fetchFullText } from '../../Actions'
+import { fetchFullText, fetchNextPage } from '../../Actions'
 import { db } from '../../Firebase/firebase'
 import ArticleContainer from '../ArticleContainer'
 import './index.css'
@@ -13,7 +13,8 @@ export class SearchResults extends Component {
 
     this.state = {
       redirectToArticle: false,
-      displaySigninText: false
+      displaySigninText: false,
+      pageCounter: 1
     }
   }
 
@@ -39,7 +40,14 @@ export class SearchResults extends Component {
   }
 
   cleanQueryResults = () => {
-    return this.props.resultsSuccess.map((result, index) =>
+    let results = []
+    if (this.props.resultsSuccess.length > 1) {
+      results = this.props.resultsSuccess
+    }
+    if (this.props.nextPageSuccess.length > 1) {
+      results = this.props.nextPageSuccess
+    }
+    return results.map((result, index) =>
       (
         <article key={index}>
           <h1>
@@ -70,14 +78,19 @@ export class SearchResults extends Component {
     )
   }
 
-  navigateToNextPage = () => {
-    //thunk
+  incrementPage = () => {
+    const incPageNum = this.state.pageCounter + 1
+    this.setState({
+      pageCounter: incPageNum
+    })
+    this.props.fetchNextPage(this.props.captureQuery, incPageNum)
+    window.scrollTo(0,0)
   }
 
   toggleLoading = () => {
-    return this.props.resultsAreLoading
+    return this.props.resultsAreLoading || this.props.nextPageLoading
       ? this.loadingStation()
-      : this.props.resultsSuccess.length > 1 && this.cleanQueryResults()
+      : this.cleanQueryResults()
   }
 
   loadingStation = () => {
@@ -98,13 +111,18 @@ export class SearchResults extends Component {
 
   render() {
     return (
+      <div>
       <section className='results-list'>
         {this.toggleLoading()}
-        {this.props.resultsHaveErrored && this.displayErrorText()}
+        {this.props.resultsHaveErrored || this.props.nextPageErrored && this.displayErrorText()}
         {this.state.redirectToArticle &&
           (<Redirect to={'/articleContainer'} />)}
         <Route exact path='/articleContainer' component={ArticleContainer} />
       </section>
+        {
+          <button onClick={this.incrementPage}>Next Page ></button>
+        }
+      </div>
     )
   }
 }
@@ -116,10 +134,16 @@ export const mapStateToProps = state => ({
   resultsHaveErrored: state.resultsHaveErrored,
   userAuthentication: state.userAuthentication,
   userSignupSuccess: state.userSignupSuccess,
+  resultsTotalHits: state.resultsTotalHits,
+  nextPageSuccess: state.nextPageSuccess,
+  nextPageLoading: state.nextPageLoading,
+  nextPageErrored: state.nextPageErrored,
+  captureQuery: state.captureQuery
 })
 
 export const mapDispatchToProps = dispatch => ({
-  fetchFullText: (id) => dispatch(fetchFullText(id))
+  fetchFullText: (id) => dispatch(fetchFullText(id)),
+  fetchNextPage: (query, pageNum) => dispatch(fetchNextPage(query, pageNum))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResults))
