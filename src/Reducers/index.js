@@ -10,6 +10,24 @@ export const resultsSuccess = (state = [], action) => {
   }
 }
 
+export const resultsTotalHits = (state = -1, action) => {
+  switch (action.type) {
+    case 'RESULTS_TOTAL_HITS':
+      return action.totalHits
+    default:
+      return state
+  }
+}
+
+export const captureQuery = (state = null, action) => {
+  switch (action.type) {
+    case 'CAPTURE_QUERY':
+      return action.userQuery
+    default:
+      return state
+  }
+}
+
 export const resultsHaveErrored = (state = false, action) => {
   switch (action.type) {
     case 'RESULTS_HAVE_ERRORED':
@@ -91,10 +109,42 @@ export const isUserSignedIn = (state = false, action) => {
   }
 }
 
+export const nextPageLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'NEXT_PAGE_LOADING':
+      return action.nextPageLoading
+    default:
+      return state
+  }
+}
+
+export const nextPageErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'NEXT_PAGE_ERRORED':
+      return action.nextPageHasErrored
+    default:
+      return state
+  }
+}
+
+export const nextPageSuccess = (state = [], action) => {
+  switch (action.type) {
+    case 'NEXT_PAGE_SUCCES':
+      return [...action.nextPage]
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   resultsSuccess,
   resultsHaveErrored,
   resultsAreLoading,
+  resultsTotalHits,
+  captureQuery,
+  nextPageLoading,
+  nextPageErrored,
+  nextPageSuccess,
   fullArticleSuccess,
   fullArticleLoading,
   fullArticleErrored,

@@ -70,6 +70,10 @@ export class SearchResults extends Component {
     )
   }
 
+  navigateToNextPage = () => {
+    //thunk
+  }
+
   toggleLoading = () => {
     return this.props.resultsAreLoading
       ? this.loadingStation()
@@ -107,10 +111,11 @@ export class SearchResults extends Component {
 
 export const mapStateToProps = state => ({
   resultsSuccess: state.resultsSuccess,
+  resultsTotalHits: state.resultsTotalHits,
   resultsAreLoading: state.resultsAreLoading,
   resultsHaveErrored: state.resultsHaveErrored,
   userAuthentication: state.userAuthentication,
-  userSignupSuccess: state.userSignupSuccess
+  userSignupSuccess: state.userSignupSuccess,
 })
 
 export const mapDispatchToProps = dispatch => ({
