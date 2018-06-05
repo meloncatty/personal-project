@@ -25,6 +25,7 @@ export class UserDashboard extends Component {
             this.setState({
               storeArticles: [data]
             })
+            this.props.fetchUserArticles(this.state.storeArticles)
           })
         })
     }
@@ -32,18 +33,20 @@ export class UserDashboard extends Component {
 
   componentDidMount() {
     this.fetchArticlesFromFirebase()
-    this.props.fetchUserArticles(this.state.storeArticles)
-  }
-
-  fetchArticlesFromApi = () => {
-    
-    // this.state.storeArticles.forEach(articleId => this.props.fetchUserArticles(articleId))
   }
 
   render() {
     return (
       <section>
-        {}
+        {this.props.fetchUserArticlesSuccess.map((article,index) => {
+          return(
+            <article key='index'>
+              <h1>{article.title}</h1>
+              <h3>{article.authors}</h3>
+              <p>{article.description}</p>
+            </article>
+          )
+        })}
       </section>
     )
   }
@@ -52,12 +55,10 @@ export class UserDashboard extends Component {
 const mapStateToProps = state => ({
   isUserSignedIn: state.isUserSignedIn,
   userAuthentication: state.userAuthentication,
-  fetchUserArticlesSuccess: state.fetchUserArticlesSuccess,
-  captureUserArticles: state.captureUserArticles
+  fetchUserArticlesSuccess: state.fetchUserArticlesSuccess
 })
 
 const mapDispatchToProps = dispatch => ({
-  captureUserArticles: (articles) => dispatch(captureUserArticles(articles)),
   fetchUserArticles: (userArticles) => dispatch(fetchUserArticles(userArticles))
 })
 
