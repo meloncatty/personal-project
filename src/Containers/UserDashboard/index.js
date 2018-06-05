@@ -17,7 +17,7 @@ export class UserDashboard extends Component {
   fetchArticlesFromFirebase = () => {
     const {isUserSignedIn} = this.props
     if(isUserSignedIn) {
-      const ref = db.ref('users').child(`${this.props.userAuthentication[0]}`).child('articles')
+      const ref = db.ref('users').child(`${this.props.userAuthentication[0]}`).child('articles').child('article')
       ref.once('value')
         .then((snapshot) => {
           snapshot.forEach((childSnapshot) => {
@@ -40,7 +40,7 @@ export class UserDashboard extends Component {
       <section>
         {this.props.fetchUserArticlesSuccess.map((article,index) => {
           return(
-            <article key='index'>
+            <article key={index}>
               <h1>{article.title}</h1>
               <h3>{article.authors}</h3>
               <p>{article.description}</p>

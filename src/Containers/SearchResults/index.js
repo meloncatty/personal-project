@@ -13,7 +13,6 @@ export class SearchResults extends Component {
 
     this.state = {
       redirectToArticle: false,
-      displaySigninText: false,
       pageCounter: 1
     }
   }
@@ -27,16 +26,14 @@ export class SearchResults extends Component {
 
   postArticle = (e, article) => {
     e.preventDefault()
-    if(this.props.userAuthentication.length) {
+    if(this.props.isUserSignedIn) {
       db.ref()
         .child('users')
         .child(`${this.props.userAuthentication}`)
         .child('articles')
-        .update({article: article.id})
+        .child('article')
+        .push(article.id)
     }
-    this.setState({
-      displaySigninText: true
-    })
   }
 
   cleanQueryResults = () => {
@@ -134,6 +131,7 @@ export const mapStateToProps = state => ({
   resultsHaveErrored: state.resultsHaveErrored,
   userAuthentication: state.userAuthentication,
   userSignupSuccess: state.userSignupSuccess,
+  isUserSignedIn: state.isUserSignedIn,
   nextPageSuccess: state.nextPageSuccess,
   nextPageLoading: state.nextPageLoading,
   nextPageErrored: state.nextPageErrored,
