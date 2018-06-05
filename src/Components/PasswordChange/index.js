@@ -35,7 +35,7 @@ export class PasswordChange extends Component {
   }
 
   emailSent = () => {
-    return <p>Please check your inbox for further instructions</p>
+    return (<p>Please check your inbox for further instructions</p>)
   }
 
   render() {

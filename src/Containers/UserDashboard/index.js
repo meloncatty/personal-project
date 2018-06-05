@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { db } from '../../Firebase/firebase'
 import { connect } from 'react-redux'
-import { captureUserArticles, fetchUserArticles } from '../../Actions'
+import { fetchUserArticles } from '../../Actions'
 import { withRouter } from 'react-router-dom'
 import './styles.css'
 

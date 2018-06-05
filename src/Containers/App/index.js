@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Route, withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import ArticleContainer from '../../Containers/ArticleContainer'
-import LandingPage from '../../Containers/LandingPage'
-import SearchResults from '../../Containers/SearchResults'
-import SignUp from '../../Containers/SignUp'
-import SignIn from '../../Containers/SignIn'
-import SignOutButton from '../../Containers/SignOut'
-import PasswordForget from '../../Containers/PasswordForget'
-import PasswordChange from '../../Containers/PasswordChange'
+import ArticleContainer from '../ArticleContainer'
+import LandingPage from '../LandingPage'
+import SearchResults from '../SearchResults'
+import SignUp from '../SignUp'
+import SignIn from '../SignIn'
+import SignOutButton from '../SignOut'
+import PasswordForget from '../../Components/PasswordForget'
+import PasswordChange from '../../Components/PasswordChange'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
@@ -40,7 +40,7 @@ class App extends Component {
             {
               this.props.isUserSignedIn &&
               <ul>
-              <li>Welcome back, Duke of New York A#1!</li>
+              <li>Welcome back, User!</li>
               <li><Link to='/passwordChange'>Change Password</Link></li>
               <SignOutButton />
               <li><Link to='/userDashboard'>Dashboard</Link></li>

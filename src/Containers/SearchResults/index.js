@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link, withRouter, Redirect } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import { fetchFullText, fetchNextPage } from '../../Actions'
 import { db } from '../../Firebase/firebase'
-import ArticleContainer from '../ArticleContainer'
 import './index.css'
 import loading from '../../assets/loading02.gif'
 
