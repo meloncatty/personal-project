@@ -10,7 +10,7 @@ export const resultsSuccess = (state = [], action) => {
   }
 }
 
-export const resultsTotalHits = (state = 1, action) => {
+export const resultsTotalHits = (state = null, action) => {
   switch (action.type) {
     case 'RESULTS_TOTAL_HITS':
       return action.totalHits

@@ -111,7 +111,7 @@ export class SearchResults extends Component {
 
   render() {
     return (
-      <div>
+      <div className='results-container'>
       <section className='results-list'>
         {this.toggleLoading()}
         {this.props.resultsHaveErrored || this.props.nextPageErrored && this.displayErrorText()}
@@ -119,8 +119,8 @@ export class SearchResults extends Component {
           (<Redirect to={'/articleContainer'} />)}
         <Route exact path='/articleContainer' component={ArticleContainer} />
       </section>
-        {
-          <button onClick={this.incrementPage}>Next Page ></button>
+        { this.props.resultsTotalHits &&
+          <button className='next-page' onClick={this.incrementPage}>Next Page</button>
         }
       </div>
     )
