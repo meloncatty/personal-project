@@ -50,9 +50,9 @@ export const isUserSignedIn = (bool) => ({
   isUserSignedIn: bool
 })
 
-export const captureUserArticles = (articles) => ({
+export const captureUserArticles = (userArticles) => ({
   type: 'CAPTURE_USER_ARTICLES',
-  userArticles: articles
+  userArticles
 })
 
 export const userSignupSuccess = (bool) => ({
@@ -75,6 +75,41 @@ export const nextPageSuccess = (nextPage) => ({
   nextPage
 })
 
+export const fetchUserArticlesSuccess = (fetchedArticles) => ({
+  type: 'FETCH_USER_ARTICLES_SUCCESS',
+  fetchedArticles
+})
+
+export const fetchUserArticlesLoading = (bool) => ({
+  type: 'FETCH_USER_ARTICLES_LOADING',
+  fetchUserArticlesLoading: bool
+})
+
+export const fetchUserArticlesErrored = (bool) => ({
+  type: 'FETCH_USER_ARTICLES_ERRORED',
+  fetchUserArticlesErrored: bool
+})
+
+export const fetchUserArticles = (articleId) => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchUserArticlesErrored(false))
+      dispatch(fetchUserArticlesLoading(true))
+      const url = `https://core.ac.uk:443/api-v2/articles/get/${articleId}?metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=${apiKey}`
+      const response = await fetch(url)
+      if(!response.ok) {
+        throw Error(response.statusText)
+      }
+      const articles = await response.json()
+      dispatch(fetchUserArticlesLoading(false))
+      dispatch(fetchUserArticlesSuccess(articles.data))
+    } catch(e) {
+      dispatch(fetchUserArticlesErrored(true))
+      dispatch(fetchUserArticlesLoading(false))
+    }
+  }
+}
+
 export const fetchArticles = (query) => {
   return async (dispatch) => {
     try {
@@ -87,8 +122,8 @@ export const fetchArticles = (query) => {
       if(!response.ok) {
         throw Error(response.statusText)
       }
-      dispatch(resultsAreLoading(false))
       const articles = await response.json()
+      dispatch(resultsAreLoading(false))
       dispatch(resultsSuccess(articles.data))
       dispatch(resultsTotalHits(articles.totalHits))
     } catch (error) {

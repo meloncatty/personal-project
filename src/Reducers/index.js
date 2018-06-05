@@ -100,6 +100,33 @@ export const captureUserArticles = (state = [], action) => {
   }
 }
 
+export const fetchUserArticlesSuccess = (state = [], action) => {
+  switch (action.type) {
+    case 'FETCH_USER_ARTICLES_SUCCESS':
+      return [action.fetchedArticles, ...state]
+    default:
+      return state
+  }
+}
+
+export const fetchUserArticlesLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'FETCH_USER_ARTICLES_LOADING':
+      return action.fetchUserArticlesLoading
+    default:
+      return state
+  }
+}
+
+export const fetchUserArticlesErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'FETCH_USER_ARTICLES_ERRORED':
+      return action.fetchUserArticlesErrored
+    default:
+      return state
+  }
+}
+
 export const isUserSignedIn = (state = false, action) => {
   switch (action.type) {
     case 'IS_USER_SIGNED_IN':
@@ -151,7 +178,10 @@ const rootReducer = combineReducers({
   userAuthentication,
   captureUserArticles,
   isUserSignedIn,
-  userSignupSuccess
+  userSignupSuccess,
+  fetchUserArticlesSuccess,
+  fetchUserArticlesLoading,
+  fetchUserArticlesErrored
 })
 
 export default rootReducer

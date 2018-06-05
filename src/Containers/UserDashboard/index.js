@@ -9,23 +9,26 @@ export class UserDashboard extends Component {
   fetchArticles() {
     const {isUserSignedIn} = this.props
     if(isUserSignedIn) {
-      const {email} = this.props.userAuthentication[0].user
-      const ref = db.ref('articles')
+      // const {email} = this.props.userAuthentication[0].user
+      const ref = db.ref('users').child(`${this.props.userAuthentication[0]}`).child('articles')
       ref.once('value')
         .then((snapshot) => {
           snapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val()
-            if(data.user === email)
             this.props.captureUserArticles(data)
           })
         })
     }
   }
 
+  componentDidMount() {
+    this.fetchArticles()
+  }
+
   render() {
     return (
       <div>
-        {this.fetchArticles()}
+
       </div>
     )
   }
