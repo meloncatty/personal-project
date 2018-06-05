@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { db } from '../../Firebase/firebase'
 import { connect } from 'react-redux'
 import { captureUserArticles } from '../../Actions'
+import { withRouter } from 'react-router-dom'
 
 export class UserDashboard extends Component {
 
@@ -17,7 +18,7 @@ export class UserDashboard extends Component {
             if(data.user === email)
             this.props.captureUserArticles(data)
           })
-        }) 
+        })
     }
   }
 
@@ -31,7 +32,7 @@ export class UserDashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  isUserSignedIn: state.isUserSignedIn, 
+  isUserSignedIn: state.isUserSignedIn,
   userAuthentication: state.userAuthentication
 })
 
@@ -39,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
   captureUserArticles: (articles) => dispatch(captureUserArticles(articles))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDashboard))

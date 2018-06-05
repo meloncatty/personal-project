@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../../Actions'
+import { withRouter } from 'react-router-dom'
 
 import './index.css'
 
@@ -56,4 +57,4 @@ export const mapDispatchToProps = dispatch => ({
   fetchArticles: (query) => dispatch(fetchArticles(query))
 })
 
-export default connect(null, mapDispatchToProps)(LandingPage)
+export default withRouter(connect(null, mapDispatchToProps)(LandingPage))

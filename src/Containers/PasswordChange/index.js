@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { auth } from '../../Firebase'
+import { withRouter } from 'react-router-dom'
 import './styles.css'
 
 export class PasswordChange extends Component {
@@ -80,4 +81,4 @@ export class PasswordChange extends Component {
   }
 }
 
-export default PasswordChange
+export default withRouter(PasswordChange)
