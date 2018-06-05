@@ -114,7 +114,7 @@ export class SearchResults extends Component {
       <div className='results-container'>
       <section className='results-list'>
         {this.toggleLoading()}
-        {this.props.resultsHaveErrored || this.props.nextPageErrored && this.displayErrorText()}
+        {(this.props.resultsHaveErrored || this.props.nextPageErrored) && this.displayErrorText()}
         {this.state.redirectToArticle &&
           (<Redirect to={'/articleContainer'} />)}
         <Route exact path='/articleContainer' component={ArticleContainer} />
@@ -134,7 +134,6 @@ export const mapStateToProps = state => ({
   resultsHaveErrored: state.resultsHaveErrored,
   userAuthentication: state.userAuthentication,
   userSignupSuccess: state.userSignupSuccess,
-  resultsTotalHits: state.resultsTotalHits,
   nextPageSuccess: state.nextPageSuccess,
   nextPageLoading: state.nextPageLoading,
   nextPageErrored: state.nextPageErrored,
