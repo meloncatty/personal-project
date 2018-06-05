@@ -73,7 +73,7 @@ export class SignIn extends Component {
             placeholder='Email Address'
           />
           <input
-            className='password'
+            className='password-sign-in'
             name='password'
             onChange={this.handleSignInChange}
             type='password'

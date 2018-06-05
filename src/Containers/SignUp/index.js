@@ -90,14 +90,14 @@ export class SignUp extends Component {
             placeholder='Email Address'
           />
           <input
-            className='password'
+            className='password-sign-up'
             name='password'
             onChange={this.handleSignUpChange}
             type='password'
             placeholder='Password'
           />
           <input
-            className='password password-auth'
+            className='password-auth'
             name='passwordAuth'
             onChange={this.handleSignUpChange}
             type='password'
