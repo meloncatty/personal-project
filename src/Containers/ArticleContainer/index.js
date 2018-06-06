@@ -37,7 +37,7 @@ export class ArticleContainer extends Component {
           </div>
           <h4>Topics: {topics}</h4>
           {fulltextIdentifier &&
-          <a href={fulltextIdentifier} target='target_blank'>View PDF</a>}
+          <a href={fulltextIdentifier} className='download-article' target='target_blank'>View PDF</a>}
         </article>
     )
   }

@@ -33,7 +33,7 @@ describe("ArticleContainer", () => {
     expect(wrapper.state()).toEqual(expected)
   });
 
-  it("should toggle text", () => {
+  it("should toggle text when text is closed", () => {
     const mockArticle = {
       authors: 'author name',
       title: 'article title',
@@ -50,6 +50,28 @@ describe("ArticleContainer", () => {
 
     expect(wrapper.state()).toEqual(expected)
   });
+
+  it("should toggle text when text is opened", () => {
+    const mockArticle = {
+      authors: 'author name',
+      title: 'article title',
+      datePublished: '01-01-2018',
+      fullText: 'full article text',
+      topics: 'article topics',
+      fullTextIdentifier: 'link-to-fulltext.com'
+    }
+    const wrapper = shallow(<ArticleContainer fullArticleSuccess={mockArticle}/>)
+    const expected = {
+      toggleText: false
+    }
+    wrapper.find('.lbl-toggle').simulate('click')
+    wrapper.update()
+    wrapper.find('.lbl-toggle').simulate('click')
+    wrapper.update()
+
+    expect(wrapper.state()).toEqual(expected)
+  });
+
   it("should call loading station while loading", () => {
     const mockArticle = {
       authors: 'author name',
@@ -76,5 +98,33 @@ describe("ArticleContainer", () => {
     const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
 
     expect(wrapper.instance().cleanFullArticle).toHaveBeenCalled
+  });
+
+  it("should display error if article errors", () => {
+    const mockArticle = {
+      authors: 'author name',
+      title: 'article title',
+      datePublished: '01-01-2018',
+      fullText: 'full article text',
+      topics: 'article topics',
+      fullTextIdentifier: 'link-to-fulltext.com'
+    }
+    const wrapper = shallow(<ArticleContainer fullArticleErrored={true} fullArticleSuccess={mockArticle}/>)
+
+    expect(wrapper.find('.error-container').length).toEqual(1)
+  });
+
+  it("should display download link when available", () => {
+    const mockArticle = {
+      authors: 'author name',
+      title: 'article title',
+      datePublished: '01-01-2018',
+      fullText: 'full article text',
+      topics: 'article topics',
+      fulltextIdentifier: 'link-to-fulltext.com'
+    }
+    const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+
+    expect(wrapper.find('.download-article').length).toEqual(1)
   });
 });
