@@ -12,7 +12,7 @@ describe('SearchResults', () => {
       }
     ]
   const wrapper = shallow(
-    <SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess}/>
+    <SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess}/>
   )
 
   expect(wrapper).toMatchSnapshot()
@@ -25,7 +25,7 @@ describe('SearchResults', () => {
         title: 'Test the things'
       }
     ]
-    const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+    const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
     const expected = {
       redirectToArticle: false,
       canUserPost: false,
@@ -45,7 +45,7 @@ describe('SearchResults', () => {
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults
       wrapper.find('button').simulate('click')
 
@@ -61,7 +61,7 @@ describe('SearchResults', () => {
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults
       wrapper.find('button').simulate('click')
 
@@ -79,7 +79,7 @@ describe('SearchResults', () => {
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults resultsHaveErrored={true} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults resultsHaveErrored={true} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
 
       expect(wrapper.find('.error-container').length).toEqual(1)
     })
@@ -93,7 +93,7 @@ describe('SearchResults', () => {
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults nextPageErrored={true} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults nextPageErrored={true} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
 
       expect(wrapper.find('.error-container').length).toEqual(1)
     })
@@ -117,7 +117,7 @@ describe('SearchResults', () => {
       ]
       const nextPageSuccess = []
       const postArticle = jest.fn()
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
       wrapper.find('.archive-article').get(0).onClick
       
@@ -138,7 +138,7 @@ describe('SearchResults', () => {
         }
       ]
       const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
       
       expect(wrapper.find('.download-url').length).toEqual(1)
@@ -160,7 +160,7 @@ describe('SearchResults', () => {
         }
       ]
       const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
       wrapper.find('.link-to-article').get(0).onClick
       
@@ -174,9 +174,10 @@ describe('SearchResults', () => {
       const wrapper = shallow(<SearchResults 
         nextPageSuccess={[]}
         resultsSuccess={[]} 
-        resultsAreLoading={true}
+        nextPageLoading={true}
+        fetchFullText={jest.fn()}
+        fetchNextPage={jest.fn()}
       />)
-
       expect(wrapper.find('.loading-container').length).toEqual(1)
     });
 
@@ -186,6 +187,8 @@ describe('SearchResults', () => {
         nextPageSuccess={[]}
         resultsSuccess={[]} 
         nextPageLoading={true}
+        fetchFullText={jest.fn()}
+        fetchNextPage={jest.fn()}
       />)
 
       expect(wrapper.find('.loading-container').length).toEqual(1)
@@ -196,7 +199,10 @@ describe('SearchResults', () => {
     it('should call dispatch with full article id', () => {
       
       const wrapper = shallow(<SearchResults resultsSuccess={[]} 
-        nextPageSuccess={[]}/>)
+        nextPageSuccess={[]}
+        fetchFullText={jest.fn()} 
+        fetchNextPage={jest.fn()}
+        />)
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchFullText(15824379)

@@ -5,12 +5,12 @@ import {userSignupSuccess} from '../../../Actions'
 
 describe('SignUp', () => {
   it('should match snapshot', () => {
-    const wrapper = shallow(<SignUp />)
+    const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
     expect(wrapper).toMatchSnapshot()
   });
 
   it('should have default state', () => {
-    const wrapper = shallow(<SignUp />)
+    const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
     const expected = {
       username: '',
       email: '',
@@ -24,7 +24,7 @@ describe('SignUp', () => {
 
   describe('handleSignUpChange', () => {
     it('should update username on change', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockEvent = {target: {name: 'username', value: 'username'}}
 
       wrapper.find('.username').simulate('change', mockEvent)
@@ -33,7 +33,7 @@ describe('SignUp', () => {
     });
 
     it('should update email on change', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockEvent = {target: {name: 'email', value: 'email'}}
 
       wrapper.find('.email').simulate('change', mockEvent)
@@ -42,7 +42,7 @@ describe('SignUp', () => {
     });
 
     it('should update passwordAuth on change', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockEvent = {target: {name: 'passwordAuth', value: 'password'}}
 
       wrapper.find('.password-auth').simulate('change', mockEvent)
@@ -51,7 +51,7 @@ describe('SignUp', () => {
     });
 
     it('should update password on change', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockEvent = {target: {name: 'password', value: 'password'}}
 
       wrapper.find('.password-sign-up').simulate('change', mockEvent)
@@ -62,7 +62,7 @@ describe('SignUp', () => {
 
   describe('handleSignUpSubmit', () => {
     it('should call userSignupSuccess with true', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockEvent = {preventDefault: () => {}}
       wrapper.find('form').simulate('submit', mockEvent)
 
@@ -72,7 +72,7 @@ describe('SignUp', () => {
     it('should call history.push', () => {
       const history = {push: () => {}}
       const mockEvent = {preventDefault: () => {}}
-      const wrapper = shallow(<SignUp history={history}/>)
+      const wrapper = shallow(<SignUp history={history} userSignupSuccess={jest.fn()} />)
       wrapper.find('form').simulate('submit', mockEvent)
       
       expect(wrapper.instance().history).toHaveBeenCalled
@@ -81,7 +81,7 @@ describe('SignUp', () => {
 
   describe('mapDispatchToProps', () => {
     it('should return false when user signs out', () => {
-      const wrapper = shallow(<SignUp />)
+      const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
       const mockDispatch = jest.fn()
       const actionToDispatch = userSignupSuccess(true)
       const mappedProps = mapDispatchToProps(mockDispatch)

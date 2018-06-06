@@ -2,10 +2,11 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { MemoryRouter } from 'react-router-dom'
 import { LandingPage, mapDispatchToProps } from '../'
+import {fetchArticles} from '../../../Actions'
 
 describe('LandingPage', () => {
   it('should have default state', () => {
-    const wrapper = shallow(<LandingPage />)
+    const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
     const expected = {
       searchInput: '',
       redirectToSearch: false
@@ -15,7 +16,7 @@ describe('LandingPage', () => {
   })
 
   it('should handle change upon input change', () => {
-    const wrapper = shallow(<LandingPage />)
+    const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
     const mockEvent = { target: { value: 'query' } }
     const mockHandleChange = jest.fn()
 
@@ -26,7 +27,7 @@ describe('LandingPage', () => {
 
   it('should call handleSubmit when form is submitted', () => {
     const mockFetchArticles = jest.fn()
-    const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles}/>)
+    const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles} />)
     const mockPreventDefault = {preventDefault: jest.fn()}
     wrapper.instance().handleSubmit(mockPreventDefault)
 
@@ -54,14 +55,13 @@ describe('LandingPage', () => {
   })
 
   describe('mapDispatchToProps', () => {
-    it.skip('should return an object', () => {
+    it('should return an object', () => {
+      const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
       const mockDispatch = jest.fn()
-      const mockDispatchToProps = mapDispatchToProps(mockDispatch)
-      const expected = {
-        fetchArticles: (query) => dispatch(fetchArticles(query))
-      }
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.fetchArticles([15824379])
 
-      expect(mockDispatchToProps).toEqual(expected)
+      expect(mockDispatch).toHaveBeenCalled
     })
   })
 })

@@ -14,7 +14,7 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
 
     expect(wrapper).toMatchSnapshot()
   });
@@ -29,7 +29,7 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
 
     expect(wrapper.state()).toEqual(expected)
   });
@@ -44,7 +44,7 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
     
     expect(wrapper.instance().fetchArticlesFromFirebase).toHaveBeenCalled
   });
@@ -60,7 +60,7 @@ describe('UserDashboard', () => {
       const expected = {
         storeArticles: []
       }
-      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
       
       expect(wrapper.instance().fetchUserArticles).toHaveBeenCalled
     });
@@ -77,7 +77,7 @@ describe('UserDashboard', () => {
       const expected = {
         storeArticles: []
       }
-      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchUserArticles(82413678)
