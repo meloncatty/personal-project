@@ -14,13 +14,12 @@ import * as routes from '../../Constants/routes'
 import './App.css'
 import UserDashboard from '../../Containers/UserDashboard'
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      user: null,
-      article: 'test'
+      user: null
     }
   }
 
@@ -32,7 +31,7 @@ class App extends Component {
             {
               !this.props.isUserSignedIn &&
               <ul>
-              {this.props.userSignupSuccess && <li>Create account success! Please sign in.</li>}
+              {this.props.userSignupSuccess && <li className='account-success'>Create account success! Please sign in.</li>}
               <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
               <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
               </ul>
