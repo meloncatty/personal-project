@@ -51,7 +51,7 @@ export class SearchResults extends Component {
       (
         <article key={index}>
           <h1>
-            <Link to='/articleContainer' onClick={(e) => {
+            <Link to='/articleContainer' className='link-to-article' onClick={(e) => {
                 e.preventDefault()
                 this.redirectToArticle(result.id)
                 }}>

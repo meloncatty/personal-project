@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <SearchResults
+    nextPageSuccess={Array []}
     resultsSuccess={
         Array [
             Object {
@@ -26,12 +27,40 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": false,
-      "className": "results-list",
+      "children": Array [
+        <section
+          className="results-list"
+>
+          
+</section>,
+        undefined,
+      ],
+      "className": "results-container",
     },
     "ref": null,
-    "rendered": false,
-    "type": "section",
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            Array [],
+            undefined,
+            false,
+          ],
+          "className": "results-list",
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          false,
+        ],
+        "type": "section",
+      },
+      undefined,
+    ],
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -39,12 +68,40 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": false,
-        "className": "results-list",
+        "children": Array [
+          <section
+            className="results-list"
+>
+            
+</section>,
+          undefined,
+        ],
+        "className": "results-container",
       },
       "ref": null,
-      "rendered": false,
-      "type": "section",
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              Array [],
+              undefined,
+              false,
+            ],
+            "className": "results-list",
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            false,
+          ],
+          "type": "section",
+        },
+        undefined,
+      ],
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
