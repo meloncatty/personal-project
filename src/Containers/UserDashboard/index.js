@@ -26,6 +26,7 @@ export class UserDashboard extends Component {
             this.setState({
               storeArticles: [data]
             })
+            console.log(data)
             this.props.fetchUserArticles(this.state.storeArticles)
           })
         })
@@ -39,7 +40,7 @@ export class UserDashboard extends Component {
   render() {
     return (
       <section className='user-dashboard'>
-        {this.props.fetchUserArticlesSuccess.map((article,index) => {
+        {this.props.fetchUserArticlesSuccess && this.props.fetchUserArticlesSuccess.map((article,index) => {
           return(
             <article key={index}>
               <h1>{article.title}</h1>
@@ -53,13 +54,13 @@ export class UserDashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isUserSignedIn: state.isUserSignedIn,
   userAuthentication: state.userAuthentication,
   fetchUserArticlesSuccess: state.fetchUserArticlesSuccess
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   fetchUserArticles: (userArticles) => dispatch(fetchUserArticles(userArticles))
 })
 
