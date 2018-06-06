@@ -26,6 +26,7 @@ ShallowWrapper {
         </label>
         <input
                 className="password"
+                name="password"
                 onChange={[Function]}
                 placeholder="New Password"
                 type="password"
@@ -33,6 +34,7 @@ ShallowWrapper {
         />
         <input
                 className="password-confirm"
+                name="passwordAuth"
                 onChange={[Function]}
                 placeholder="Confirm Password"
                 type="password"
@@ -60,6 +62,7 @@ ShallowWrapper {
 </label>,
           <input
             className="password"
+            name="password"
             onChange={[Function]}
             placeholder="New Password"
             type="password"
@@ -67,6 +70,7 @@ ShallowWrapper {
 />,
           <input
             className="password-confirm"
+            name="passwordAuth"
             onChange={[Function]}
             placeholder="Confirm Password"
             type="password"
@@ -103,6 +107,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "className": "password",
+            "name": "password",
             "onChange": [Function],
             "placeholder": "New Password",
             "type": "password",
@@ -118,6 +123,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "className": "password-confirm",
+            "name": "passwordAuth",
             "onChange": [Function],
             "placeholder": "Confirm Password",
             "type": "password",
@@ -172,6 +178,7 @@ ShallowWrapper {
           </label>
           <input
                     className="password"
+                    name="password"
                     onChange={[Function]}
                     placeholder="New Password"
                     type="password"
@@ -179,6 +186,7 @@ ShallowWrapper {
           />
           <input
                     className="password-confirm"
+                    name="passwordAuth"
                     onChange={[Function]}
                     placeholder="Confirm Password"
                     type="password"
@@ -206,6 +214,7 @@ ShallowWrapper {
 </label>,
             <input
               className="password"
+              name="password"
               onChange={[Function]}
               placeholder="New Password"
               type="password"
@@ -213,6 +222,7 @@ ShallowWrapper {
 />,
             <input
               className="password-confirm"
+              name="passwordAuth"
               onChange={[Function]}
               placeholder="Confirm Password"
               type="password"
@@ -249,6 +259,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "className": "password",
+              "name": "password",
               "onChange": [Function],
               "placeholder": "New Password",
               "type": "password",
@@ -264,6 +275,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "className": "password-confirm",
+              "name": "passwordAuth",
               "onChange": [Function],
               "placeholder": "Confirm Password",
               "type": "password",
