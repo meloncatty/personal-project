@@ -11,14 +11,14 @@ describe('SearchResults', () => {
         title: 'Test the things'
       }
     ]
-  const wrapper = shallow(
-    <SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess}/>
-  )
+    const wrapper = shallow(
+      <SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />
+    )
 
-  expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
-  it("should have default state", () => {
+  it('should have default state', () => {
     const resultsSuccess = [
       {
         id: 1,
@@ -36,11 +36,11 @@ describe('SearchResults', () => {
   })
 
   describe('redirectToArticle', () => {
-    it("should update state when article is clicked", () => {
+    it('should update state when article is clicked', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
 
         }
       ]
@@ -52,11 +52,11 @@ describe('SearchResults', () => {
       expect(wrapper.state('pageCounter')).toEqual(2)
     })
 
-    it("should call fetchNextPage when clicked", () => {
+    it('should call fetchNextPage when clicked', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
 
         }
       ]
@@ -66,53 +66,53 @@ describe('SearchResults', () => {
       wrapper.find('button').simulate('click')
 
       expect(wrapper.fetchNextPage).toHaveBeenCalled
-    });
+    })
   })
 
-  describe("displayErrorText", () => {
-    it("should return error text when results error occurs", () => {
+  describe('displayErrorText', () => {
+    it('should return error text when results error occurs', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
 
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults resultsHaveErrored={true} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults resultsHaveErrored fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
 
       expect(wrapper.find('.error-container').length).toEqual(1)
     })
 
-    it("should return error text when next page of results error occurs", () => {
+    it('should return error text when next page of results error occurs', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
 
         }
       ]
       const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults nextPageErrored={true} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      const wrapper = mount(<SearchResults nextPageErrored fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
 
       expect(wrapper.find('.error-container').length).toEqual(1)
     })
   })
 
-  describe("cleanQueryRestuls", () => {
+  describe('cleanQueryRestuls', () => {
     it('should call postArticle when Archive link is clicked', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         },
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         },
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         }
       ]
       const nextPageSuccess = []
@@ -120,10 +120,9 @@ describe('SearchResults', () => {
       const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
       wrapper.find('.archive-article').get(0).onClick
-      
-      
+
       expect(wrapper.instance().postArticle).toHaveBeenCalled
-    });
+    })
 
     it('should display download link if available', () => {
       const resultsSuccess = [
@@ -140,74 +139,73 @@ describe('SearchResults', () => {
       const nextPageSuccess = []
       const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
-      
+
       expect(wrapper.find('.download-url').length).toEqual(1)
-    });
+    })
 
     it('should call redirectToArticle when article link is clicked', () => {
       const resultsSuccess = [
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         },
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         },
         {
           id: 1,
-          title: 'Test the things',
+          title: 'Test the things'
         }
       ]
       const nextPageSuccess = []
       const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
       wrapper.instance().cleanQueryResults()
       wrapper.find('.link-to-article').get(0).onClick
-      
+
       expect(wrapper.instance().redirectToArticle).toHaveBeenCalled
-    });
-  });
-  
+    })
+  })
+
   describe('loadingStation', () => {
     it('should return loading animation when results are loading', () => {
       const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults 
+      const wrapper = shallow(<SearchResults
         nextPageSuccess={[]}
-        resultsSuccess={[]} 
-        nextPageLoading={true}
+        resultsSuccess={[]}
+        nextPageLoading
         fetchFullText={jest.fn()}
         fetchNextPage={jest.fn()}
       />)
       expect(wrapper.find('.loading-container').length).toEqual(1)
-    });
+    })
 
     it('should return loading animation when next page of results are loading', () => {
       const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults 
+      const wrapper = shallow(<SearchResults
         nextPageSuccess={[]}
-        resultsSuccess={[]} 
-        nextPageLoading={true}
+        resultsSuccess={[]}
+        nextPageLoading
         fetchFullText={jest.fn()}
         fetchNextPage={jest.fn()}
       />)
 
       expect(wrapper.find('.loading-container').length).toEqual(1)
-    });
-  });
+    })
+  })
 
   describe('mapDispatchToProps', () => {
     it('should call dispatch with full article id', () => {
-      
-      const wrapper = shallow(<SearchResults resultsSuccess={[]} 
+      const wrapper = shallow(<SearchResults resultsSuccess={[]}
         nextPageSuccess={[]}
-        fetchFullText={jest.fn()} 
+        fetchFullText={jest.fn()}
         fetchNextPage={jest.fn()}
-        />)
+      />)
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchFullText(15824379)
 
       expect(mockDispatch).toHaveBeenCalled
-    });
+    })
   })
 })

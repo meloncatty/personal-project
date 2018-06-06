@@ -37,11 +37,11 @@ describe('LandingPage', () => {
   it('should call fetchArticles when form is submitted', () => {
     const mockFetchArticles = jest.fn()
     const wrapper = shallow(
-      <LandingPage fetchArticles={mockFetchArticles}/>
+      <LandingPage fetchArticles={mockFetchArticles} />
     )
     const mockPreventDefault = {preventDefault: jest.fn()}
     wrapper.find('form').simulate('submit', mockPreventDefault)
-    
+
     expect(mockFetchArticles).toHaveBeenCalled()
   })
 

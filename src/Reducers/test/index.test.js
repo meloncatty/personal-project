@@ -41,7 +41,7 @@ describe('Results reducers', () => {
           }
         ]
       }
-        expect(resultsSuccess([], mockAction)).toEqual(expected)
+      expect(resultsSuccess([], mockAction)).toEqual(expected)
     })
   })
 
@@ -77,12 +77,12 @@ describe('Results reducers', () => {
     })
   })
 
-  describe("resultsTotalHits", () => {
-    it("should return default state when no action is passed", () => {
+  describe('resultsTotalHits', () => {
+    it('should return default state when no action is passed', () => {
       expect(resultsTotalHits(null, {})).toEqual(null)
     })
 
-    it("should update store if there are results", () => {
+    it('should update store if there are results', () => {
       const expected = 13883
       const mockAction = {
         type: 'RESULTS_TOTAL_HITS',
@@ -94,13 +94,13 @@ describe('Results reducers', () => {
   })
 })
 
-describe("Single article reducers", () => {
-  describe("fullArticleSuccess", () => {
-    it("should return default state when no action passed", () => {
+describe('Single article reducers', () => {
+  describe('fullArticleSuccess', () => {
+    it('should return default state when no action passed', () => {
       expect(fullArticleSuccess([], {})).toEqual([])
     })
 
-    it("should return full article data to store", () => {
+    it('should return full article data to store', () => {
       const expected = [
         {
           id: 1,
@@ -117,12 +117,12 @@ describe("Single article reducers", () => {
     })
   })
 
-  describe("fullArticleLoading", () => {
-    it("should return default state when no action passed", () => {
+  describe('fullArticleLoading', () => {
+    it('should return default state when no action passed', () => {
       expect(fullArticleLoading(false, {})).toEqual(false)
     })
 
-    it("should return true when article is loading", () => {
+    it('should return true when article is loading', () => {
       const mockAction = {
         type: 'FULL_ARTICLE_LOADING',
         articleLoading: true
@@ -132,12 +132,12 @@ describe("Single article reducers", () => {
     })
   })
 
-  describe("fullArticleErrored", () => {
-    it("should return default state when no action passed", () => {
+  describe('fullArticleErrored', () => {
+    it('should return default state when no action passed', () => {
       expect(fullArticleErrored(false, {})).toEqual(false)
     })
 
-    it("should return true when article has errored", () => {
+    it('should return true when article has errored', () => {
       const mockAction = {
         type: 'FULL_ARTICLE_ERRORED',
         articleErrored: true
@@ -148,13 +148,13 @@ describe("Single article reducers", () => {
   })
 })
 
-describe("User reducers", () => {
-  describe("userAuthentication", () => {
-    it("should return default state when no action passed", () => {
+describe('User reducers', () => {
+  describe('userAuthentication', () => {
+    it('should return default state when no action passed', () => {
       expect(userAuthentication([], {})).toEqual([])
-    });
+    })
 
-    it("should return user UID to store", () => {
+    it('should return user UID to store', () => {
       const userAuth = ['919x09v9s8z']
       const mockAction = {
         type: 'USER_AUTHENTICATION',
@@ -162,15 +162,15 @@ describe("User reducers", () => {
       }
 
       expect(userAuthentication([], mockAction)).toEqual(userAuth)
-    });
-  });
+    })
+  })
 
-  describe("captureUserArticles", () => {
-    it("should return default state when no action passed", () => {
+  describe('captureUserArticles', () => {
+    it('should return default state when no action passed', () => {
       expect(captureUserArticles([], {})).toEqual([])
-    });
+    })
 
-    it("should return user article IDs to store", () => {
+    it('should return user article IDs to store', () => {
       const userArticleIds = [91903298]
       const mockAction = {
         type: 'CAPTURE_USER_ARTICLES',
@@ -178,45 +178,45 @@ describe("User reducers", () => {
       }
 
       expect(captureUserArticles([], mockAction)).toEqual(userArticleIds)
-    });
-  });
+    })
+  })
 
-  describe("isUserSignedIn", () => {
-    it("should return default state when no action passed", () => {
+  describe('isUserSignedIn', () => {
+    it('should return default state when no action passed', () => {
       expect(isUserSignedIn(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if user signed in", () => {
+    it('should return true if user signed in', () => {
       const mockAction = {
         type: 'IS_USER_SIGNED_IN',
         isUserSignedIn: true
       }
 
       expect(isUserSignedIn(false, mockAction)).toEqual(true)
-    });
-  });
+    })
+  })
 
-  describe("userSignupSuccess", () => {
-    it("should return default state when no action passed", () => {
+  describe('userSignupSuccess', () => {
+    it('should return default state when no action passed', () => {
       expect(userSignupSuccess(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if user signup success", () => {
+    it('should return true if user signup success', () => {
       const mockAction = {
         type: 'USER_SIGNUP_SUCCESS',
         signupSuccess: true
       }
 
       expect(userSignupSuccess(false, mockAction)).toEqual(true)
-    });
-  });
+    })
+  })
 
-  describe("captureQuery", () => {
-    it("should return default state when no action passed", () => {
+  describe('captureQuery', () => {
+    it('should return default state when no action passed', () => {
       expect(captureQuery(null, {})).toEqual(null)
-    });
+    })
 
-    it("should return user search query to store", () => {
+    it('should return user search query to store', () => {
       const userQuery = 'blockchain'
       const mockAction = {
         type: 'CAPTURE_QUERY',
@@ -224,15 +224,15 @@ describe("User reducers", () => {
       }
 
       expect(captureQuery(null, mockAction)).toEqual(userQuery)
-    });
-  });
-});
+    })
+  })
+})
 
-describe("Fetch user articles reducers", () => {
-  describe("fetchUserArticlesSuccess", () => {
-    it("should return default state when no action passed", () => {
+describe('Fetch user articles reducers', () => {
+  describe('fetchUserArticlesSuccess', () => {
+    it('should return default state when no action passed', () => {
       expect(fetchUserArticlesSuccess([], {})).toEqual([])
-    });
+    })
 
     it("should return user's saved articles", () => {
       const fetchedArticles = [
@@ -253,47 +253,47 @@ describe("Fetch user articles reducers", () => {
       }
 
       expect(fetchUserArticlesSuccess([], mockAction)).toEqual(fetchedArticles)
-    });
-  });
+    })
+  })
 
-  describe("fetchUserArticlesLoading", () => {
-    it("should return default state when no action passed", () => {
+  describe('fetchUserArticlesLoading', () => {
+    it('should return default state when no action passed', () => {
       expect(fetchUserArticlesLoading(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if articles are loading", () => {
+    it('should return true if articles are loading', () => {
       const mockAction = {
         type: 'FETCH_USER_ARTICLES_LOADING',
         fetchUserArticlesLoading: true
       }
 
       expect(fetchUserArticlesLoading(false, mockAction)).toEqual(true)
-    });
-  });
+    })
+  })
 
-  describe("fetchUserArticlesErrored", () => {
-    it("should return default state when no action passed", () => {
+  describe('fetchUserArticlesErrored', () => {
+    it('should return default state when no action passed', () => {
       expect(fetchUserArticlesErrored(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if articles have errored", () => {
+    it('should return true if articles have errored', () => {
       const mockAction = {
         type: 'FETCH_USER_ARTICLES_ERRORED',
         fetchUserArticlesErrored: true
       }
 
       expect(fetchUserArticlesErrored(false, mockAction)).toEqual(true)
-    });
-  });
-});
+    })
+  })
+})
 
-describe("Next page reducers", () => {
-  describe("nextPageSuccess", () => {
-    it("should return default state when no action passed", () => {
+describe('Next page reducers', () => {
+  describe('nextPageSuccess', () => {
+    it('should return default state when no action passed', () => {
       expect(nextPageSuccess([], {})).toEqual([])
-    });
+    })
 
-    it("should return next page of results", () => {
+    it('should return next page of results', () => {
       const nextPage = [{
         id: '1',
         title: 'article title',
@@ -305,36 +305,36 @@ describe("Next page reducers", () => {
       }
 
       expect(nextPageSuccess([], mockAction)).toEqual(nextPage)
-    });
-  });
+    })
+  })
 
-  describe("nextPageLoading", () => {
-    it("should return default state when no action passed", () => {
+  describe('nextPageLoading', () => {
+    it('should return default state when no action passed', () => {
       expect(nextPageLoading(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if next page is loading", () => {
+    it('should return true if next page is loading', () => {
       const mockAction = {
         type: 'NEXT_PAGE_LOADING',
         nextPageLoading: true
       }
 
       expect(nextPageLoading(false, mockAction)).toEqual(true)
-    });
-  });
+    })
+  })
 
-  describe("nextPageErrored", () => {
-    it("should return default state when no action passed", () => {
+  describe('nextPageErrored', () => {
+    it('should return default state when no action passed', () => {
       expect(nextPageErrored(false, {})).toEqual(false)
-    });
+    })
 
-    it("should return true if next page errored", () => {
+    it('should return true if next page errored', () => {
       const mockAction = {
         type: 'NEXT_PAGE_ERRORED',
         nextPageHasErrored: true
       }
 
       expect(nextPageErrored(false, mockAction)).toEqual(true)
-    });
-  });
-});
+    })
+  })
+})
