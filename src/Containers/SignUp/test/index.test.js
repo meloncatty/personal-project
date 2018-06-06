@@ -34,11 +34,11 @@ describe('SignUp', () => {
 
     it('should update email on change', () => {
       const wrapper = shallow(<SignUp userSignupSuccess={jest.fn()} />)
-      const mockEvent = {target: {name: 'email', value: 'email'}}
+      const mockEvent = {target: {name: 'new-email', value: 'new-email'}}
 
-      wrapper.find('.email').simulate('change', mockEvent)
+      wrapper.find('.new-email').simulate('change', mockEvent)
 
-      expect(wrapper.state('email')).toEqual(mockEvent.target.value)
+      expect(wrapper.state('new-email')).toEqual(mockEvent.target.value)
     });
 
     it('should update passwordAuth on change', () => {
@@ -74,7 +74,7 @@ describe('SignUp', () => {
       const mockEvent = {preventDefault: () => {}}
       const wrapper = shallow(<SignUp history={history} userSignupSuccess={jest.fn()} />)
       wrapper.find('form').simulate('submit', mockEvent)
-      
+
       expect(wrapper.instance().history).toHaveBeenCalled
     });
   });
