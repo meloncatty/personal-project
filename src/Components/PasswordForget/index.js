@@ -19,7 +19,7 @@ export class PasswordForget extends Component {
       .then(() => {
         this.setState({
           email: '',
-          error: null,
+          error: false,
           submitSuccessful: true
         })
       })
@@ -41,9 +41,9 @@ export class PasswordForget extends Component {
 
     return (
       <section className='form-container'>
-      <form 
+      <form
         onSubmit={this.onSubmit}
-        className='reset-password'  
+        className='reset-password'
       >
         <label>Reset Your Password</label>
         <input
