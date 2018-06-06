@@ -69,7 +69,7 @@ describe('SearchResults', () => {
   })
 
   describe("displayErrorText", () => {
-    it("should display error text when errors occur", () => {
+    it("should return error text when results error occurs", () => {
       const resultsSuccess = [
         {
           id: 1,
@@ -80,23 +80,114 @@ describe('SearchResults', () => {
       const fetchNextPage = jest.fn()
       const wrapper = mount(<SearchResults resultsHaveErrored={true} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
 
-      expect(wrapper.instance().dispalyErrorText).toHaveBeenCalled
+      expect(wrapper.find('.error-container').length).toEqual(1)
+    })
+
+    it("should return error text when next page of results error occurs", () => {
+      const resultsSuccess = [
+        {
+          id: 1,
+          title: 'Test the things',
+
+        }
+      ]
+      const fetchNextPage = jest.fn()
+      const wrapper = mount(<SearchResults nextPageErrored={true} nextPageErrored={true} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+
+      expect(wrapper.find('.error-container').length).toEqual(1)
     })
   })
 
   describe("cleanQueryRestuls", () => {
-    const resultsSuccess = [
-      {
-        id: 1,
-        title: 'Test the things',
+    it('should call postArticle when Archive link is clicked', () => {
+      const resultsSuccess = [
+        {
+          id: 1,
+          title: 'Test the things',
+        },
+        {
+          id: 1,
+          title: 'Test the things',
+        },
+        {
+          id: 1,
+          title: 'Test the things',
+        }
+      ]
+      const nextPageSuccess = []
+      const postArticle = jest.fn()
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      wrapper.instance().cleanQueryResults()
+      wrapper.find('.archive-article').get(0).onClick
+      
+      
+      expect(wrapper.instance().postArticle).toHaveBeenCalled
+    });
 
-      }
-    ]
-    const fetchNextPage = jest.fn()
-    const wrapper = mount(<SearchResults userAuthentication={[0]} fetchNextPage={fetchNextPage} nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
-    wrapper.instance().cleanQueryResults
-    wrapper.find('.archive-denied').simulate('click')
+    it('should display download link if available', () => {
+      const resultsSuccess = [
+        {
+          id: 1,
+          title: 'Test the things',
+          downloadUrl: 'download.url'
+        },
+        {
+          id: 1,
+          title: 'Test the things'
+        }
+      ]
+      const nextPageSuccess = []
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      wrapper.instance().cleanQueryResults()
+      
+      expect(wrapper.find('.download-url').length).toEqual(1)
+    });
 
-    expect(wrapper.fetchNextPage).toHaveBeenCalled
+    it('should call redirectToArticle when article link is clicked', () => {
+      const resultsSuccess = [
+        {
+          id: 1,
+          title: 'Test the things',
+        },
+        {
+          id: 1,
+          title: 'Test the things',
+        },
+        {
+          id: 1,
+          title: 'Test the things',
+        }
+      ]
+      const nextPageSuccess = []
+      const wrapper = shallow(<SearchResults nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      wrapper.instance().cleanQueryResults()
+      wrapper.find('.link-to-article').get(0).onClick
+      
+      expect(wrapper.instance().redirectToArticle).toHaveBeenCalled
+    });
+  });
+  
+  describe('loadingStation', () => {
+    it('should return loading animation when results are loading', () => {
+      const nextPageSuccess = []
+      const wrapper = shallow(<SearchResults 
+        nextPageSuccess={[]}
+        resultsSuccess={[]} 
+        resultsAreLoading={true}
+      />)
+
+      expect(wrapper.find('.loading-container').length).toEqual(1)
+    });
+
+    it('should return loading animation when next page of results are loading', () => {
+      const nextPageSuccess = []
+      const wrapper = shallow(<SearchResults 
+        nextPageSuccess={[]}
+        resultsSuccess={[]} 
+        nextPageLoading={true}
+      />)
+
+      expect(wrapper.find('.loading-container').length).toEqual(1)
+    });
   });
 })

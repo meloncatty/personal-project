@@ -1,5 +1,5 @@
 import thunk from 'react-redux'
-import apiKey from '../../apiKey.js'
+import {apiKey} from '../../apiKey.js'
 import {
   resultsSuccess,
   resultsAreLoading,

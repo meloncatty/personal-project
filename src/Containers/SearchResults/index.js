@@ -49,7 +49,7 @@ export class SearchResults extends Component {
     }
     return results.map((result, index) =>
       (
-        <article key={index}>
+        <article className='article-container' key={index}>
           <h1>
             <Link to='/articleContainer' className='link-to-article' onClick={(e) => {
                 e.preventDefault()
@@ -60,19 +60,24 @@ export class SearchResults extends Component {
           </h1>
           <h3>Authors: {result.authors}</h3>
           <h3>Date Published: {result.datePublished}</h3>
-          <p>{result.description && result.description.slice(0,500) + '...'}</p>
+          <p>
+            {
+              result.description && result.description.slice(0,500) + '...'
+            }
+          </p>
           {
             result.downloadUrl &&
-            <a href={result.downloadUrl}>Download </a>
+            <a className='download-url' href={result.downloadUrl}>Download </a>
           }
           {
-            this.props.userAuthentication &&
             // eslint-disable-next-line
               <a href='#' className='archive-article' onClick={(e) => {
                 this.postArticle(e, result)}}>Archive</a>
           }
-          {!this.state.canUserPost && <p className=
-            'archive-denied'>Please sign in to archive.</p>}
+          {
+            !this.state.canUserPost && <p className=
+            'archive-denied'>Please sign in to archive.</p>
+          }
         </article>
       )
     )
