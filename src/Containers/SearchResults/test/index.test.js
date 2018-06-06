@@ -192,17 +192,16 @@ describe('SearchResults', () => {
     });
   });
 
-  describe.skip('mapDispatchToProps', () => {
-    it('should call dispatch with full article id', async () => {
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch with full article id', () => {
       
       const wrapper = shallow(<SearchResults resultsSuccess={[]} 
         nextPageSuccess={[]}/>)
       const mockDispatch = jest.fn()
-      const actionToDispatch = await fetchFullText(15824379)
       const mappedProps = mapDispatchToProps(mockDispatch)
-      await mappedProps.fetchFullText(15824379)
+      mappedProps.fetchFullText(15824379)
 
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+      expect(mockDispatch).toHaveBeenCalled
     });
   })
 })
