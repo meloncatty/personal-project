@@ -86,9 +86,9 @@ describe('UserDashboard', () => {
     })
   })
 
-  describe("mapStateToProps", () => {
-    describe("isUserSignedIn", () => {
-      it("should return true if user is signed in", () => {
+  describe('mapStateToProps', () => {
+    describe('isUserSignedIn', () => {
+      it('should return true if user is signed in', () => {
         const mockSuccess = [{
           id: 1,
           title: 'title',
@@ -111,8 +111,8 @@ describe('UserDashboard', () => {
       })
     })
 
-    describe("userAuthentication", () => {
-      it("should return an array of user UID", () => {
+    describe('userAuthentication', () => {
+      it('should return an array of user UID', () => {
         const mockSuccess = [{
           id: 1,
           title: 'title',
@@ -135,8 +135,8 @@ describe('UserDashboard', () => {
       })
     })
 
-    describe("fetchUserArticleSuccess", () => {
-      it("should return an array of user articles", () => {
+    describe('fetchUserArticleSuccess', () => {
+      it('should return an array of user articles', () => {
         const mockSuccess = [{
           id: 1,
           title: 'title',

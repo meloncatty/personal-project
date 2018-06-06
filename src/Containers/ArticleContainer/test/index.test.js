@@ -128,10 +128,9 @@ describe('ArticleContainer', () => {
     expect(wrapper.find('.download-article').length).toEqual(1)
   })
 
-  describe("mapStateToProps", () => {
-    describe("fullArticleSuccess", () => {
-
-      it("should return an article object", () => {
+  describe('mapStateToProps', () => {
+    describe('fullArticleSuccess', () => {
+      it('should return an article object', () => {
         const mockArticle = {
           authors: 'author name',
           title: 'article title',
@@ -140,7 +139,7 @@ describe('ArticleContainer', () => {
           topics: 'article topics',
           fulltextIdentifier: 'link-to-fulltext.com'
         }
-        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle} />)
 
         const mockState = {
           fullArticleSuccess: {
@@ -164,8 +163,8 @@ describe('ArticleContainer', () => {
       })
     })
 
-    describe("fullArticleErrored", () => {
-      it("should return true if full article has errored", () => {
+    describe('fullArticleErrored', () => {
+      it('should return true if full article has errored', () => {
         const mockArticle = {
           authors: 'author name',
           title: 'article title',
@@ -174,7 +173,7 @@ describe('ArticleContainer', () => {
           topics: 'article topics',
           fulltextIdentifier: 'link-to-fulltext.com'
         }
-        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle} />)
 
         const mockState = {
           fullArticleErrored: true,
@@ -190,8 +189,8 @@ describe('ArticleContainer', () => {
       })
     })
 
-    describe("fullArticleLoading", () => {
-      it("should return true if full article text is loading", () => {
+    describe('fullArticleLoading', () => {
+      it('should return true if full article text is loading', () => {
         const mockArticle = {
           authors: 'author name',
           title: 'article title',
@@ -200,7 +199,7 @@ describe('ArticleContainer', () => {
           topics: 'article topics',
           fulltextIdentifier: 'link-to-fulltext.com'
         }
-        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle} />)
 
         const mockState = {
           fullArticleLoading: true,

@@ -209,9 +209,9 @@ describe('SearchResults', () => {
     })
   })
 
-  describe("mapStateToProps", () => {
-    describe("resultsSuccess", () => {
-      it("should return an array of results", () => {
+  describe('mapStateToProps', () => {
+    describe('resultsSuccess', () => {
+      it('should return an array of results', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
         const mockState = {
           resultsSuccess: true,
@@ -226,8 +226,8 @@ describe('SearchResults', () => {
       })
     })
 
-    describe("resultsTotalHits", () => {
-      it("should return a number describing total results", () => {
+    describe('resultsTotalHits', () => {
+      it('should return a number describing total results', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
         const mockState = {
           resultsTotalHits: 58329,
@@ -241,11 +241,10 @@ describe('SearchResults', () => {
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
       })
-
     })
 
-    describe("resultsAreLoading", () => {
-      it("should return true if results are loading", () => {
+    describe('resultsAreLoading', () => {
+      it('should return true if results are loading', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -261,8 +260,8 @@ describe('SearchResults', () => {
       })
     })
 
-    describe("resultsHaveErrored", () => {
-      it("should return true if results have errored", () => {
+    describe('resultsHaveErrored', () => {
+      it('should return true if results have errored', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -279,8 +278,8 @@ describe('SearchResults', () => {
       })
     })
 
-    describe("userAuthentication", () => {
-      it("should return an array of user UID", () => {
+    describe('userAuthentication', () => {
+      it('should return an array of user UID', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -297,8 +296,8 @@ describe('SearchResults', () => {
       })
     })
 
-    describe("userSignupSuccess", () => {
-      it("should return true if user signup is a success", () => {
+    describe('userSignupSuccess', () => {
+      it('should return true if user signup is a success', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -312,11 +311,11 @@ describe('SearchResults', () => {
 
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
-      });
+      })
     })
 
-    describe("isUserSignedIn", () => {
-      it("should return true if user is signed in", () => {
+    describe('isUserSignedIn', () => {
+      it('should return true if user is signed in', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -333,8 +332,8 @@ describe('SearchResults', () => {
       })
     })
 
-    describe("captureQuery", () => {
-      it("should return user serach query as string", () => {
+    describe('captureQuery', () => {
+      it('should return user serach query as string', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -348,11 +347,11 @@ describe('SearchResults', () => {
 
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
-      });
-    });
+      })
+    })
 
-    describe("nextPageSuccess", () => {
-      it("should return an array with articles on next page", () => {
+    describe('nextPageSuccess', () => {
+      it('should return an array with articles on next page', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -378,11 +377,11 @@ describe('SearchResults', () => {
 
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
-      });
-    });
+      })
+    })
 
-    describe("nextPageLoading", () => {
-      it("should return true if next page is loading", () => {
+    describe('nextPageLoading', () => {
+      it('should return true if next page is loading', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -396,11 +395,11 @@ describe('SearchResults', () => {
 
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
-      });
-    });
+      })
+    })
 
-    describe("nextPageErrored", () => {
-      it("should return true if next page has errored", () => {
+    describe('nextPageErrored', () => {
+      it('should return true if next page has errored', () => {
         const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
@@ -414,7 +413,7 @@ describe('SearchResults', () => {
 
         const mappedProps = mapStateToProps(mockState)
         expect(mappedProps).toEqual(expected)
-      });
-    });
+      })
+    })
   })
 })
