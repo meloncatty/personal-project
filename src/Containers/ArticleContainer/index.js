@@ -14,7 +14,7 @@ export class ArticleContainer extends Component {
   }
 
   toggleText = () => {
-    this.state.toggleText 
+    this.state.toggleText
       ? this.setState({
         toggleText: false
       })
@@ -36,15 +36,13 @@ export class ArticleContainer extends Component {
             <p>{fullText}</p>
           </div>
           <h4>Topics: {topics}</h4>
-          {fulltextIdentifier && 
+          {fulltextIdentifier &&
           <a href={fulltextIdentifier} target='target_blank'>View PDF</a>}
         </article>
     )
   }
 
   toggleLoading = () => {
-    if(this.props.fullArticleSuccess > 0) {
-    }
     return this.props.fullArticleLoading
       ? this.loadingStation()
       : this.cleanFullArticle()
