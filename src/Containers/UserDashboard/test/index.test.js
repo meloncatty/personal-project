@@ -14,10 +14,10 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+    const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
 
     expect(wrapper).toMatchSnapshot()
-  });
+  })
 
   it('should have default state', () => {
     const mockSuccess = [{
@@ -29,10 +29,10 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+    const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
 
     expect(wrapper.state()).toEqual(expected)
-  });
+  })
 
   it('should call fetchArticlesFromFirebase when mounted', () => {
     const mockSuccess = [{
@@ -44,10 +44,10 @@ describe('UserDashboard', () => {
     const expected = {
       storeArticles: []
     }
-    const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
-    
+    const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+
     expect(wrapper.instance().fetchArticlesFromFirebase).toHaveBeenCalled
-  });
+  })
 
   describe('fetchArticlesFromFirebase', () => {
     it('should call fetchUserArticles', () => {
@@ -60,11 +60,11 @@ describe('UserDashboard', () => {
       const expected = {
         storeArticles: []
       }
-      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
-      
+      const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+
       expect(wrapper.instance().fetchUserArticles).toHaveBeenCalled
-    });
-  });
+    })
+  })
 
   describe('mapDispatchToProps', () => {
     it('should call dispatch with full article id', () => {
@@ -77,12 +77,12 @@ describe('UserDashboard', () => {
       const expected = {
         storeArticles: []
       }
-      const wrapper = shallow(<UserDashboard isUserSignedIn={true} fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+      const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchUserArticles(82413678)
-      
+
       expect(mockDispatch).toHaveBeenCalled
-    });    
-  });
-});
+    })
+  })
+})

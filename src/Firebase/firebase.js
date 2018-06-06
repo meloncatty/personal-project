@@ -7,11 +7,11 @@ import {firebaseApiKey} from '../apiKey'
 
 const config = {
   apiKey: firebaseApiKey,
-  authDomain: "sos-search-open-source.firebaseapp.com",
-  databaseURL: "https://sos-search-open-source.firebaseio.com",
-  projectId: "sos-search-open-source",
-  storageBucket: "sos-search-open-source.appspot.com",
-  messagingSenderId: "16809252461",
+  authDomain: 'sos-search-open-source.firebaseapp.com',
+  databaseURL: 'https://sos-search-open-source.firebaseio.com',
+  projectId: 'sos-search-open-source',
+  storageBucket: 'sos-search-open-source.appspot.com',
+  messagingSenderId: '16809252461'
 }
 
 if (!firebase.apps.length) {

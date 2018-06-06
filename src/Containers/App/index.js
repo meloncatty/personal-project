@@ -16,7 +16,7 @@ import UserDashboard from '../../Containers/UserDashboard'
 import PropTypes from 'prop-types'
 
 export class App extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -24,28 +24,28 @@ export class App extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <header className='header'>
-          <Link to='/'><img src={logo} alt='Search Open Source' className='logo'/></Link>
-            {
-              !this.props.isUserSignedIn &&
+          <Link to='/'><img src={logo} alt='Search Open Source' className='logo' /></Link>
+          {
+            !this.props.isUserSignedIn &&
               <ul>
-              {this.props.userSignupSuccess && <li className='account-success'>Create account success! Please sign in.</li>}
-              <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
-              <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
+                {this.props.userSignupSuccess && <li className='account-success'>Create account success! Please sign in.</li>}
+                <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
+                <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
               </ul>
-            }
-            {
-              this.props.isUserSignedIn &&
+          }
+          {
+            this.props.isUserSignedIn &&
               <ul>
-              <li>Welcome back, User!</li>
-              <li><Link to='/passwordChange'>Change Password</Link></li>
-              <SignOutButton />
-              <li><Link to='/userDashboard'>Dashboard</Link></li>
+                <li>Welcome back, User!</li>
+                <li><Link to='/passwordChange'>Change Password</Link></li>
+                <SignOutButton />
+                <li><Link to='/userDashboard'>Dashboard</Link></li>
               </ul>
-            }
+          }
         </header>
         <LandingPage />
         <Route exact path='/searchResults' component={SearchResults} />
@@ -56,7 +56,7 @@ export class App extends Component {
         <Route exact path='/userDashboard' component={UserDashboard} />
         <Route exact path='/passwordChange' component={PasswordChange} />
         <footer>
-          <img src="https://core.ac.uk/images/powered-by-core-orange.png" alt='Powered by CORE' />
+          <img src='https://core.ac.uk/images/powered-by-core-orange.png' alt='Powered by CORE' />
         </footer>
       </div>
     )

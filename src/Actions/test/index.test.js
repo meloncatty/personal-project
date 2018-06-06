@@ -35,14 +35,14 @@ describe('Article search results actions', () => {
   })
 
   describe('resultsSuccess', () => {
-    it("should return type QUERY_RESULTS_SUCCESS", () => {
-    const results = [{id: 0, title: 'do some testing'}]
-    const expected = {
-      type: 'QUERY_RESULTS_SUCCESS',
-      results
-    }
+    it('should return type QUERY_RESULTS_SUCCESS', () => {
+      const results = [{id: 0, title: 'do some testing'}]
+      const expected = {
+        type: 'QUERY_RESULTS_SUCCESS',
+        results
+      }
 
-    expect(resultsSuccess(results)).toEqual(expected)
+      expect(resultsSuccess(results)).toEqual(expected)
     })
   })
   describe('resultsAreLoading', () => {
@@ -97,7 +97,7 @@ describe('Article search results actions', () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch resultsTotalHits when response is OK", async () => {
+    it('should dispatch resultsTotalHits when response is OK', async () => {
       const mockData = [{id: 0, title: 'Learning about things', totalHits: 2929}]
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
@@ -111,13 +111,13 @@ describe('Article search results actions', () => {
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
-    });
+    })
 
     it('should dispatch resultsAreLoading when response is OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
-          ok: true,
+          ok: true
           // json: () => Promise.resolve({data: [{}]})
         })
       })
@@ -131,7 +131,7 @@ describe('Article search results actions', () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
-          ok: false,
+          ok: false
         })
       })
 
@@ -146,7 +146,7 @@ describe('Article search results actions', () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
-          ok: false,
+          ok: false
         })
       })
 
@@ -158,7 +158,6 @@ describe('Article search results actions', () => {
     })
 
     it('should dispatch resultsAreLoading when first invoked', async () => {
-
       const expected = resultsAreLoading(true)
       const thunk = fetchArticles(mockQuery)
       await thunk(mockDispatch)
@@ -168,8 +167,8 @@ describe('Article search results actions', () => {
   })
 })
 
-describe("Full article result actions", () => {
-  describe("fullArticleLoading", () => {
+describe('Full article result actions', () => {
+  describe('fullArticleLoading', () => {
     it('should return type FULL_ARTICLE_LOADING', () => {
       const expected = {
         type: 'FULL_ARTICLE_LOADING',
@@ -179,8 +178,8 @@ describe("Full article result actions", () => {
       expect(fullArticleLoading(false)).toEqual(expected)
     })
   })
-  describe("fullArticleErrored", () => {
-    it("should return type FULL_ARTICLE_ERRORED", () => {
+  describe('fullArticleErrored', () => {
+    it('should return type FULL_ARTICLE_ERRORED', () => {
       const expected = {
         type: 'FULL_ARTICLE_ERRORED',
         articleErrored: false
@@ -189,8 +188,8 @@ describe("Full article result actions", () => {
       expect(fullArticleErrored(false)).toEqual(expected)
     })
   })
-  describe("fullArticleSuccess", () => {
-    it("should return type FULL_ARTICLE_SUCCESS", () => {
+  describe('fullArticleSuccess', () => {
+    it('should return type FULL_ARTICLE_SUCCESS', () => {
       const result = [
         {
           id: 0,
@@ -207,7 +206,7 @@ describe("Full article result actions", () => {
     })
   })
 
-  describe("fetchFullText", () => {
+  describe('fetchFullText', () => {
     let mockId
     let mockDispatch
 
@@ -216,7 +215,7 @@ describe("Full article result actions", () => {
       mockDispatch = jest.fn()
     })
 
-    it("should call fetch with the correct parameters", async () => {
+    it('should call fetch with the correct parameters', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
@@ -230,7 +229,7 @@ describe("Full article result actions", () => {
       expect(window.fetch).toHaveBeenCalledWith(url)
     })
 
-    it("should dispatch fullArticleLoading when first invoked", async () => {
+    it('should dispatch fullArticleLoading when first invoked', async () => {
       const expected = fullArticleLoading(true)
       const thunk = fetchFullText(mockId)
       await thunk(mockDispatch)
@@ -238,7 +237,7 @@ describe("Full article result actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fullArticleSuccess when response is OK", async () => {
+    it('should dispatch fullArticleSuccess when response is OK', async () => {
       const mockData = [
         {
           id: 0,
@@ -260,7 +259,7 @@ describe("Full article result actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fullArticleLoading when response is OK", async () => {
+    it('should dispatch fullArticleLoading when response is OK', async () => {
       const mockData = [
         {
           id: 1,
@@ -282,7 +281,7 @@ describe("Full article result actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fullArticleErrored when response is not OK", async () => {
+    it('should dispatch fullArticleErrored when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -297,7 +296,7 @@ describe("Full article result actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fullArticleLoading when response is not OK", async () => {
+    it('should dispatch fullArticleLoading when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -314,9 +313,9 @@ describe("Full article result actions", () => {
   })
 })
 
-describe("Fetch user articles actions", () => {
-  describe("fetchUserArticlesSuccess", () => {
-    it("should return type FETCH_USER_ARTICLES_SUCCESS", () => {
+describe('Fetch user articles actions', () => {
+  describe('fetchUserArticlesSuccess', () => {
+    it('should return type FETCH_USER_ARTICLES_SUCCESS', () => {
       const fetchedArticles = [
         {
           id: 1,
@@ -333,8 +332,8 @@ describe("Fetch user articles actions", () => {
     })
   })
 
-  describe("fetchUserArticlesLoading", () => {
-    it("should return type FETCH_USER_ARTICLES_LOADING", () => {
+  describe('fetchUserArticlesLoading', () => {
+    it('should return type FETCH_USER_ARTICLES_LOADING', () => {
       const expected = {
         type: 'FETCH_USER_ARTICLES_LOADING',
         fetchUserArticlesLoading: false
@@ -344,8 +343,8 @@ describe("Fetch user articles actions", () => {
     })
   })
 
-  describe("fetchUserArticlesErrored", () => {
-    it("should return type FETCH_USER_ARTICLES_ERRORED", () => {
+  describe('fetchUserArticlesErrored', () => {
+    it('should return type FETCH_USER_ARTICLES_ERRORED', () => {
       const expected = {
         type: 'FETCH_USER_ARTICLES_ERRORED',
         fetchUserArticlesErrored: false
@@ -355,7 +354,7 @@ describe("Fetch user articles actions", () => {
     })
   })
 
-  describe("fetchUserArticles", () => {
+  describe('fetchUserArticles', () => {
     let mockId
     let mockDispatch
     let thunk
@@ -366,7 +365,7 @@ describe("Fetch user articles actions", () => {
       thunk = fetchUserArticles(mockId)
     })
 
-    it("should call fetch with the correct parameters", async () => {
+    it('should call fetch with the correct parameters', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
@@ -379,21 +378,21 @@ describe("Fetch user articles actions", () => {
       expect(window.fetch).toHaveBeenCalledWith(url)
     })
 
-    it("should dispatch fetchUserArticlesErrored when first invoked", async () => {
+    it('should dispatch fetchUserArticlesErrored when first invoked', async () => {
       const expected = fetchUserArticlesErrored(false)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fetchUserArticlesLoading when first invoked", async () => {
+    it('should dispatch fetchUserArticlesLoading when first invoked', async () => {
       const expected = fetchUserArticlesLoading(true)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fetchUserArticlesSuccess when response is OK", async () => {
+    it('should dispatch fetchUserArticlesSuccess when response is OK', async () => {
       const mockArticle = [
         {
           id: 0,
@@ -415,7 +414,7 @@ describe("Fetch user articles actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fetchUserArticlesLoading when response is OK", async () => {
+    it('should dispatch fetchUserArticlesLoading when response is OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
@@ -429,7 +428,7 @@ describe("Fetch user articles actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fetchUserArticlesErrored when response is not OK", async () => {
+    it('should dispatch fetchUserArticlesErrored when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -443,7 +442,7 @@ describe("Fetch user articles actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch fetchUserArticlesLoading when response is not OK", async () => {
+    it('should dispatch fetchUserArticlesLoading when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -459,48 +458,48 @@ describe("Fetch user articles actions", () => {
   })
 })
 
-describe("Next page actions", () => {
-  describe("nextPageSuccess", () => {
-    it("should return type NEXT_PAGE_SUCCESS", () => {
-        const nextPage = [
-          {
-            id: 1,
-            title: 'article title',
-            description: 'article description'
-          }
-        ]
-        const expected = {
-          type: 'NEXT_PAGE_SUCCESS',
-          nextPage
+describe('Next page actions', () => {
+  describe('nextPageSuccess', () => {
+    it('should return type NEXT_PAGE_SUCCESS', () => {
+      const nextPage = [
+        {
+          id: 1,
+          title: 'article title',
+          description: 'article description'
         }
+      ]
+      const expected = {
+        type: 'NEXT_PAGE_SUCCESS',
+        nextPage
+      }
 
-        expect(nextPageSuccess(nextPage)).toEqual(expected)
+      expect(nextPageSuccess(nextPage)).toEqual(expected)
     })
   })
 
-  describe("nextPageLoading", () => {
-    it("should return type NEXT_PAGE_LOADING", () => {
-        const expected = {
-          type: 'NEXT_PAGE_LOADING',
-          nextPageLoading: false
-        }
+  describe('nextPageLoading', () => {
+    it('should return type NEXT_PAGE_LOADING', () => {
+      const expected = {
+        type: 'NEXT_PAGE_LOADING',
+        nextPageLoading: false
+      }
 
-        expect(nextPageLoading(false)).toEqual(expected)
+      expect(nextPageLoading(false)).toEqual(expected)
     })
   })
 
-  describe("nextPageErrored", () => {
-    it("should return type NEXT_PAGE_ERRORED", () => {
-        const expected = {
-          type: 'NEXT_PAGE_ERRORED',
-          nextPageHasErrored: false
-        }
+  describe('nextPageErrored', () => {
+    it('should return type NEXT_PAGE_ERRORED', () => {
+      const expected = {
+        type: 'NEXT_PAGE_ERRORED',
+        nextPageHasErrored: false
+      }
 
-        expect(nextPageErrored(false)).toEqual(expected)
+      expect(nextPageErrored(false)).toEqual(expected)
     })
   })
 
-  describe("fetchNextPage", () => {
+  describe('fetchNextPage', () => {
     let mockQuery
     let mockDispatch
     let mockPageNum
@@ -513,7 +512,7 @@ describe("Next page actions", () => {
       thunk = fetchNextPage(mockQuery, mockPageNum)
     })
 
-    it("should call fetch with the correct parameters", async () => {
+    it('should call fetch with the correct parameters', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
@@ -526,35 +525,35 @@ describe("Next page actions", () => {
       expect(window.fetch).toHaveBeenCalledWith(url)
     })
 
-    it("should dispatch nextPageSuccess when first invoked", async () => {
+    it('should dispatch nextPageSuccess when first invoked', async () => {
       const expected = nextPageSuccess([])
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch resultsSuccess when first invoked", async () => {
+    it('should dispatch resultsSuccess when first invoked', async () => {
       const expected = resultsSuccess([])
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageErrored when first invoked", async () => {
+    it('should dispatch nextPageErrored when first invoked', async () => {
       const expected = nextPageErrored(false)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageLoading when first invoked", async () => {
+    it('should dispatch nextPageLoading when first invoked', async () => {
       const expected = nextPageLoading(true)
       await thunk(mockDispatch)
 
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageSuccess when response is OK", async () => {
+    it('should dispatch nextPageSuccess when response is OK', async () => {
       const mockArticle = [
         {
           id: 0,
@@ -576,7 +575,7 @@ describe("Next page actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageLoading when response is OK", async () => {
+    it('should dispatch nextPageLoading when response is OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 200,
@@ -589,7 +588,7 @@ describe("Next page actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageErrored when response is not OK", async () => {
+    it('should dispatch nextPageErrored when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -602,7 +601,7 @@ describe("Next page actions", () => {
       expect(mockDispatch).toHaveBeenCalledWith(expected)
     })
 
-    it("should dispatch nextPageLoading when response is not OK", async () => {
+    it('should dispatch nextPageLoading when response is not OK', async () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           status: 500,
@@ -617,9 +616,9 @@ describe("Next page actions", () => {
   })
 })
 
-describe("User actions", () => {
-  describe("captureQuery", () => {
-    it("should return type CAPTURE_QUERY", () => {
+describe('User actions', () => {
+  describe('captureQuery', () => {
+    it('should return type CAPTURE_QUERY', () => {
       const userQuery = 'blockchain'
       const expected = {
         type: 'CAPTURE_QUERY',
@@ -630,8 +629,8 @@ describe("User actions", () => {
     })
   })
 
-  describe("userAuthentication", () => {
-    it("should return type USER_AUTHENTICATION", () => {
+  describe('userAuthentication', () => {
+    it('should return type USER_AUTHENTICATION', () => {
       const userUid = '9910109xfvn8'
       const expected = {
         type: 'USER_AUTHENTICATION',
@@ -642,8 +641,8 @@ describe("User actions", () => {
     })
   })
 
-  describe("isUserSignedIn", () => {
-    it("should return type IS_USER_SIGNED_IN", () => {
+  describe('isUserSignedIn', () => {
+    it('should return type IS_USER_SIGNED_IN', () => {
       const expected = {
         type: 'IS_USER_SIGNED_IN',
         isUserSignedIn: false
@@ -653,8 +652,8 @@ describe("User actions", () => {
     })
   })
 
-  describe("userSignupSuccess", () => {
-    it("should return type USER_SIGNUP_SUCCESS", () => {
+  describe('userSignupSuccess', () => {
+    it('should return type USER_SIGNUP_SUCCESS', () => {
       const expected = {
         type: 'USER_SIGNUP_SUCCESS',
         signupSuccess: false
@@ -664,8 +663,8 @@ describe("User actions", () => {
     })
   })
 
-  describe("captureUserArticles", () => {
-    it("should return type CAPTURE_USER_ARTICLES", () => {
+  describe('captureUserArticles', () => {
+    it('should return type CAPTURE_USER_ARTICLES', () => {
       const userArticles = ['1993891', '1093949']
       const expected = {
         type: 'CAPTURE_USER_ARTICLES',

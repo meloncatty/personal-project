@@ -6,16 +6,16 @@ import { isUserSignedIn } from '../../Actions'
 import PropTypes from 'prop-types'
 
 export class SignOutButton extends Component {
-  render() {
+  render () {
     return (
       <li>
         <Link to='/'
-        className='sign-out'
-        onClick={() => {
-          this.props.userAuthentication(false)
-          auth.doSignOut()
-        }}
-      >
+          className='sign-out'
+          onClick={() => {
+            this.props.userAuthentication(false)
+            auth.doSignOut()
+          }}
+        >
         Sign Out
         </Link>
       </li>

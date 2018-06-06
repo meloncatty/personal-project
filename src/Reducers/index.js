@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 
-
 export const resultsSuccess = (state = [], action) => {
   switch (action.type) {
     case 'QUERY_RESULTS_SUCCESS':

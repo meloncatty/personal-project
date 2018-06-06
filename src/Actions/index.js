@@ -97,13 +97,13 @@ export const fetchUserArticles = (articleId) => {
       dispatch(fetchUserArticlesLoading(true))
       const url = `https://core.ac.uk:443/api-v2/articles/get/${articleId}?metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=${apiKey}`
       const response = await fetch(url)
-      if(!response.ok) {
+      if (!response.ok) {
         throw Error(response.statusText)
       }
       const articles = await response.json()
       dispatch(fetchUserArticlesLoading(false))
       dispatch(fetchUserArticlesSuccess(articles.data))
-    } catch(e) {
+    } catch (e) {
       dispatch(fetchUserArticlesErrored(true))
       dispatch(fetchUserArticlesLoading(false))
     }
@@ -119,7 +119,7 @@ export const fetchArticles = (query) => {
       dispatch(captureQuery(query))
       const url = `https://core.ac.uk:443/api-v2/articles/search/${query}?page=1&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
       const response = await fetch(url)
-      if(!response.ok) {
+      if (!response.ok) {
         throw Error(response.statusText)
       }
       const articles = await response.json()
@@ -139,7 +139,7 @@ export const fetchFullText = (id) => {
       dispatch(fullArticleLoading(true))
       const url = `https://core.ac.uk:443/api-v2/articles/get/${id}?metadata=true&fulltext=true&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=${apiKey}`
       const response = await fetch(url)
-      if(!response.ok) {
+      if (!response.ok) {
         throw Error(response.statusText)
       }
       dispatch(fullArticleLoading(false))
@@ -161,7 +161,7 @@ export const fetchNextPage = (query, pageNum) => {
       dispatch(nextPageLoading(true))
       const url = `https://core.ac.uk:443/api-v2/articles/search/${query}?page=${pageNum}&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
       const response = await fetch(url)
-      if(!response.ok) {
+      if (!response.ok) {
         throw Error(response.statusText)
       }
       dispatch(nextPageLoading(false))

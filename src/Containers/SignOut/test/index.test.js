@@ -7,7 +7,7 @@ describe('SignOut', () => {
   it('should match snapshot', async () => {
     const wrapper = shallow(<SignOutButton isUserSignedIn={jest.fn()} />)
     expect(wrapper).toMatchSnapshot()
-  });
+  })
 
   it('should sign out user', () => {
     const userAuthentication = jest.fn()
@@ -15,7 +15,7 @@ describe('SignOut', () => {
     wrapper.find('.sign-out').simulate('click')
 
     expect(wrapper.instance().userAuthentication).toHaveBeenCalled
-  });
+  })
 
   describe('mapDispatchToProps', () => {
     it('should return false when user signs out', () => {
@@ -26,6 +26,6 @@ describe('SignOut', () => {
       mappedProps.isUserSignedIn(false)
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    });
-  });
-});
+    })
+  })
+})
