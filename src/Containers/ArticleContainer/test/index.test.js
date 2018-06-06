@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArticleContainer } from '../'
+import { ArticleContainer, mapStateToProps } from '../'
 import { shallow } from 'enzyme'
 
 describe('ArticleContainer', () => {
@@ -126,5 +126,94 @@ describe('ArticleContainer', () => {
     const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle} />)
 
     expect(wrapper.find('.download-article').length).toEqual(1)
+  })
+
+  describe("mapStateToProps", () => {
+    describe("fullArticleSuccess", () => {
+
+      it("should return an article object", () => {
+        const mockArticle = {
+          authors: 'author name',
+          title: 'article title',
+          datePublished: '01-01-2018',
+          fullText: 'full article text',
+          topics: 'article topics',
+          fulltextIdentifier: 'link-to-fulltext.com'
+        }
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+
+        const mockState = {
+          fullArticleSuccess: {
+            title: 'article title',
+            id: '4',
+            description: 'article description'
+          },
+          type: 'USER_AUTHENTICATON'
+        }
+
+        const expected = {
+          fullArticleSuccess: {
+            title: 'article title',
+            id: '4',
+            description: 'article description'
+          }
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
+    })
+
+    describe("fullArticleErrored", () => {
+      it("should return true if full article has errored", () => {
+        const mockArticle = {
+          authors: 'author name',
+          title: 'article title',
+          datePublished: '01-01-2018',
+          fullText: 'full article text',
+          topics: 'article topics',
+          fulltextIdentifier: 'link-to-fulltext.com'
+        }
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+
+        const mockState = {
+          fullArticleErrored: true,
+          type: 'FULL_ARTICLE_LOADING'
+        }
+
+        const expected = {
+          fullArticleErrored: true
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
+    })
+
+    describe("fullArticleLoading", () => {
+      it("should return true if full article text is loading", () => {
+        const mockArticle = {
+          authors: 'author name',
+          title: 'article title',
+          datePublished: '01-01-2018',
+          fullText: 'full article text',
+          topics: 'article topics',
+          fulltextIdentifier: 'link-to-fulltext.com'
+        }
+        const wrapper = shallow(<ArticleContainer fullArticleLoading={false} fullArticleSuccess={mockArticle}/>)
+
+        const mockState = {
+          fullArticleLoading: true,
+          type: 'FULL_ARTICLE_LOADING'
+        }
+
+        const expected = {
+          fullArticleLoading: true
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
+    })
   })
 })
