@@ -1,6 +1,6 @@
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import {UserDashboard, mapDispatchToProps} from '../'
+import {UserDashboard, mapDispatchToProps, mapStateToProps} from '../'
 import {fetchUserArticles} from '../../../Actions'
 
 describe('UserDashboard', () => {
@@ -83,6 +83,80 @@ describe('UserDashboard', () => {
       mappedProps.fetchUserArticles(82413678)
 
       expect(mockDispatch).toHaveBeenCalled
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    describe('isUserSignedIn', () => {
+      it('should return true if user is signed in', () => {
+        const mockSuccess = [{
+          id: 1,
+          title: 'title',
+          description: 'description'
+        }]
+        const mockUser = ['L8Ko3dfZ8C3']
+        const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+
+        const mockState = {
+          isUserSignedIn: true,
+          type: 'IS_USER_SIGNED_IN'
+        }
+
+        const expected = {
+          isUserSignedIn: true
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
+    })
+
+    describe('userAuthentication', () => {
+      it('should return an array of user UID', () => {
+        const mockSuccess = [{
+          id: 1,
+          title: 'title',
+          description: 'description'
+        }]
+        const mockUser = ['L8Ko3dfZ8C3']
+        const wrapper = shallow(<UserDashboard isUserSignedIn fetchUserArticles={jest.fn()} fetchUserArticleSuccess={mockSuccess} userAuthentication={mockUser} />)
+
+        const mockState = {
+          userAuthentication: ['982f89s98sw4xxs'],
+          type: 'USER_AUTHENTICATION'
+        }
+
+        const expected = {
+          userAuthentication: ['982f89s98sw4xxs']
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
+    })
+
+    describe('fetchUserArticleSuccess', () => {
+      it('should return an array of user articles', () => {
+        const mockSuccess = [{
+          id: 1,
+          title: 'title',
+          description: 'description'
+        }]
+        const mockUser = ['L8Ko3dfZ8C3']
+        const wrapper = shallow(<UserDashboard fetchUserArticles={jest.fn()} fetchUserArticleSuccess={[]} userAuthentication={mockUser} />)
+
+        const mockState = {
+          fetchUserArticlesSuccess: mockSuccess,
+          type: 'FETCH_USER_ARTICLE_SUCCESS'
+        }
+
+        const expected = {
+          fetchUserArticlesSuccess: mockSuccess
+        }
+
+        const mappedProps = mapStateToProps(mockState)
+        expect(mappedProps).toEqual(expected)
+      })
     })
   })
 })
