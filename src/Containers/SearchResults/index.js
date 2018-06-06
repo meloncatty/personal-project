@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { fetchFullText, fetchNextPage } from '../../Actions'
 import { db } from '../../Firebase/firebase'
+import PropTypes from 'prop-types'
 import './index.css'
 import loading from '../../assets/loading02.gif'
 
@@ -149,5 +150,21 @@ export const mapDispatchToProps = dispatch => ({
   fetchFullText: (id) => dispatch(fetchFullText(id)),
   fetchNextPage: (query, pageNum) => dispatch(fetchNextPage(query, pageNum))
 })
+
+SearchResults.propTypes = {
+  fetchFullText: PropTypes.func.isRequired,
+  fetchNextPage: PropTypes.func.isRequired,
+  resultsSuccess: PropTypes.array,
+  resultsTotalHits: PropTypes.number,
+  resultsAreLoading: PropTypes.bool,
+  resultsHaveErrored: PropTypes.bool,
+  userAuthentication: PropTypes.array,
+  userSignupSuccess: PropTypes.bool,
+  isUserSignedIn: PropTypes.bool,
+  nextPageSuccess: PropTypes.array,
+  nextPageLoading: PropTypes.bool,
+  nextPageErrored: PropTypes.bool,
+  captureQuery: PropTypes.string
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResults))

@@ -3,6 +3,7 @@ import { db } from '../../Firebase/firebase'
 import { connect } from 'react-redux'
 import { fetchUserArticles } from '../../Actions'
 import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import './styles.css'
 
 export class UserDashboard extends Component {
@@ -26,7 +27,6 @@ export class UserDashboard extends Component {
             this.setState({
               storeArticles: [data]
             })
-            console.log(data)
             this.props.fetchUserArticles(this.state.storeArticles)
           })
         })
@@ -63,5 +63,12 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   fetchUserArticles: (userArticles) => dispatch(fetchUserArticles(userArticles))
 })
+
+UserDashboard.propTypes = {
+  isUserSignedIn: PropTypes.bool,
+  userAuthentication: PropTypes.array,
+  fetchUserArticlesSuccess: PropTypes.array,
+  fetchUserArticles: PropTypes.func.isRequired
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDashboard))

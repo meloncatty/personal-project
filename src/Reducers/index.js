@@ -55,7 +55,7 @@ export const resultsAreLoading = (state = false, action) => {
   }
 }
 
-export const fullArticleSuccess = (state = [], action) => {
+export const fullArticleSuccess = (state = {}, action) => {
   switch (action.type) {
     case 'FULL_ARTICLE_SUCCESS':
       return action.result

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { auth, db } from '../../Firebase'
 import { userSignupSuccess } from '../../Actions'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -117,5 +118,9 @@ export class SignUp extends Component {
 export const mapDispatchToProps = dispatch => ({
   userSignupSuccess: (bool) => dispatch(userSignupSuccess(bool))
 })
+
+SignUp.propTypes = {
+  userSignupSuccess: PropTypes.func.isRequired
+}
 
 export default withRouter(connect(null, mapDispatchToProps)(SignUp))

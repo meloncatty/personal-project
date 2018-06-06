@@ -3,6 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { auth } from '../../Firebase'
 import { connect } from 'react-redux'
 import { userAuthentication, isUserSignedIn } from '../../Actions'
+import PropTypes from 'prop-types'
 import * as routes from '../../Constants/routes'
 import './styles.css'
 
@@ -93,5 +94,10 @@ export const mapDispatchToProps = dispatch => ({
   userAuthentication: (userData) => dispatch(userAuthentication(userData)),
   isUserSignedIn: (bool) => dispatch(isUserSignedIn(bool))
 })
+
+SignIn.propTypes = {
+  userAuthentication: PropTypes.func.isRequired,
+  isUserSignedIn: PropTypes.func.isRequired
+}
 
 export default withRouter(connect(null, mapDispatchToProps)(SignIn))

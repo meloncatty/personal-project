@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import loading from '../../assets/loading02.gif'
 import './styles.css'
 
@@ -79,5 +80,11 @@ export const mapStateToProps = state => ({
   fullArticleErrored: state.fullArticleErrored,
   fullArticleLoading: state.fullArticleLoading
 })
+
+ArticleContainer.propTypes = {
+  fullArticleSuccess: PropTypes.object.isRequired,
+  fullArticleErrored: PropTypes.bool,
+  fullArticleLoading: PropTypes.bool
+}
 
 export default withRouter(connect(mapStateToProps)(ArticleContainer))

@@ -13,6 +13,7 @@ import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
 import UserDashboard from '../../Containers/UserDashboard'
+import PropTypes from 'prop-types'
 
 export class App extends Component {
   constructor() {
@@ -67,5 +68,11 @@ export const mapStateToProps = state => ({
   isUserSignedIn: state.isUserSignedIn,
   userSignupSuccess: state.userSignupSuccess
 })
+
+App.propTypes = {
+  userAuthentication: PropTypes.array,
+  isUserSignedIn: PropTypes.bool,
+  userSignupSuccess: PropTypes.bool
+}
 
 export default withRouter(connect(mapStateToProps)(App))
