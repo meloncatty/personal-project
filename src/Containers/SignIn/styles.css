@@ -18,6 +18,9 @@
     background: #E6AA68;
     color: #212227;
     padding: 15px; }
+    @media only screen and (max-width: 875px) {
+      .sign-in-form input {
+        width: 298px; } }
   .sign-in-form input::placeholder {
     color: #212227; }
   .sign-in-form button {
@@ -32,6 +35,10 @@
     font-weight: bold;
     cursor: pointer;
     border: none; }
+    @media only screen and (max-width: 875px) {
+      .sign-in-form button {
+        width: 328px;
+        font-size: 1.2em; } }
 
 .password-sign-in {
   padding: 10px; }

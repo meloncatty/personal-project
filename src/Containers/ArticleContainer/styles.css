@@ -6,6 +6,9 @@
 
 .article-contents {
   width: 70%; }
+  @media only screen and (max-width: 875px) {
+    .article-contents {
+      width: 90%; } }
 
 .closed {
   max-height: 400px;
