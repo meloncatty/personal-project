@@ -86,7 +86,7 @@ export class SignUp extends Component {
           />
           <input
             name='email'
-            className='email'
+            className='new-email'
             onChange={this.handleSignUpChange}
             type='text'
             placeholder='Email Address'

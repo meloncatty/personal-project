@@ -50,7 +50,7 @@ export class SearchResults extends Component {
     }
     return results.map((result, index) =>
       (
-        <article className='article-container' key={index}>
+        <article className='articles' key={index}>
           <h1>
             <Link to='/articleContainer' className='link-to-article' onClick={(e) => {
                 e.preventDefault()

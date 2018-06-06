@@ -11,6 +11,10 @@ footer
     width: 20%
     height: 20%
     margin-top: 100px
+    @media only screen and (max-width: 875px)
+      width: 60%
+      height: 60%
+  
 
 .header
   height: 150px
@@ -22,8 +26,11 @@ footer
   a
     color: #ECE4B7
     text-decoration: none
+    @media only screen and (max-width: 875px)
+      font-size: 1.2em
     &:hover
       color: #E6AA68
+
   img
     height: 80%
     align-self: center
@@ -33,6 +40,13 @@ footer
     display: flex
     list-style: none
     align-self: flex-start
+    @media only screen and (max-width: 875px)
+      flex-direction: column
+      width: 225px
+      align-items: center
     li
       margin-right: 20px
+      @media only screen and (max-width: 875px)
+        margin: auto 0
+        margin-top: 5px
       
