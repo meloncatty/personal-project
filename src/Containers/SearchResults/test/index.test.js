@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { SearchResults } from '../index.js'
+import { SearchResults, mapDispatchToProps } from '../index.js'
+import {fetchFullText} from '../../../Actions'
 
 describe('SearchResults', () => {
   it('should match snapshots', () => {
@@ -190,4 +191,18 @@ describe('SearchResults', () => {
       expect(wrapper.find('.loading-container').length).toEqual(1)
     });
   });
+
+  describe.skip('mapDispatchToProps', () => {
+    it('should call dispatch with full article id', async () => {
+      
+      const wrapper = shallow(<SearchResults resultsSuccess={[]} 
+        nextPageSuccess={[]}/>)
+      const mockDispatch = jest.fn()
+      const actionToDispatch = await fetchFullText(15824379)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      await mappedProps.fetchFullText(15824379)
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    });
+  })
 })

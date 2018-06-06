@@ -29,6 +29,15 @@ describe('SignIn', () => {
       expect(wrapper.find('button').is('[disabled]')).toBe(true)
   })
 
+  it('should call history.push', () => {
+    const history = {push: () => {}}
+    const mockEvent = {preventDefault: () => {}}
+    const wrapper = shallow(<SignIn history={history}/>)
+    wrapper.find('form').simulate('submit', mockEvent)
+    
+    expect(wrapper.instance().history).toHaveBeenCalled
+  });
+
   describe('handleSignInChange', () => {
     it('should handle password input change', () => {
       const wrapper = shallow(<SignIn />)

@@ -9,6 +9,7 @@ export class SignOutButton extends Component {
     return (
       <li>
         <Link to='/'
+        className='sign-out'
         onClick={() => {
           this.props.userAuthentication(false)
           auth.doSignOut()
