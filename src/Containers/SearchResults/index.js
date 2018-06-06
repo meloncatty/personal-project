@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link, withRouter, Redirect } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import { fetchFullText, fetchNextPage } from '../../Actions'
 import { db } from '../../Firebase/firebase'
-import ArticleContainer from '../ArticleContainer'
+import PropTypes from 'prop-types'
 import './index.css'
 import loading from '../../assets/loading02.gif'
 
@@ -50,9 +50,9 @@ export class SearchResults extends Component {
     }
     return results.map((result, index) =>
       (
-        <article key={index}>
+        <article className='article-container' key={index}>
           <h1>
-            <Link to='/articleContainer' onClick={(e) => {
+            <Link to='/articleContainer' className='link-to-article' onClick={(e) => {
                 e.preventDefault()
                 this.redirectToArticle(result.id)
                 }}>
@@ -61,19 +61,24 @@ export class SearchResults extends Component {
           </h1>
           <h3>Authors: {result.authors}</h3>
           <h3>Date Published: {result.datePublished}</h3>
-          <p>{result.description && result.description.slice(0,500) + '...'}</p>
+          <p>
+            {
+              result.description && result.description.slice(0,500) + '...'
+            }
+          </p>
           {
             result.downloadUrl &&
-            <a href={result.downloadUrl}>Download </a>
+            <a className='download-url' href={result.downloadUrl}>Download </a>
           }
           {
-            this.props.userAuthentication &&
             // eslint-disable-next-line
               <a href='#' className='archive-article' onClick={(e) => {
                 this.postArticle(e, result)}}>Archive</a>
           }
-          {!this.state.canUserPost && <p className=
-            'archive-denied'>Please sign in to archive.</p>}
+          {
+            !this.state.canUserPost && <p className=
+            'archive-denied'>Please sign in to archive.</p>
+          }
         </article>
       )
     )
@@ -145,5 +150,21 @@ export const mapDispatchToProps = dispatch => ({
   fetchFullText: (id) => dispatch(fetchFullText(id)),
   fetchNextPage: (query, pageNum) => dispatch(fetchNextPage(query, pageNum))
 })
+
+SearchResults.propTypes = {
+  fetchFullText: PropTypes.func.isRequired,
+  fetchNextPage: PropTypes.func.isRequired,
+  resultsSuccess: PropTypes.array,
+  resultsTotalHits: PropTypes.number,
+  resultsAreLoading: PropTypes.bool,
+  resultsHaveErrored: PropTypes.bool,
+  userAuthentication: PropTypes.array,
+  userSignupSuccess: PropTypes.bool,
+  isUserSignedIn: PropTypes.bool,
+  nextPageSuccess: PropTypes.array,
+  nextPageLoading: PropTypes.bool,
+  nextPageErrored: PropTypes.bool,
+  captureQuery: PropTypes.string
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResults))

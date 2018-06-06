@@ -160,7 +160,6 @@ export const fetchNextPage = (query, pageNum) => {
       dispatch(nextPageErrored(false))
       dispatch(nextPageLoading(true))
       const url = `https://core.ac.uk:443/api-v2/articles/search/${query}?page=${pageNum}&pageSize=10&metadata=true&fulltext=false&citations=true&similar=false&duplicate=false&urls=true&faithfulMetadata=false&apiKey=${apiKey}`
-      console.log(url)
       const response = await fetch(url)
       if(!response.ok) {
         throw Error(response.statusText)

@@ -35,7 +35,14 @@ export class PasswordChange extends Component {
   }
 
   emailSent = () => {
-    return <p>Please check your inbox for further instructions</p>
+    return (<p>Please check your inbox for further instructions</p>)
+  }
+
+  handleChange = (e) => {
+    const {name, value} = e.target
+    this.setState({
+      [name]: value
+    })
   }
 
   render() {
@@ -52,19 +59,17 @@ export class PasswordChange extends Component {
         <label>Change Password</label>
         <input
           className='password'
+          name='password'
           value={password}
-          onChange={e => this.setState({
-            password: e.target.value
-          })}
+          onChange={this.handleChange}
           type='password'
           placeholder='New Password'
         />
         <input
           className='password-confirm'
+          name='passwordAuth'
           value={passwordAuth}
-          onChange={e => this.setState({
-            passwordAuth: e.target.value
-          })}
+          onChange={this.handleChange}
           type='password'
           placeholder='Confirm Password'
         />

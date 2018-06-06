@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import loading from '../../assets/loading02.gif'
 import './styles.css'
 
@@ -14,7 +15,7 @@ export class ArticleContainer extends Component {
   }
 
   toggleText = () => {
-    this.state.toggleText 
+    this.state.toggleText
       ? this.setState({
         toggleText: false
       })
@@ -36,15 +37,13 @@ export class ArticleContainer extends Component {
             <p>{fullText}</p>
           </div>
           <h4>Topics: {topics}</h4>
-          {fulltextIdentifier && 
-          <a href={fulltextIdentifier} target='target_blank'>View PDF</a>}
+          {fulltextIdentifier &&
+          <a href={fulltextIdentifier} className='download-article' target='target_blank'>View PDF</a>}
         </article>
     )
   }
 
   toggleLoading = () => {
-    if(this.props.fullArticleSuccess > 0) {
-    }
     return this.props.fullArticleLoading
       ? this.loadingStation()
       : this.cleanFullArticle()
@@ -81,5 +80,11 @@ export const mapStateToProps = state => ({
   fullArticleErrored: state.fullArticleErrored,
   fullArticleLoading: state.fullArticleLoading
 })
+
+ArticleContainer.propTypes = {
+  fullArticleSuccess: PropTypes.object.isRequired,
+  fullArticleErrored: PropTypes.bool,
+  fullArticleLoading: PropTypes.bool
+}
 
 export default withRouter(connect(mapStateToProps)(ArticleContainer))

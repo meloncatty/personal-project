@@ -3,7 +3,7 @@ import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../../Actions'
 import { withRouter } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import './index.css'
 
 export class LandingPage extends Component {
@@ -56,5 +56,9 @@ export class LandingPage extends Component {
 export const mapDispatchToProps = dispatch => ({
   fetchArticles: (query) => dispatch(fetchArticles(query))
 })
+
+LandingPage.propTypes = {
+  fetchArticles: PropTypes.func.isRequired
+}
 
 export default withRouter(connect(null, mapDispatchToProps)(LandingPage))

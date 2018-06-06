@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
 import { Route, withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import ArticleContainer from '../../Containers/ArticleContainer'
-import LandingPage from '../../Containers/LandingPage'
-import SearchResults from '../../Containers/SearchResults'
-import SignUp from '../../Containers/SignUp'
-import SignIn from '../../Containers/SignIn'
-import SignOutButton from '../../Containers/SignOut'
-import PasswordForget from '../../Containers/PasswordForget'
-import PasswordChange from '../../Containers/PasswordChange'
+import ArticleContainer from '../ArticleContainer'
+import LandingPage from '../LandingPage'
+import SearchResults from '../SearchResults'
+import SignUp from '../SignUp'
+import SignIn from '../SignIn'
+import SignOutButton from '../SignOut'
+import PasswordForget from '../../Components/PasswordForget'
+import PasswordChange from '../../Components/PasswordChange'
 import logo from '../../assets/logo.png'
 import * as routes from '../../Constants/routes'
 import './App.css'
 import UserDashboard from '../../Containers/UserDashboard'
+import PropTypes from 'prop-types'
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      user: null,
-      article: 'test'
+      user: null
     }
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
             {
               !this.props.isUserSignedIn &&
               <ul>
-              {this.props.userSignupSuccess && <li>Create account success! Please sign in.</li>}
+              {this.props.userSignupSuccess && <li className='account-success'>Create account success! Please sign in.</li>}
               <li><Link to={routes.SIGN_UP}>Sign up</Link></li>
               <li><Link to={routes.SIGN_IN}>Sign in</Link></li>
               </ul>
@@ -40,7 +40,7 @@ class App extends Component {
             {
               this.props.isUserSignedIn &&
               <ul>
-              <li>Welcome back, Duke of New York A#1!</li>
+              <li>Welcome back, User!</li>
               <li><Link to='/passwordChange'>Change Password</Link></li>
               <SignOutButton />
               <li><Link to='/userDashboard'>Dashboard</Link></li>
@@ -68,5 +68,11 @@ export const mapStateToProps = state => ({
   isUserSignedIn: state.isUserSignedIn,
   userSignupSuccess: state.userSignupSuccess
 })
+
+App.propTypes = {
+  userAuthentication: PropTypes.array,
+  isUserSignedIn: PropTypes.bool,
+  userSignupSuccess: PropTypes.bool
+}
 
 export default withRouter(connect(mapStateToProps)(App))
