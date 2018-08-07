@@ -1,218 +1,197 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import thunk from 'redux-thunk'
+import configureMockStore from 'redux-mock-store'
+import fetchMock from 'fetch-mock'
 import { SearchResults, mapDispatchToProps, mapStateToProps } from '../index.js'
-import {fetchFullText} from '../../../Actions'
+import apiKey from '../../../apiKey.js'
+import * as mockData from '../../../__mocks__/mockData'
+import * as actions from '../../../Actions'
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 describe('SearchResults', () => {
-  it('should match snapshots', () => {
-    const resultsSuccess = [
-      {
-        id: 1,
-        title: 'Test the things'
-      }
-    ]
-    const wrapper = shallow(
-      <SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />
-    )
+  let mockProps
+  let searchResults
 
-    expect(wrapper).toMatchSnapshot()
+  beforeEach(() => {
+    mockProps = {
+      nextPageSuccess: [],
+      resultsHaveErrored: false,
+      resultsAreLoading: false,
+      nextPageErrored: false,
+      nextPageLoading: false,
+      fetchFullText: jest.fn(),
+      fetchNextPage: jest.fn(),
+      resultsSuccess: mockData.articles
+    }
+    searchResults = shallow(<SearchResults {...mockProps} />)
   })
 
+  it('should match snapshots', () => {
+    expect(searchResults).toMatchSnapshot()
+  })
+
+  it('should match snapshot if results have errored', () => {
+    mockProps.resultsHaveErrored = true
+    searchResults = shallow(<SearchResults {...mockProps} />)
+
+    expect(searchResults).toMatchSnapshot()
+  })
+
+  it('should match snapshot if next page has errored', () => {
+    mockProps.nextPageErrored = true
+    searchResults = shallow(<SearchResults {...mockProps} />)
+
+    expect(searchResults).toMatchSnapshot()
+  })
+
+  it('should match snapshot when results are loading', () => {
+    mockProps.resultsAreLoading = true
+    searchResults = shallow(<SearchResults {...mockProps} />)
+
+    expect(searchResults).toMatchSnapshot()
+  })
+
+  it('should match snapshot when next page is loading', () => {
+    mockProps.nextPageLoading = true
+    searchResults = shallow(<SearchResults {...mockProps} />)
+
+    expect(searchResults).toMatchSnapshot()
+  })
+
+
   it('should have default state', () => {
-    const resultsSuccess = [
-      {
-        id: 1,
-        title: 'Test the things'
-      }
-    ]
-    const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
     const expected = {
       redirectToArticle: false,
       canUserPost: false,
       pageCounter: 1
     }
 
-    expect(wrapper.state()).toEqual(expected)
+    expect(searchResults.state()).toEqual(expected)
   })
 
   describe('redirectToArticle', () => {
     it('should update state when article is clicked', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
+      const link =
+        searchResults.find('.link-to-article').at(0)
 
-        }
-      ]
-      const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
-      wrapper.instance().cleanQueryResults
-      wrapper.find('button').simulate('click')
+      link.simulate('click', { preventDefault: jest.fn() })
 
-      expect(wrapper.state('pageCounter')).toEqual(2)
-    })
-
-    it('should call fetchNextPage when clicked', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
-
-        }
-      ]
-      const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults fetchNextPage={fetchNextPage} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsTotalHits={100} nextPageSuccess={resultsSuccess} resultsSuccess={resultsSuccess} />)
-      wrapper.instance().cleanQueryResults
-      wrapper.find('button').simulate('click')
-
-      expect(wrapper.fetchNextPage).toHaveBeenCalled
+      expect(searchResults.state('redirectToArticle')).toEqual(true)
     })
   })
 
-  describe('displayErrorText', () => {
-    it('should return error text when results error occurs', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
+  describe('incrementPage', () => {
+    it('should set state with next page number', () => {
+      searchResults.instance().incrementPage()
 
-        }
-      ]
-      const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults resultsHaveErrored fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
+      expect(searchResults.state().pageCounter).toEqual(2)
+    });
+  });
 
-      expect(wrapper.find('.error-container').length).toEqual(1)
-    })
+  describe('postArticle', () => {
+    it('should update state if user is signed in', () => {
+      searchResults = shallow(<SearchResults isUserSignedIn={true} {...mockProps} />)
+      const mockEvent = { preventDefault: jest.fn() }
+      searchResults.instance().postArticle(mockEvent, 1528143)
 
-    it('should return error text when next page of results error occurs', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
-
-        }
-      ]
-      const fetchNextPage = jest.fn()
-      const wrapper = mount(<SearchResults nextPageErrored fetchFullText={jest.fn()} fetchNextPage={jest.fn()} nextPageErrored nextPageSuccess={[]} resultsSuccess={resultsSuccess} />)
-
-      expect(wrapper.find('.error-container').length).toEqual(1)
-    })
-  })
+      expect(searchResults.state().canUserPost).toEqual(true)
+    });
+  });
 
   describe('cleanQueryRestuls', () => {
-    it('should call postArticle when Archive link is clicked', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
-        },
-        {
-          id: 1,
-          title: 'Test the things'
-        },
-        {
-          id: 1,
-          title: 'Test the things'
-        }
-      ]
-      const nextPageSuccess = []
-      const postArticle = jest.fn()
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
-      wrapper.instance().cleanQueryResults()
-      wrapper.find('.archive-article').get(0).onClick
-
-      expect(wrapper.instance().postArticle).toHaveBeenCalled
-    })
-
     it('should display download link if available', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things',
-          downloadUrl: 'download.url'
-        },
-        {
-          id: 1,
-          title: 'Test the things'
-        }
-      ]
-      const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
-      wrapper.instance().cleanQueryResults()
+      searchResults.instance().cleanQueryResults()
 
-      expect(wrapper.find('.download-url').length).toEqual(1)
+      expect(searchResults.find('.download-url').length).toEqual(10)
     })
+    it('should call postArticle when link is clicked', () => {
+      const mockEvent = { preventDefault: jest.fn() }
+      const postArticle = (searchResults.instance().postArticle = jest.fn())
+      searchResults.find('.archive-article').at(0).simulate('click', mockEvent)
 
-    it('should call redirectToArticle when article link is clicked', () => {
-      const resultsSuccess = [
-        {
-          id: 1,
-          title: 'Test the things'
-        },
-        {
-          id: 1,
-          title: 'Test the things'
-        },
-        {
-          id: 1,
-          title: 'Test the things'
-        }
-      ]
-      const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={resultsSuccess} />)
-      wrapper.instance().cleanQueryResults()
-      wrapper.find('.link-to-article').get(0).onClick
-
-      expect(wrapper.instance().redirectToArticle).toHaveBeenCalled
-    })
-  })
-
-  describe('loadingStation', () => {
-    it('should return loading animation when results are loading', () => {
-      const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults
-        nextPageSuccess={[]}
-        resultsSuccess={[]}
-        nextPageLoading
-        fetchFullText={jest.fn()}
-        fetchNextPage={jest.fn()}
-      />)
-      expect(wrapper.find('.loading-container').length).toEqual(1)
-    })
-
-    it('should return loading animation when next page of results are loading', () => {
-      const nextPageSuccess = []
-      const wrapper = shallow(<SearchResults
-        nextPageSuccess={[]}
-        resultsSuccess={[]}
-        nextPageLoading
-        fetchFullText={jest.fn()}
-        fetchNextPage={jest.fn()}
-      />)
-
-      expect(wrapper.find('.loading-container').length).toEqual(1)
-    })
+      expect(postArticle).toHaveBeenCalledTimes(1)
+    });
   })
 
   describe('mapDispatchToProps', () => {
-    it('should call dispatch with full article id', () => {
-      const wrapper = shallow(<SearchResults resultsSuccess={[]}
-        nextPageSuccess={[]}
-        fetchFullText={jest.fn()}
-        fetchNextPage={jest.fn()}
-      />)
-      const mockDispatch = jest.fn()
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.fetchFullText(15824379)
+    afterEach(() => {
+      fetchMock.reset()
+      fetchMock.restore()
+    })
 
-      expect(mockDispatch).toHaveBeenCalled
+    it('creates QUERY_RESULTS_SUCCESS when fetching article is done', () => {
+      fetchMock.getOnce(
+        `*`,
+        {
+          "data": mockData.fullText
+        })
+      const expectedActions = [
+        {
+          "articleLoading": true,
+          "type": "FULL_ARTICLE_LOADING"
+        },
+        {
+          "articleLoading": false,
+          "type": "FULL_ARTICLE_LOADING"
+        },
+        {
+          "result": mockData.fullText,
+          "type": "FULL_ARTICLE_SUCCESS"
+        }
+      ]
+      const store = mockStore({ data: {} })
+
+      return store.dispatch(actions.fetchFullText()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+    })
+
+    it('creates NEXT_PAGE_SUCCESS when fetching next page has been done', () => {
+      fetchMock.getOnce(
+        `*`,
+        {
+          "data": mockData.secondPage
+        })
+      const expectedActions = [
+        {
+          "nextPage": [],
+          "type": "NEXT_PAGE_SUCCESS"
+        },
+        {
+          "results": [],
+          "type": "QUERY_RESULTS_SUCCESS"
+        },
+        {
+          "nextPageHasErrored": false,
+          "type": "NEXT_PAGE_ERRORED"
+        },
+        {
+          "nextPageLoading": true,
+          "type": "NEXT_PAGE_LOADING" 
+        },
+        {
+          "nextPageLoading": false,
+          "type": "NEXT_PAGE_LOADING"
+        },
+        {
+          "nextPage": mockData.secondPage,
+          "type": "NEXT_PAGE_SUCCESS"
+        }
+      ]
+      const store = mockStore({ nextPage: {} })
+
+      return store.dispatch(actions.fetchNextPage()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
     })
   })
 
   describe('mapStateToProps', () => {
     describe('resultsSuccess', () => {
       it('should return an array of results', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
         const mockState = {
           resultsSuccess: true,
           type: 'RESULTS_SUCCESS'
@@ -228,7 +207,6 @@ describe('SearchResults', () => {
 
     describe('resultsTotalHits', () => {
       it('should return a number describing total results', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
         const mockState = {
           resultsTotalHits: 58329,
           type: 'RESULTS_TOTAL_HITS'
@@ -245,7 +223,6 @@ describe('SearchResults', () => {
 
     describe('resultsAreLoading', () => {
       it('should return true if results are loading', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           resultsAreLoading: true,
@@ -262,7 +239,6 @@ describe('SearchResults', () => {
 
     describe('resultsHaveErrored', () => {
       it('should return true if results have errored', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           resultsHaveErrored: true,
@@ -280,7 +256,6 @@ describe('SearchResults', () => {
 
     describe('userAuthentication', () => {
       it('should return an array of user UID', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           userAuthentication: ['982f89s98sw4xxs'],
@@ -298,7 +273,6 @@ describe('SearchResults', () => {
 
     describe('userSignupSuccess', () => {
       it('should return true if user signup is a success', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           userSignupSuccess: true,
@@ -316,7 +290,6 @@ describe('SearchResults', () => {
 
     describe('isUserSignedIn', () => {
       it('should return true if user is signed in', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           isUserSignedIn: true,
@@ -334,7 +307,6 @@ describe('SearchResults', () => {
 
     describe('captureQuery', () => {
       it('should return user serach query as string', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           captureQuery: 'query',
@@ -352,7 +324,6 @@ describe('SearchResults', () => {
 
     describe('nextPageSuccess', () => {
       it('should return an array with articles on next page', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           nextPageSuccess: [
@@ -382,7 +353,6 @@ describe('SearchResults', () => {
 
     describe('nextPageLoading', () => {
       it('should return true if next page is loading', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           nextPageLoading: true,
@@ -400,7 +370,6 @@ describe('SearchResults', () => {
 
     describe('nextPageErrored', () => {
       it('should return true if next page has errored', () => {
-        const wrapper = shallow(<SearchResults nextPageSuccess={[]} fetchFullText={jest.fn()} fetchNextPage={jest.fn()} resultsSuccess={[]} />)
 
         const mockState = {
           nextPageErrored: true,
