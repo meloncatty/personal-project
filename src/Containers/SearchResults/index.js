@@ -85,11 +85,10 @@ export class SearchResults extends Component {
   }
 
   incrementPage = () => {
-    const incPageNum = this.state.pageCounter + 1
     this.setState({
-      pageCounter: incPageNum
+      pageCounter: this.state.pageCounter + 1
     })
-    this.props.fetchNextPage(this.props.captureQuery, incPageNum)
+    this.props.fetchNextPage(this.props.captureQuery, this.state.pageCounter)
     window.scrollTo(0,0)
   }
 
@@ -146,10 +145,10 @@ export const mapStateToProps = state => ({
   captureQuery: state.captureQuery
 })
 
-export const mapDispatchToProps = dispatch => ({
-  fetchFullText: (id) => dispatch(fetchFullText(id)),
-  fetchNextPage: (query, pageNum) => dispatch(fetchNextPage(query, pageNum))
-})
+export const mapDispatchToProps = {
+  fetchFullText,
+  fetchNextPage
+}
 
 SearchResults.propTypes = {
   fetchFullText: PropTypes.func.isRequired,
