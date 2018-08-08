@@ -36,7 +36,12 @@ export class SignUp extends Component {
       .then(authUser => {
         db.doCreateUser(authUser.user.uid, username, email)
           .then(() => {
-            this.setState(() => ({ ...this.state }))
+            this.setState({ 
+              username: '',
+              email: '',
+              passwordAuth: '',
+              password: '',
+             })
             this.props.userSignupSuccess(true)
             history.push(routes.HOME)
           })
