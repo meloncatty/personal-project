@@ -13,6 +13,7 @@ export class SignOutButton extends Component {
           className='sign-out'
           onClick={() => {
             this.props.userAuthentication(false)
+            this.props.isUserSignedIn(false)
             auth.doSignOut()
           }}
         >
@@ -24,7 +25,8 @@ export class SignOutButton extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  isUserSignedIn: (bool) => dispatch(isUserSignedIn(bool))
+  isUserSignedIn: (bool) => dispatch(isUserSignedIn(bool)),
+  userAuthentication: bool => dispatch(userAuthentication(bool))
 })
 
 SignOutButton.propTypes = {
