@@ -6,7 +6,7 @@ import loading from '../../assets/loading02.gif'
 import './styles.css'
 
 export class ArticleContainer extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -28,18 +28,18 @@ export class ArticleContainer extends Component {
     const {authors, datePublished, fullText, title, topics, fulltextIdentifier} = this.props.fullArticleSuccess
     const expandText = this.state.toggleText ? 'toggle-text open' : 'toggle-text closed'
     return (
-        <article className='article-contents'>
-          <h2>{title}</h2>
-          <h3>Authors: {authors}</h3>
-          <h3>Date published: {datePublished}</h3>
-          <label className="lbl-toggle" onClick={this.toggleText}>Click to expand</label>
-          <div className={expandText}>
-            <p>{fullText}</p>
-          </div>
-          <h4>Topics: {topics}</h4>
-          {fulltextIdentifier &&
+      <article className='article-contents'>
+        <h2>{title}</h2>
+        <h3>Authors: {authors}</h3>
+        <h3>Date published: {datePublished}</h3>
+        <label className='lbl-toggle' onClick={this.toggleText}>Click to expand</label>
+        <div className={expandText}>
+          <p>{fullText}</p>
+        </div>
+        <h4>Topics: {topics}</h4>
+        {fulltextIdentifier &&
           <a href={fulltextIdentifier} className='download-article' target='target_blank'>View PDF</a>}
-        </article>
+      </article>
     )
   }
 
@@ -65,11 +65,11 @@ export class ArticleContainer extends Component {
     )
   }
 
-  render() {
+  render () {
     return (
       <section className='article-container'>
-      {this.toggleLoading()}
-      {this.props.fullArticleErrored && this.displayErrorText()}
+        {this.toggleLoading()}
+        {this.props.fullArticleErrored && this.displayErrorText()}
       </section>
     )
   }

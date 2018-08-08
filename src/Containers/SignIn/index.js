@@ -8,7 +8,7 @@ import * as routes from '../../Constants/routes'
 import './styles.css'
 
 export class SignIn extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -22,16 +22,15 @@ export class SignIn extends Component {
     e.preventDefault()
     const {
       email,
-      password,
+      password
     } = this.state
 
     const {
-      history,
+      history
     } = this.props
 
     auth.doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-
         this.setState(() => ({ ...this.state }))
         this.props.userAuthentication(authUser.user.uid)
         this.props.isUserSignedIn(true)
@@ -49,7 +48,7 @@ export class SignIn extends Component {
     })
   }
 
-  render() {
+  render () {
     const {
       email,
       password,
@@ -60,11 +59,11 @@ export class SignIn extends Component {
       password === '' ||
       email === ''
 
-    return(
+    return (
       <section className='form-container'>
         <form
-        className='sign-in-form'
-        onSubmit={this.handleSignInSubmit}>
+          className='sign-in-form'
+          onSubmit={this.handleSignInSubmit}>
           <label>Sign In</label>
           <input
             className='email'

@@ -39,5 +39,15 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/"
     ]
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "envs": [
+      "jest",
+      "enzyme"
+    ],
+    "globals": [
+      "fetch"
+    ]
   }
 }

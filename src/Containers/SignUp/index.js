@@ -8,7 +8,7 @@ import * as routes from '../../Constants/routes'
 import './styles.css'
 
 export class SignUp extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -25,24 +25,24 @@ export class SignUp extends Component {
     const {
       username,
       email,
-      password,
+      password
     } = this.state
 
     const {
-      history,
+      history
     } = this.props
 
     auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         db.doCreateUser(authUser.user.uid, username, email)
-        .then(() => {
-          this.setState(() => ({ ...this.state }))
-          this.props.userSignupSuccess(true)
-          history.push(routes.HOME)
-        })
-        .catch(error => {
-          this.setState({error: error})
-        })
+          .then(() => {
+            this.setState(() => ({ ...this.state }))
+            this.props.userSignupSuccess(true)
+            history.push(routes.HOME)
+          })
+          .catch(error => {
+            this.setState({error: error})
+          })
       })
       .catch(error => {
         this.setState({error: error})
@@ -56,7 +56,7 @@ export class SignUp extends Component {
     })
   }
 
-  render() {
+  render () {
     const {
       username,
       email,
@@ -71,12 +71,12 @@ export class SignUp extends Component {
       email === '' ||
       username === ''
 
-    return(
+    return (
       <section className='form-container'>
 
         <form
-        className='sign-up-form' onSubmit={this.handleSignUpSubmit}>
-        <label>Create An Account</label>
+          className='sign-up-form' onSubmit={this.handleSignUpSubmit}>
+          <label>Create An Account</label>
           <input
             className='username'
             name='username'

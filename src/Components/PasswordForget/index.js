@@ -3,7 +3,7 @@ import { auth } from '../../Firebase'
 import './styles.css'
 
 export class PasswordForget extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -28,40 +28,40 @@ export class PasswordForget extends Component {
           error: e
         })
       })
-      e.preventDefault()
+    e.preventDefault()
   }
 
   emailSent = () => {
     return <p>Please check your inbox for further instructions</p>
   }
 
-  render() {
+  render () {
     const {email, error, submitSuccessful} = this.state
     const isInvalid = email === ''
 
     return (
       <section className='form-container'>
-      <form
-        onSubmit={this.onSubmit}
-        className='reset-password'
-      >
-        <label>Reset Your Password</label>
-        <input
-          value={email}
-          onChange={e => this.setState({
-            email: e.target.value
-          })}
-          type='text'
-          placeholder='Email Address'
-        />
-        <button disabled={isInvalid} type='submit'>
+        <form
+          onSubmit={this.onSubmit}
+          className='reset-password'
+        >
+          <label>Reset Your Password</label>
+          <input
+            value={email}
+            onChange={e => this.setState({
+              email: e.target.value
+            })}
+            type='text'
+            placeholder='Email Address'
+          />
+          <button disabled={isInvalid} type='submit'>
           Reset Password
-        </button>
+          </button>
 
-        { error && <p>{ error.message }</p> }
+          { error && <p>{ error.message }</p> }
 
-        { submitSuccessful && this.emailSent() }
-      </form>
+          { submitSuccessful && this.emailSent() }
+        </form>
       </section>
     )
   }

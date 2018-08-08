@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import './styles.css'
 
 export class PasswordChange extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -31,7 +31,7 @@ export class PasswordChange extends Component {
           error: error
         })
       })
-      e.preventDefault()
+    e.preventDefault()
   }
 
   emailSent = () => {
@@ -45,42 +45,42 @@ export class PasswordChange extends Component {
     })
   }
 
-  render() {
+  render () {
     const {password, passwordAuth, error, submitSuccessful} = this.state
     const isInvalid =
       password !== passwordAuth ||
       password === ''
     return (
       <section className='form-container'>
-      <form
-        onSubmit={this.onSubmit}
-        className='change-password'
-      >
-        <label>Change Password</label>
-        <input
-          className='password'
-          name='password'
-          value={password}
-          onChange={this.handleChange}
-          type='password'
-          placeholder='New Password'
-        />
-        <input
-          className='password-confirm'
-          name='passwordAuth'
-          value={passwordAuth}
-          onChange={this.handleChange}
-          type='password'
-          placeholder='Confirm Password'
-        />
-        <button disabled={isInvalid} type='submit'>
+        <form
+          onSubmit={this.onSubmit}
+          className='change-password'
+        >
+          <label>Change Password</label>
+          <input
+            className='password'
+            name='password'
+            value={password}
+            onChange={this.handleChange}
+            type='password'
+            placeholder='New Password'
+          />
+          <input
+            className='password-confirm'
+            name='passwordAuth'
+            value={passwordAuth}
+            onChange={this.handleChange}
+            type='password'
+            placeholder='Confirm Password'
+          />
+          <button disabled={isInvalid} type='submit'>
           Change Password
-        </button>
+          </button>
 
-        { !error && <p>{ error.message }</p> }
+          { !error && <p>{ error.message }</p> }
 
-        { submitSuccessful && this.emailSent() }
-      </form>
+          { submitSuccessful && this.emailSent() }
+        </form>
       </section>
     )
   }

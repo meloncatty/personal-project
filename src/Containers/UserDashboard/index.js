@@ -7,8 +7,7 @@ import PropTypes from 'prop-types'
 import './styles.css'
 
 export class UserDashboard extends Component {
-
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -18,7 +17,7 @@ export class UserDashboard extends Component {
 
   fetchArticlesFromFirebase = () => {
     const {isUserSignedIn} = this.props
-    if(isUserSignedIn) {
+    if (isUserSignedIn) {
       const ref = db.ref('users').child(`${this.props.userAuthentication[0]}`).child('articles').child('article')
       ref.once('value')
         .then((snapshot) => {
@@ -33,15 +32,15 @@ export class UserDashboard extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchArticlesFromFirebase()
   }
 
-  render() {
+  render () {
     return (
       <section className='user-dashboard'>
-        {this.props.fetchUserArticlesSuccess && this.props.fetchUserArticlesSuccess.map((article,index) => {
-          return(
+        {this.props.fetchUserArticlesSuccess && this.props.fetchUserArticlesSuccess.map((article, index) => {
+          return (
             <article key={index}>
               <h1>{article.title}</h1>
               <h3>{article.authors}</h3>

@@ -8,7 +8,7 @@ import './index.css'
 import loading from '../../assets/loading02.gif'
 
 export class SearchResults extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -27,7 +27,7 @@ export class SearchResults extends Component {
 
   postArticle = (e, article) => {
     e.preventDefault()
-    if(this.props.isUserSignedIn) {
+    if (this.props.isUserSignedIn) {
       this.setState({
         canUserPost: true
       })
@@ -53,9 +53,9 @@ export class SearchResults extends Component {
         <article className='articles' key={index}>
           <h1>
             <Link to='/articleContainer' className='link-to-article' onClick={(e) => {
-                e.preventDefault()
-                this.redirectToArticle(result.id)
-                }}>
+              e.preventDefault()
+              this.redirectToArticle(result.id)
+            }}>
               {result.title}
             </Link>
           </h1>
@@ -63,7 +63,7 @@ export class SearchResults extends Component {
           <h3>Date Published: {result.datePublished}</h3>
           <p>
             {
-              result.description && result.description.slice(0,500) + '...'
+              result.description && result.description.slice(0, 500) + '...'
             }
           </p>
           {
@@ -73,11 +73,11 @@ export class SearchResults extends Component {
           {
             // eslint-disable-next-line
               <a href='#' className='archive-article' onClick={(e) => {
-                this.postArticle(e, result)}}>Archive</a>
+              this.postArticle(e, result)
+            }}>Archive</a>
           }
           {
-            !this.state.canUserPost && <p className=
-            'archive-denied'>Please sign in to archive.</p>
+            !this.state.canUserPost && <p className='archive-denied'>Please sign in to archive.</p>
           }
         </article>
       )
@@ -89,7 +89,7 @@ export class SearchResults extends Component {
       pageCounter: this.state.pageCounter + 1
     })
     this.props.fetchNextPage(this.props.captureQuery, this.state.pageCounter)
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   }
 
   toggleLoading = () => {
@@ -114,15 +114,15 @@ export class SearchResults extends Component {
     )
   }
 
-  render() {
+  render () {
     return (
       <div className='results-container'>
-      <section className='results-list'>
-        {this.toggleLoading()}
-        {(this.props.resultsHaveErrored || this.props.nextPageErrored) && this.displayErrorText()}
-        {this.state.redirectToArticle &&
+        <section className='results-list'>
+          {this.toggleLoading()}
+          {(this.props.resultsHaveErrored || this.props.nextPageErrored) && this.displayErrorText()}
+          {this.state.redirectToArticle &&
           (<Redirect to={'/articleContainer'} />)}
-      </section>
+        </section>
         { this.props.resultsTotalHits &&
           <button className='next-page' onClick={this.incrementPage}>Next Page</button>
         }
