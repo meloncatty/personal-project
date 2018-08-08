@@ -1,8 +1,6 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { MemoryRouter } from 'react-router-dom'
+import { shallow } from 'enzyme'
 import { LandingPage, mapDispatchToProps } from '../'
-import {fetchArticles} from '../../../Actions'
 
 describe('LandingPage', () => {
   it('should have default state', () => {
@@ -18,7 +16,6 @@ describe('LandingPage', () => {
   it('should handle change upon input change', () => {
     const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
     const mockEvent = { target: { value: 'query' } }
-    const mockHandleChange = jest.fn()
 
     wrapper.find('input').simulate('change', mockEvent)
 

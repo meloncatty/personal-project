@@ -1,10 +1,9 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import fetchMock from 'fetch-mock'
-import { SearchResults, mapDispatchToProps, mapStateToProps } from '../index.js'
-import apiKey from '../../../apiKey.js'
+import { SearchResults, mapStateToProps } from '../index.js'
 import * as mockData from '../../../__mocks__/mockData'
 import * as actions from '../../../Actions'
 
@@ -61,7 +60,6 @@ describe('SearchResults', () => {
     expect(searchResults).toMatchSnapshot()
   })
 
-
   it('should have default state', () => {
     const expected = {
       redirectToArticle: false,
@@ -88,18 +86,18 @@ describe('SearchResults', () => {
       searchResults.instance().incrementPage()
 
       expect(searchResults.state().pageCounter).toEqual(2)
-    });
-  });
+    })
+  })
 
   describe('postArticle', () => {
     it('should update state if user is signed in', () => {
-      searchResults = shallow(<SearchResults isUserSignedIn={true} {...mockProps} />)
+      searchResults = shallow(<SearchResults isUserSignedIn {...mockProps} />)
       const mockEvent = { preventDefault: jest.fn() }
       searchResults.instance().postArticle(mockEvent, 1528143)
 
       expect(searchResults.state().canUserPost).toEqual(true)
-    });
-  });
+    })
+  })
 
   describe('cleanQueryRestuls', () => {
     it('should display download link if available', () => {
@@ -113,7 +111,7 @@ describe('SearchResults', () => {
       searchResults.find('.archive-article').at(0).simulate('click', mockEvent)
 
       expect(postArticle).toHaveBeenCalledTimes(1)
-    });
+    })
   })
 
   describe('mapDispatchToProps', () => {
@@ -126,20 +124,20 @@ describe('SearchResults', () => {
       fetchMock.getOnce(
         `*`,
         {
-          "data": mockData.fullText
+          'data': mockData.fullText
         })
       const expectedActions = [
         {
-          "articleLoading": true,
-          "type": "FULL_ARTICLE_LOADING"
+          'articleLoading': true,
+          'type': 'FULL_ARTICLE_LOADING'
         },
         {
-          "articleLoading": false,
-          "type": "FULL_ARTICLE_LOADING"
+          'articleLoading': false,
+          'type': 'FULL_ARTICLE_LOADING'
         },
         {
-          "result": mockData.fullText,
-          "type": "FULL_ARTICLE_SUCCESS"
+          'result': mockData.fullText,
+          'type': 'FULL_ARTICLE_SUCCESS'
         }
       ]
       const store = mockStore({ data: {} })
@@ -153,32 +151,32 @@ describe('SearchResults', () => {
       fetchMock.getOnce(
         `*`,
         {
-          "data": mockData.secondPage
+          'data': mockData.secondPage
         })
       const expectedActions = [
         {
-          "nextPage": [],
-          "type": "NEXT_PAGE_SUCCESS"
+          'nextPage': [],
+          'type': 'NEXT_PAGE_SUCCESS'
         },
         {
-          "results": [],
-          "type": "QUERY_RESULTS_SUCCESS"
+          'results': [],
+          'type': 'QUERY_RESULTS_SUCCESS'
         },
         {
-          "nextPageHasErrored": false,
-          "type": "NEXT_PAGE_ERRORED"
+          'nextPageHasErrored': false,
+          'type': 'NEXT_PAGE_ERRORED'
         },
         {
-          "nextPageLoading": true,
-          "type": "NEXT_PAGE_LOADING" 
+          'nextPageLoading': true,
+          'type': 'NEXT_PAGE_LOADING'
         },
         {
-          "nextPageLoading": false,
-          "type": "NEXT_PAGE_LOADING"
+          'nextPageLoading': false,
+          'type': 'NEXT_PAGE_LOADING'
         },
         {
-          "nextPage": mockData.secondPage,
-          "type": "NEXT_PAGE_SUCCESS"
+          'nextPage': mockData.secondPage,
+          'type': 'NEXT_PAGE_SUCCESS'
         }
       ]
       const store = mockStore({ nextPage: {} })
@@ -223,7 +221,6 @@ describe('SearchResults', () => {
 
     describe('resultsAreLoading', () => {
       it('should return true if results are loading', () => {
-
         const mockState = {
           resultsAreLoading: true,
           type: 'RESULTS_ARE_LOADING'
@@ -239,7 +236,6 @@ describe('SearchResults', () => {
 
     describe('resultsHaveErrored', () => {
       it('should return true if results have errored', () => {
-
         const mockState = {
           resultsHaveErrored: true,
           type: 'RESULTS_HAVE_ERRORED'
@@ -256,7 +252,6 @@ describe('SearchResults', () => {
 
     describe('userAuthentication', () => {
       it('should return an array of user UID', () => {
-
         const mockState = {
           userAuthentication: ['982f89s98sw4xxs'],
           type: 'USER_AUTHENTICATION'
@@ -273,7 +268,6 @@ describe('SearchResults', () => {
 
     describe('userSignupSuccess', () => {
       it('should return true if user signup is a success', () => {
-
         const mockState = {
           userSignupSuccess: true,
           type: 'USER_SIGNUP_SUCCESS'
@@ -290,7 +284,6 @@ describe('SearchResults', () => {
 
     describe('isUserSignedIn', () => {
       it('should return true if user is signed in', () => {
-
         const mockState = {
           isUserSignedIn: true,
           type: 'IS_USER_SIGNED_IN'
@@ -307,7 +300,6 @@ describe('SearchResults', () => {
 
     describe('captureQuery', () => {
       it('should return user serach query as string', () => {
-
         const mockState = {
           captureQuery: 'query',
           type: 'CAPTURE_QUERY'
@@ -324,7 +316,6 @@ describe('SearchResults', () => {
 
     describe('nextPageSuccess', () => {
       it('should return an array with articles on next page', () => {
-
         const mockState = {
           nextPageSuccess: [
             {
@@ -353,7 +344,6 @@ describe('SearchResults', () => {
 
     describe('nextPageLoading', () => {
       it('should return true if next page is loading', () => {
-
         const mockState = {
           nextPageLoading: true,
           type: 'NEXT_PAGE_LOADING'
@@ -370,7 +360,6 @@ describe('SearchResults', () => {
 
     describe('nextPageErrored', () => {
       it('should return true if next page has errored', () => {
-
         const mockState = {
           nextPageErrored: true,
           type: 'NEXT_PAGE_ERRORED'

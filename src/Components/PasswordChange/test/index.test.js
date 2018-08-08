@@ -37,12 +37,6 @@ describe('PasswordChange', () => {
   it('should prevent default', () => {
     const wrapper = shallow(<PasswordChange />)
     const mockEvent = {preventDefault: () => {}}
-    const expected = {
-      password: '',
-      passwordAuth: '',
-      submitSuccessful: false,
-      error: false
-    }
     wrapper.find('button').simulate('click', mockEvent)
 
     expect(mockEvent.preventDefault).toHaveBeenCalled

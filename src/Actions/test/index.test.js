@@ -1,4 +1,4 @@
-import thunk from 'react-redux'
+/* global beforeEach */
 import {apiKey} from '../../apiKey.js'
 import {
   resultsSuccess,
@@ -30,7 +30,7 @@ describe('Article search results actions', () => {
   let mockDispatch
 
   beforeEach(() => {
-    mockQuery = 'query',
+    mockQuery = 'query'
     mockDispatch = jest.fn()
   })
 
@@ -211,7 +211,7 @@ describe('Full article result actions', () => {
     let mockDispatch
 
     beforeEach(() => {
-      mockId = '46604043',
+      mockId = '46604043'
       mockDispatch = jest.fn()
     })
 
@@ -360,7 +360,7 @@ describe('Fetch user articles actions', () => {
     let thunk
 
     beforeEach(() => {
-      mockId = '46604043',
+      mockId = '46604043'
       mockDispatch = jest.fn()
       thunk = fetchUserArticles(mockId)
     })
@@ -506,7 +506,7 @@ describe('Next page actions', () => {
     let thunk
 
     beforeEach(() => {
-      mockQuery = 'query',
+      mockQuery = 'query'
       mockPageNum = 3
       mockDispatch = jest.fn()
       thunk = fetchNextPage(mockQuery, mockPageNum)

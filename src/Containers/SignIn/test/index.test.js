@@ -79,7 +79,6 @@ describe('SignIn', () => {
       const wrapper = shallow(<SignIn userAuthentication={jest.fn()} isUserSignedIn={jest.fn()} />)
       const mockDispatch = jest.fn()
       const actionToDispatch = userAuthentication('userUID')
-      const mockEvent = {preventDefault: () => {}}
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.userAuthentication('userUID')
 
@@ -90,7 +89,6 @@ describe('SignIn', () => {
       const wrapper = shallow(<SignIn userAuthentication={jest.fn()} isUserSignedIn={jest.fn()} />)
       const mockDispatch = jest.fn()
       const actionToDispatch = isUserSignedIn(true)
-      const mockEvent = {preventDefault: () => {}}
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.isUserSignedIn(true)
 

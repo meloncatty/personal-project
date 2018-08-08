@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import './index.css'
 
 export class LandingPage extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -31,8 +31,8 @@ export class LandingPage extends Component {
     })
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <main>
         <form
           onSubmit={this.handleSubmit}>
