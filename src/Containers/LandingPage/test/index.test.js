@@ -3,57 +3,63 @@ import { shallow } from 'enzyme'
 import { LandingPage, mapDispatchToProps } from '../'
 
 describe('LandingPage', () => {
+  let mockProps
+  let landingPage
+
+  beforeEach(() => {
+    mockProps = {
+      fetchArticles: jest.fn()
+    }
+    landingPage = shallow(<LandingPage {...mockProps} />) 
+  })
+
+  it('should match snapshot', () => {
+    expect(landingPage).toMatchSnapshot()
+  });
+
   it('should have default state', () => {
-    const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
     const expected = {
       searchInput: '',
       redirectToSearch: false
     }
 
-    expect(wrapper.state()).toEqual(expected)
+    expect(landingPage.state()).toEqual(expected)
   })
 
   it('should handle change upon input change', () => {
-    const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
     const mockEvent = { target: { value: 'query' } }
 
-    wrapper.find('input').simulate('change', mockEvent)
+    landingPage.find('input').simulate('change', mockEvent)
 
-    expect(wrapper.state('searchInput')).toEqual('query')
+    expect(landingPage.state('searchInput')).toEqual('query')
   })
 
   it('should call handleSubmit when form is submitted', () => {
-    const mockFetchArticles = jest.fn()
-    const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles} />)
     const mockPreventDefault = {preventDefault: jest.fn()}
-    wrapper.instance().handleSubmit(mockPreventDefault)
+    landingPage.instance().handleSubmit(mockPreventDefault)
 
-    expect(wrapper.instance().handleSubmit).toHaveBeenCalled
+    expect(landingPage.instance().handleSubmit).toHaveBeenCalled
   })
 
   it('should call fetchArticles when form is submitted', () => {
-    const mockFetchArticles = jest.fn()
-    const wrapper = shallow(
-      <LandingPage fetchArticles={mockFetchArticles} />
-    )
+    const mockFetchArticles = (landingPage.instance().handleSubmit = jest.fn())
     const mockPreventDefault = {preventDefault: jest.fn()}
-    wrapper.find('form').simulate('submit', mockPreventDefault)
 
-    expect(mockFetchArticles).toHaveBeenCalled()
+    landingPage.find('button').simulate('submit', mockPreventDefault)
+    landingPage.instance().handleSubmit()
+
+    expect(mockFetchArticles).toHaveBeenCalledTimes(1)
   })
 
   it('should update redirectToSearch when handleSubmit is called', () => {
-    const mockFetchArticles = jest.fn()
-    const wrapper = shallow(<LandingPage fetchArticles={mockFetchArticles} />)
     const mockPreventDefault = {preventDefault: jest.fn()}
-    wrapper.find('form').simulate('submit', mockPreventDefault)
+    landingPage.find('form').simulate('submit', mockPreventDefault)
 
-    expect(wrapper.state('redirectToSearch')).toBe(true)
+    expect(landingPage.state('redirectToSearch')).toBe(true)
   })
 
   describe('mapDispatchToProps', () => {
     it('should return an object', () => {
-      const wrapper = shallow(<LandingPage fetchArticles={jest.fn()} />)
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchArticles([15824379])
