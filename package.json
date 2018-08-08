@@ -5,6 +5,7 @@
   "dependencies": {
     "fetch-mock": "^6.5.2",
     "firebase": "^5.0.4",
+    "node-fetch": "^2.2.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -38,6 +39,13 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "envs": [
+      "jest",
+      "enzyme"
     ]
   }
 }
