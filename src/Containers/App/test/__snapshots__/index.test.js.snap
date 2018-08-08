@@ -4,7 +4,10 @@ exports[`App should match snapshot 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__unrendered__): <App
+    isUserSignedIn={false}
+    userSignupSuccess={false}
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -130,7 +133,7 @@ ShallowWrapper {
                             </Link>
               </li>
 </ul>,
-            undefined,
+            false,
           ],
           "className": "header",
         },
@@ -171,7 +174,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                undefined,
+                false,
                 <li>
                   <Link
                                     replace={false}
@@ -192,7 +195,7 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
-              undefined,
+              false,
               Object {
                 "instance": null,
                 "key": undefined,
@@ -252,7 +255,7 @@ ShallowWrapper {
             ],
             "type": "ul",
           },
-          undefined,
+          false,
         ],
         "type": "header",
       },
@@ -503,7 +506,7 @@ ShallowWrapper {
                                 </Link>
                 </li>
 </ul>,
-              undefined,
+              false,
             ],
             "className": "header",
           },
@@ -544,7 +547,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  undefined,
+                  false,
                   <li>
                     <Link
                                         replace={false}
@@ -565,7 +568,7 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                undefined,
+                false,
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -625,7 +628,1659 @@ ShallowWrapper {
               ],
               "type": "ul",
             },
-            undefined,
+            false,
+          ],
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/searchResults",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/signIn",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/signUp",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/articleContainer",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/passwordForget",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/userDashboard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/passwordChange",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <img
+              alt="Powered by CORE"
+              src="https://core.ac.uk/images/powered-by-core-orange.png"
+/>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "Powered by CORE",
+              "src": "https://core.ac.uk/images/powered-by-core-orange.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          "type": "footer",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`App should match snapshot when user is signed in 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App
+    isUserSignedIn={true}
+    userSignupSuccess={false}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <header
+          className="header"
+>
+          <Link
+                    replace={false}
+                    to="/"
+          >
+                    <img
+                              alt="Search Open Source"
+                              className="logo"
+                              src="logo.png"
+                    />
+          </Link>
+          <ul>
+                    <li>
+                              Welcome back, User!
+                    </li>
+                    <li>
+                              <Link
+                                        replace={false}
+                                        to="/passwordChange"
+                              >
+                                        Change Password
+                              </Link>
+                    </li>
+                    <Connect(SignOutButton) />
+                    <li>
+                              <Link
+                                        replace={false}
+                                        to="/userDashboard"
+                              >
+                                        Dashboard
+                              </Link>
+                    </li>
+          </ul>
+</header>,
+        <withRouter(Connect(LandingPage)) />,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/searchResults"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/signIn"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/signUp"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/articleContainer"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/passwordForget"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/userDashboard"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/passwordChange"
+/>,
+        <footer>
+          <img
+                    alt="Powered by CORE"
+                    src="https://core.ac.uk/images/powered-by-core-orange.png"
+          />
+</footer>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Link
+              replace={false}
+              to="/"
+>
+              <img
+                            alt="Search Open Source"
+                            className="logo"
+                            src="logo.png"
+              />
+</Link>,
+            false,
+            <ul>
+              <li>
+                            Welcome back, User!
+              </li>
+              <li>
+                            <Link
+                                          replace={false}
+                                          to="/passwordChange"
+                            >
+                                          Change Password
+                            </Link>
+              </li>
+              <Connect(SignOutButton) />
+              <li>
+                            <Link
+                                          replace={false}
+                                          to="/userDashboard"
+                            >
+                                          Dashboard
+                            </Link>
+              </li>
+</ul>,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <img
+                alt="Search Open Source"
+                className="logo"
+                src="logo.png"
+/>,
+              "replace": false,
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "Search Open Source",
+                "className": "logo",
+                "src": "logo.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            "type": [Function],
+          },
+          false,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <li>
+                  Welcome back, User!
+</li>,
+                <li>
+                  <Link
+                                    replace={false}
+                                    to="/passwordChange"
+                  >
+                                    Change Password
+                  </Link>
+</li>,
+                <Connect(SignOutButton) />,
+                <li>
+                  <Link
+                                    replace={false}
+                                    to="/userDashboard"
+                  >
+                                    Dashboard
+                  </Link>
+</li>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Welcome back, User!",
+                },
+                "ref": null,
+                "rendered": "Welcome back, User!",
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/passwordChange"
+>
+                    Change Password
+</Link>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Change Password",
+                    "replace": false,
+                    "to": "/passwordChange",
+                  },
+                  "ref": null,
+                  "rendered": "Change Password",
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/userDashboard"
+>
+                    Dashboard
+</Link>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Dashboard",
+                    "replace": false,
+                    "to": "/userDashboard",
+                  },
+                  "ref": null,
+                  "rendered": "Dashboard",
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+            ],
+            "type": "ul",
+          },
+        ],
+        "type": "header",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/searchResults",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/signIn",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/signUp",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/articleContainer",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/passwordForget",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/userDashboard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/passwordChange",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <img
+            alt="Powered by CORE"
+            src="https://core.ac.uk/images/powered-by-core-orange.png"
+/>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "alt": "Powered by CORE",
+            "src": "https://core.ac.uk/images/powered-by-core-orange.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "img",
+        },
+        "type": "footer",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <header
+            className="header"
+>
+            <Link
+                        replace={false}
+                        to="/"
+            >
+                        <img
+                                    alt="Search Open Source"
+                                    className="logo"
+                                    src="logo.png"
+                        />
+            </Link>
+            <ul>
+                        <li>
+                                    Welcome back, User!
+                        </li>
+                        <li>
+                                    <Link
+                                                replace={false}
+                                                to="/passwordChange"
+                                    >
+                                                Change Password
+                                    </Link>
+                        </li>
+                        <Connect(SignOutButton) />
+                        <li>
+                                    <Link
+                                                replace={false}
+                                                to="/userDashboard"
+                                    >
+                                                Dashboard
+                                    </Link>
+                        </li>
+            </ul>
+</header>,
+          <withRouter(Connect(LandingPage)) />,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/searchResults"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signIn"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signUp"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/articleContainer"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/passwordForget"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/userDashboard"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/passwordChange"
+/>,
+          <footer>
+            <img
+                        alt="Powered by CORE"
+                        src="https://core.ac.uk/images/powered-by-core-orange.png"
+            />
+</footer>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Link
+                replace={false}
+                to="/"
+>
+                <img
+                                alt="Search Open Source"
+                                className="logo"
+                                src="logo.png"
+                />
+</Link>,
+              false,
+              <ul>
+                <li>
+                                Welcome back, User!
+                </li>
+                <li>
+                                <Link
+                                                replace={false}
+                                                to="/passwordChange"
+                                >
+                                                Change Password
+                                </Link>
+                </li>
+                <Connect(SignOutButton) />
+                <li>
+                                <Link
+                                                replace={false}
+                                                to="/userDashboard"
+                                >
+                                                Dashboard
+                                </Link>
+                </li>
+</ul>,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <img
+                  alt="Search Open Source"
+                  className="logo"
+                  src="logo.png"
+/>,
+                "replace": false,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "Search Open Source",
+                  "className": "logo",
+                  "src": "logo.png",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": [Function],
+            },
+            false,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <li>
+                    Welcome back, User!
+</li>,
+                  <li>
+                    <Link
+                                        replace={false}
+                                        to="/passwordChange"
+                    >
+                                        Change Password
+                    </Link>
+</li>,
+                  <Connect(SignOutButton) />,
+                  <li>
+                    <Link
+                                        replace={false}
+                                        to="/userDashboard"
+                    >
+                                        Dashboard
+                    </Link>
+</li>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Welcome back, User!",
+                  },
+                  "ref": null,
+                  "rendered": "Welcome back, User!",
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Link
+                      replace={false}
+                      to="/passwordChange"
+>
+                      Change Password
+</Link>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Change Password",
+                      "replace": false,
+                      "to": "/passwordChange",
+                    },
+                    "ref": null,
+                    "rendered": "Change Password",
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Link
+                      replace={false}
+                      to="/userDashboard"
+>
+                      Dashboard
+</Link>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Dashboard",
+                      "replace": false,
+                      "to": "/userDashboard",
+                    },
+                    "ref": null,
+                    "rendered": "Dashboard",
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+              ],
+              "type": "ul",
+            },
+          ],
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/searchResults",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/signIn",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/signUp",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/articleContainer",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/passwordForget",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/userDashboard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/passwordChange",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <img
+              alt="Powered by CORE"
+              src="https://core.ac.uk/images/powered-by-core-orange.png"
+/>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "Powered by CORE",
+              "src": "https://core.ac.uk/images/powered-by-core-orange.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          "type": "footer",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`App should match snapshot when user sign up is a success 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App
+    isUserSignedIn={false}
+    userSignupSuccess={true}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <header
+          className="header"
+>
+          <Link
+                    replace={false}
+                    to="/"
+          >
+                    <img
+                              alt="Search Open Source"
+                              className="logo"
+                              src="logo.png"
+                    />
+          </Link>
+          <ul>
+                    <li
+                              className="account-success"
+                    >
+                              Create account success! Please sign in.
+                    </li>
+                    <li>
+                              <Link
+                                        replace={false}
+                                        to="/signUp"
+                              >
+                                        Sign up
+                              </Link>
+                    </li>
+                    <li>
+                              <Link
+                                        replace={false}
+                                        to="/signIn"
+                              >
+                                        Sign in
+                              </Link>
+                    </li>
+          </ul>
+</header>,
+        <withRouter(Connect(LandingPage)) />,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/searchResults"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/signIn"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/signUp"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/articleContainer"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/passwordForget"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/userDashboard"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/passwordChange"
+/>,
+        <footer>
+          <img
+                    alt="Powered by CORE"
+                    src="https://core.ac.uk/images/powered-by-core-orange.png"
+          />
+</footer>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Link
+              replace={false}
+              to="/"
+>
+              <img
+                            alt="Search Open Source"
+                            className="logo"
+                            src="logo.png"
+              />
+</Link>,
+            <ul>
+              <li
+                            className="account-success"
+              >
+                            Create account success! Please sign in.
+              </li>
+              <li>
+                            <Link
+                                          replace={false}
+                                          to="/signUp"
+                            >
+                                          Sign up
+                            </Link>
+              </li>
+              <li>
+                            <Link
+                                          replace={false}
+                                          to="/signIn"
+                            >
+                                          Sign in
+                            </Link>
+              </li>
+</ul>,
+            false,
+          ],
+          "className": "header",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <img
+                alt="Search Open Source"
+                className="logo"
+                src="logo.png"
+/>,
+              "replace": false,
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "Search Open Source",
+                "className": "logo",
+                "src": "logo.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <li
+                  className="account-success"
+>
+                  Create account success! Please sign in.
+</li>,
+                <li>
+                  <Link
+                                    replace={false}
+                                    to="/signUp"
+                  >
+                                    Sign up
+                  </Link>
+</li>,
+                <li>
+                  <Link
+                                    replace={false}
+                                    to="/signIn"
+                  >
+                                    Sign in
+                  </Link>
+</li>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Create account success! Please sign in.",
+                  "className": "account-success",
+                },
+                "ref": null,
+                "rendered": "Create account success! Please sign in.",
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/signUp"
+>
+                    Sign up
+</Link>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Sign up",
+                    "replace": false,
+                    "to": "/signUp",
+                  },
+                  "ref": null,
+                  "rendered": "Sign up",
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/signIn"
+>
+                    Sign in
+</Link>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Sign in",
+                    "replace": false,
+                    "to": "/signIn",
+                  },
+                  "ref": null,
+                  "rendered": "Sign in",
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+            ],
+            "type": "ul",
+          },
+          false,
+        ],
+        "type": "header",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/searchResults",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/signIn",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/signUp",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/articleContainer",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/passwordForget",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/userDashboard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/passwordChange",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <img
+            alt="Powered by CORE"
+            src="https://core.ac.uk/images/powered-by-core-orange.png"
+/>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "alt": "Powered by CORE",
+            "src": "https://core.ac.uk/images/powered-by-core-orange.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "img",
+        },
+        "type": "footer",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <header
+            className="header"
+>
+            <Link
+                        replace={false}
+                        to="/"
+            >
+                        <img
+                                    alt="Search Open Source"
+                                    className="logo"
+                                    src="logo.png"
+                        />
+            </Link>
+            <ul>
+                        <li
+                                    className="account-success"
+                        >
+                                    Create account success! Please sign in.
+                        </li>
+                        <li>
+                                    <Link
+                                                replace={false}
+                                                to="/signUp"
+                                    >
+                                                Sign up
+                                    </Link>
+                        </li>
+                        <li>
+                                    <Link
+                                                replace={false}
+                                                to="/signIn"
+                                    >
+                                                Sign in
+                                    </Link>
+                        </li>
+            </ul>
+</header>,
+          <withRouter(Connect(LandingPage)) />,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/searchResults"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signIn"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/signUp"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/articleContainer"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/passwordForget"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/userDashboard"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/passwordChange"
+/>,
+          <footer>
+            <img
+                        alt="Powered by CORE"
+                        src="https://core.ac.uk/images/powered-by-core-orange.png"
+            />
+</footer>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Link
+                replace={false}
+                to="/"
+>
+                <img
+                                alt="Search Open Source"
+                                className="logo"
+                                src="logo.png"
+                />
+</Link>,
+              <ul>
+                <li
+                                className="account-success"
+                >
+                                Create account success! Please sign in.
+                </li>
+                <li>
+                                <Link
+                                                replace={false}
+                                                to="/signUp"
+                                >
+                                                Sign up
+                                </Link>
+                </li>
+                <li>
+                                <Link
+                                                replace={false}
+                                                to="/signIn"
+                                >
+                                                Sign in
+                                </Link>
+                </li>
+</ul>,
+              false,
+            ],
+            "className": "header",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <img
+                  alt="Search Open Source"
+                  className="logo"
+                  src="logo.png"
+/>,
+                "replace": false,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "Search Open Source",
+                  "className": "logo",
+                  "src": "logo.png",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <li
+                    className="account-success"
+>
+                    Create account success! Please sign in.
+</li>,
+                  <li>
+                    <Link
+                                        replace={false}
+                                        to="/signUp"
+                    >
+                                        Sign up
+                    </Link>
+</li>,
+                  <li>
+                    <Link
+                                        replace={false}
+                                        to="/signIn"
+                    >
+                                        Sign in
+                    </Link>
+</li>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Create account success! Please sign in.",
+                    "className": "account-success",
+                  },
+                  "ref": null,
+                  "rendered": "Create account success! Please sign in.",
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Link
+                      replace={false}
+                      to="/signUp"
+>
+                      Sign up
+</Link>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Sign up",
+                      "replace": false,
+                      "to": "/signUp",
+                    },
+                    "ref": null,
+                    "rendered": "Sign up",
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Link
+                      replace={false}
+                      to="/signIn"
+>
+                      Sign in
+</Link>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Sign in",
+                      "replace": false,
+                      "to": "/signIn",
+                    },
+                    "ref": null,
+                    "rendered": "Sign in",
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+              ],
+              "type": "ul",
+            },
+            false,
           ],
           "type": "header",
         },
