@@ -10,12 +10,12 @@ describe('LandingPage', () => {
     mockProps = {
       fetchArticles: jest.fn()
     }
-    landingPage = shallow(<LandingPage {...mockProps} />) 
+    landingPage = shallow(<LandingPage {...mockProps}/>) 
   })
 
   it('should match snapshot', () => {
     expect(landingPage).toMatchSnapshot()
-  });
+  })
 
   it('should have default state', () => {
     const expected = {
@@ -34,13 +34,6 @@ describe('LandingPage', () => {
     expect(landingPage.state('searchInput')).toEqual('query')
   })
 
-  it('should call handleSubmit when form is submitted', () => {
-    const mockPreventDefault = {preventDefault: jest.fn()}
-    landingPage.instance().handleSubmit(mockPreventDefault)
-
-    expect(landingPage.instance().handleSubmit).toHaveBeenCalled
-  })
-
   it('should call fetchArticles when form is submitted', () => {
     const mockFetchArticles = (landingPage.instance().handleSubmit = jest.fn())
     const mockPreventDefault = {preventDefault: jest.fn()}
@@ -53,18 +46,42 @@ describe('LandingPage', () => {
 
   it('should update redirectToSearch when handleSubmit is called', () => {
     const mockPreventDefault = {preventDefault: jest.fn()}
+
     landingPage.find('form').simulate('submit', mockPreventDefault)
 
     expect(landingPage.state('redirectToSearch')).toBe(true)
+  })
+
+  describe('handleSubmit', () => {
+    it('should call fetchArticles with correct parameters', () => {
+      const mockPreventDefault = {preventDefault: jest.fn()}
+
+      landingPage.setState({ searchInput: 'aliens' })
+      landingPage.find('form').simulate('submit', mockPreventDefault)
+
+      expect(landingPage.instance().props.fetchArticles).toHaveBeenCalledWith('aliens')
+    })
+
+    it('should update state of component', () => {
+      const expected = {
+        redirectToSearch: true,
+        searchInput: ''
+      }      
+      const mockPreventDefault = {preventDefault: jest.fn()}
+      landingPage.setState({ searchInput: 'aliens' })
+      landingPage.find('form').simulate('submit', mockPreventDefault)
+
+      expect(landingPage.state()).toEqual(expected)
+    })
   })
 
   describe('mapDispatchToProps', () => {
     it('should return an object', () => {
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.fetchArticles([15824379])
+      mappedProps.fetchArticles('aliens')
 
-      expect(mockDispatch).toHaveBeenCalled
+      expect(mockDispatch).toHaveBeenCalled()
     })
   })
 })
