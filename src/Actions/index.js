@@ -1,5 +1,4 @@
 import {apiKey} from '../apiKey.js'
-const fetch = require('node-fetch')
 
 export const resultsSuccess = (results) => ({
   type: 'QUERY_RESULTS_SUCCESS',
