@@ -48,7 +48,7 @@ describe('UserDashboard', () => {
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchUserArticles(82413678)
 
-      expect(mockDispatch).toHaveBeenCalled
+      expect(mockDispatch).toHaveBeenCalled()
     })
   })
 

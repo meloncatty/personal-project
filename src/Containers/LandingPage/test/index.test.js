@@ -10,7 +10,7 @@ describe('LandingPage', () => {
     mockProps = {
       fetchArticles: jest.fn()
     }
-    landingPage = shallow(<LandingPage {...mockProps}/>) 
+    landingPage = shallow(<LandingPage {...mockProps} />)
   })
 
   it('should match snapshot', () => {
@@ -66,7 +66,7 @@ describe('LandingPage', () => {
       const expected = {
         redirectToSearch: true,
         searchInput: ''
-      }      
+      }
       const mockPreventDefault = {preventDefault: jest.fn()}
       landingPage.setState({ searchInput: 'aliens' })
       landingPage.find('form').simulate('submit', mockPreventDefault)

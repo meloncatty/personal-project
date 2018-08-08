@@ -5,7 +5,7 @@ import {userSignupSuccess} from '../../../Actions'
 
 describe('SignUp', () => {
   let signUp
-  
+
   beforeEach(() => {
     signUp = shallow(<SignUp userSignupSuccess={jest.fn()} />)
   })

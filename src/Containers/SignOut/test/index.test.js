@@ -7,7 +7,7 @@ describe('SignOut', () => {
   let signOutButton
 
   beforeEach(() => {
-    signOutButton = shallow(<SignOutButton isUserSignedIn={jest.fn()} userAuthentication={jest.fn()}/>)
+    signOutButton = shallow(<SignOutButton isUserSignedIn={jest.fn()} userAuthentication={jest.fn()} />)
   })
   it('should match snapshot', async () => {
     expect(signOutButton).toMatchSnapshot()

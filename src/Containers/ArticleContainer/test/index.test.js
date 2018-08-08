@@ -9,7 +9,7 @@ describe('ArticleContainer', () => {
 
   beforeEach(() => {
     mockProps = {
-      fullArticleSuccess : mockData.fullText[0],
+      fullArticleSuccess: mockData.fullText[0],
       fullArticleLoading: false,
       fullArticleErrored: false
     }

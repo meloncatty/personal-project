@@ -10,7 +10,7 @@ describe('App', () => {
       isUserSignedIn: false,
       userSignupSuccess: false
     }
-    app = shallow(<App {...mockProps}/>)
+    app = shallow(<App {...mockProps} />)
   })
   it('should match snapshot', () => {
     expect(app).toMatchSnapshot()
@@ -26,7 +26,7 @@ describe('App', () => {
     mockProps.isUserSignedIn = true
     app = shallow(<App {...mockProps} />)
     expect(app).toMatchSnapshot()
-  });
+  })
 
   it('should have default state', () => {
     const expected = {

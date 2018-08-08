@@ -31,10 +31,10 @@ export class SignIn extends Component {
 
     auth.doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState({ 
+        this.setState({
           email: '',
           password: ''
-         })
+        })
         this.props.userAuthentication(authUser.user.uid)
         this.props.isUserSignedIn(true)
         history.push(routes.HOME)
